@@ -1,0 +1,168 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "flash_manager",
+            "cwd": "app/flash_manager",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flash_staff",
+            "cwd": "app/flash_staff",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "core_dependency",
+            "cwd": "core/core_dependency",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "core_router",
+            "cwd": "core/core_router",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "core_ui",
+            "cwd": "core/core_ui",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "authentication",
+            "cwd": "features/authentication",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "delivery",
+            "cwd": "features/delivery",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "floor_table",
+            "cwd": "features/floor_table",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flash_manager (profile)",
+            "cwd": "app/flash_manager",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flash_staff (profile)",
+            "cwd": "app/flash_staff",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "core_dependency (profile)",
+            "cwd": "core/core_dependency",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "core_router (profile)",
+            "cwd": "core/core_router",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "core_ui (profile)",
+            "cwd": "core/core_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "feature_authentication (profile)",
+            "cwd": "features/authentication",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "feature_delivery (profile)",
+            "cwd": "features/delivery",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "feature_floor_table (profile)",
+            "cwd": "features/floor_table",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flash_manager (release)",
+            "cwd": "app/flash_manager",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flash_staff (release)",
+            "cwd": "app/flash_staff",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "core_dependency (release)",
+            "cwd": "core/core_dependency",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "core_router (release)",
+            "cwd": "core/core_router",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "core_ui (release)",
+            "cwd": "core/core_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "feature_authentication (release)",
+            "cwd": "features/authentication",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "feature_delivery (release)",
+            "cwd": "features/delivery",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "feature_floor_table (release)",
+            "cwd": "features/floor_table",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+    ]
+}

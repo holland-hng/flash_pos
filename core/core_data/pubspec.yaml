@@ -1,0 +1,37 @@
+name: core_data
+description: Core Data
+
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  core_dependency:
+    path: '../core_dependency'
+
+  path_provider: ^2.0.15
+  event_bus: ^2.0.0
+  hive: ^3.0.0-dev
+  hive_flutter: ^2.0.0-dev
+
+
+dev_dependencies:
+
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner:
+  injectable_generator:
+  
+  
+
+flutter:
+  uses-material-design: true
+
