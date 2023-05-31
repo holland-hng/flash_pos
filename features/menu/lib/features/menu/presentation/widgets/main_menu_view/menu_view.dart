@@ -74,8 +74,7 @@ class _MenuViewState extends State<MenuView> {
                           (category) => CategoryProductsView(
                             key: ValueKey(category.id),
                             category: category,
-                            pickProduct:
-                                menuController.cartHandler.addOrderItem,
+                            pickProduct: menuController.cartHandler.addCartItem,
                           ),
                         )
                         .toList(),

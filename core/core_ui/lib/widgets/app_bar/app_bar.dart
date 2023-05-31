@@ -11,24 +11,26 @@ class FlashAppBar extends StatelessWidget {
   final double bottomHeight;
   final Color? backgroundColor;
   final Color? tabBackgroundColor;
+  final double? elevation;
 
   const FlashAppBar({
     super.key,
-    required this.tabs,
+    this.tabs = const [],
     required this.title,
-    required this.bottomHeight,
+    this.bottomHeight = 0,
     this.titlePadding,
     this.floating = true,
     this.pinned = true,
     this.backgroundColor,
     this.tabBackgroundColor,
+    this.elevation,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundColor,
-      elevation: 0.2,
+      elevation: elevation,
       flexibleSpace: FlexibleSpaceBar(
         expandedTitleScale: 1,
         title: title,

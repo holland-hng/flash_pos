@@ -8,20 +8,22 @@ class FlashSliverAppBar extends StatelessWidget {
   final EdgeInsetsGeometry? titlePadding;
   final bool floating;
   final bool pinned;
-  final double height;
+  final double bottomHeight;
   final Color? backgroundColor;
   final Color? tabBackgroundColor;
+  final double? elevation;
 
   const FlashSliverAppBar({
     super.key,
-    required this.tabs,
+    this.tabs = const [],
     required this.title,
-    required this.height,
+    this.bottomHeight = 0,
     this.titlePadding,
     this.floating = true,
     this.pinned = true,
     this.backgroundColor,
     this.tabBackgroundColor,
+    this.elevation,
   });
 
   @override
@@ -30,14 +32,14 @@ class FlashSliverAppBar extends StatelessWidget {
       floating: floating,
       pinned: pinned,
       backgroundColor: backgroundColor,
-      elevation: 0.2,
+      elevation: elevation,
       flexibleSpace: FlexibleSpaceBar(
         expandedTitleScale: 1,
         title: title,
         titlePadding: titlePadding,
       ),
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(tabs.length <= 1 ? 0 : height),
+        preferredSize: Size.fromHeight(tabs.length <= 1 ? 0 : bottomHeight),
         child: Align(
           alignment: Alignment.centerLeft,
           child: ShaderMask(

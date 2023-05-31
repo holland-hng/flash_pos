@@ -11,6 +11,7 @@ class MenuAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlashSliverAppBar(
       tabs: tabs,
+      elevation: 0.5,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -30,7 +31,7 @@ class MenuAppBar extends StatelessWidget {
         start: 18,
         end: 18,
       ),
-      height: 62,
+      bottomHeight: 62,
       backgroundColor: Colors.grey.shade200,
     );
   }

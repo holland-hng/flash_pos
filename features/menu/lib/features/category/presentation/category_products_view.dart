@@ -75,7 +75,6 @@ class _CategoryProductsViewState extends State<CategoryProductsView>
                   if (result != null) {
                     widget.pickProduct.call(result);
                   }
-
                   debugPrint("product tap: ${product.name}");
                 },
               );
