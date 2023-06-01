@@ -81,7 +81,7 @@ class _Spacer extends StatelessWidget {
         ),
         expanded: Container(
           width: 18,
-          color: Colors.white,
+          color: Colors.transparent,
         ),
       ),
     );

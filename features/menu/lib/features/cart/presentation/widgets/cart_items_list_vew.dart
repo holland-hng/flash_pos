@@ -2,10 +2,8 @@ import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:flutter/material.dart';
-import 'package:menu/di/di.dart';
 import 'package:menu/features/cart/domain/seat_order.dart';
 import 'package:menu/features/cart/presentation/cart_handler.dart';
-import 'package:menu/features/menu/presentation/widgets/main_menu_view/popup_handler.dart';
 import 'cart_item_view.dart';
 
 class CartItemsListView extends StatefulWidget {
@@ -21,7 +19,6 @@ class CartItemsListView extends StatefulWidget {
 }
 
 class _CartItemsListViewState extends State<CartItemsListView> {
-  final popupHandler = getIt<PopupHandler>();
   late CartHandler cartHandler = widget.cartHandler;
 
   @override
@@ -98,6 +95,8 @@ class _CartItemsListViewState extends State<CartItemsListView> {
                 child: ProductPreviewView(
                   key: ObjectKey(item),
                   item: item,
+                  onRemove: () {},
+                  onUpdate: (item) {},
                 ),
               );
             }).toList(),
@@ -107,64 +106,5 @@ class _CartItemsListViewState extends State<CartItemsListView> {
         onListReorder: cartHandler.onListReorder,
       );
     });
-    // if (cartItems.isEmpty) {
-    //   return Center(
-    //     key: UniqueKey(),
-    //     child: Assets.gifs.gifEmptyCart.image(),
-    //   );
-    // }
-    // return ListView.builder(
-    //   itemCount: cartItems.length,
-    //   itemBuilder: (context, index) {
-    //     final item = cartItems[index];
-    //     return Container(
-    //       key: ObjectKey(item),
-    //       padding: const EdgeInsets.only(bottom: 24),
-    //       child: Slidable(
-    //         useTextDirection: false,
-    //         endActionPane: ActionPane(
-    //           motion: const ScrollMotion(),
-    //           children: [
-    //             12.0.horizontal,
-    //             SlidableAction(
-    //               onPressed: (_) async {
-    //                 final result = await popupHandler.showPopup<CartItem>(
-    //                   canPop: false,
-    //                   context: context,
-    //                   builder: (popupContext) {
-    //                     return PickProductPopup(
-    //                       cartItem: item,
-    //                     );
-    //                   },
-    //                 );
-    //                 if (result != null) {
-    //                   widget.cartHandler.updateItem(index, result);
-    //                 }
-    //               },
-    //               backgroundColor: const Color(0xFF7BC043),
-    //               foregroundColor: Colors.white,
-    //               icon: Icons.edit,
-    //               label: 'Edit',
-    //             ),
-    //             SlidableAction(
-    //               padding: const EdgeInsets.all(0),
-    //               onPressed: (_) {
-    //                 widget.cartHandler.removeItem(item);
-    //               },
-    //               backgroundColor: Colors.redAccent,
-    //               foregroundColor: Colors.white,
-    //               icon: Icons.delete,
-    //               label: 'Remove',
-    //             ),
-    //           ],
-    //         ),
-    //         child: ProductPreviewView(
-    //           item: item,
-    //           key: ObjectKey(item),
-    //         ),
-    //       ),
-    //     );
-    //   },
-    // );
   }
 }

@@ -6,7 +6,7 @@ import 'di/di.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
+  await menuFeatureConfigureDependencies();
   runApp(const MenuApp());
 }
 

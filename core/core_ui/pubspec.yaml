@@ -29,6 +29,7 @@ dependencies:
   shimmer: ^3.0.0
   cached_network_image: ^3.2.3
   flutter_slidable: ^3.0.0
+  easy_sidemenu: ^0.4.1+1
 
 dev_dependencies:
   flutter_test:

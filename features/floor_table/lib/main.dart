@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'features/floor_table/presentation/floor_table_screen.dart';
 
 void main() {
-  configureDependencies();
+  floorFeatureConfigureDependencies();
   runApp(const FloorTableApp());
 }
 

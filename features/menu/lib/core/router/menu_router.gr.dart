@@ -15,12 +15,6 @@ abstract class _$MenuRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    MenuRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MenuScreen(),
-      );
-    },
     PlaceOrderRoute.name: (routeData) {
       final args = routeData.argsAs<PlaceOrderRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -31,21 +25,13 @@ abstract class _$MenuRouter extends RootStackRouter {
         ),
       );
     },
+    MenuRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MenuScreen(),
+      );
+    },
   };
-}
-
-/// generated route for
-/// [MenuScreen]
-class MenuRoute extends PageRouteInfo<void> {
-  const MenuRoute({List<PageRouteInfo>? children})
-      : super(
-          MenuRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MenuRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -84,4 +70,18 @@ class PlaceOrderRouteArgs {
   String toString() {
     return 'PlaceOrderRouteArgs{key: $key, orderItems: $orderItems}';
   }
+}
+
+/// generated route for
+/// [MenuScreen]
+class MenuRoute extends PageRouteInfo<void> {
+  const MenuRoute({List<PageRouteInfo>? children})
+      : super(
+          MenuRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MenuRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

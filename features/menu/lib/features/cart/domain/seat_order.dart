@@ -17,6 +17,15 @@ class SeatOrder extends Equatable {
     );
   }
 
+  factory SeatOrder.fromShared() {
+    return SeatOrder(
+      seatName: 'Shared',
+      cartItems: const <CartItem>[].obs,
+    );
+  }
+
+  bool get isShared => seatName == 'Shared';
+
   @override
   List<Object?> get props => [seatName, cartItems];
 }

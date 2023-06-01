@@ -47,7 +47,8 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                         );
                       },
                       onChanged: cartHandler.selectNumberPeople,
-                      child: SizedBox(
+                      child: Container(
+                        color: Colors.white,
                         key: GlobalKey(),
                         height: 44,
                         width: 100,
@@ -57,7 +58,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                             const Icon(Icons.group),
                             6.0.horizontal,
                             Text(
-                              cartHandler.rxSeatsOrder.length.toString(),
+                              '${cartHandler.rxNumPeople}',
                               style: context.typo.subtitle1.semiBold,
                             ),
                           ],

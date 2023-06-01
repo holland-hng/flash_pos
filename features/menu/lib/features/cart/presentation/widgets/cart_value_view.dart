@@ -29,34 +29,6 @@ class CartValueView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Subtotal",
-                    style: context.typo.subtitle1.medium,
-                  ),
-                  Text(
-                    "\$${rxCartSummary.value.subTotal.toStringAsFixed(2)}",
-                    style: context.typo.subtitle1.medium,
-                  ),
-                ],
-              ),
-              10.0.vertical,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Tax",
-                    style: context.typo.subtitle1.medium,
-                  ),
-                  Text(
-                    "\$${rxCartSummary.value.tax.toStringAsFixed(2)}",
-                    style: context.typo.subtitle1.medium,
-                  ),
-                ],
-              ),
-              const HorDivider(vertical: 18),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
                   Text("Total (${rxCartSummary.value.itemCount})",
                       style: context.typo.headline6.semiBold),
                   Text(
@@ -65,7 +37,7 @@ class CartValueView extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 18),
+              22.0.vertical,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

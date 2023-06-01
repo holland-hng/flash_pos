@@ -25,7 +25,7 @@ class ManagerRouter extends _$ManagerRouter {
           page: RootRoute.page,
           children: [
             AutoRoute(path: '', page: DashBoardRoute.page),
-            floorTableRouter.floorTable,
+            AutoRoute(page: FloorTableRoute.page),
           ],
         ),
         ...authRouter.routes,

@@ -1,6 +1,6 @@
 import 'package:core_router/core_router.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
-import 'package:flash_manager/core/route/manager_router.dart';
+import 'package:flash_manager/core/router/manager_router.dart';
 import 'package:flash_manager/features/root/presentation/slide_menu_wrapper.dart';
 import 'package:floor_table/core/route/floor_table_router.dart';
 import 'package:flutter/material.dart';

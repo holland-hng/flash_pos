@@ -1,6 +1,8 @@
+library core_data;
+
 export 'package:core_data/src/app_config.dart';
 export 'package:core_data/di/dio.dart';
-export 'di/di.dart' hide getIt;
+export 'di/di.dart' show coreDataConfigureDependencies;
 
 //database
 export 'package:core_data/src/app_directory.dart';

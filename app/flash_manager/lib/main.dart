@@ -1,9 +1,9 @@
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:flash_manager/core/route/manager_router.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'core/router/manager_router.dart';
 import 'di/di.dart';
 
 Future<void> main() async {

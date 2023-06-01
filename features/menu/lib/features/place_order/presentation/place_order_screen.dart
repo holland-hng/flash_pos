@@ -48,7 +48,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
           )
         ],
       ),
-      body: Row(
+      body: const Row(
         children: [
           Expanded(child: ConfirmOrderView()),
           Expanded(child: ReceiptView()),

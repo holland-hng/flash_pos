@@ -5,15 +5,10 @@ import '../../features/floor_table/presentation/floor_table_screen.dart';
 part 'floor_table_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
-class FloorTableRouter extends _$FloorTableRouter with FloorTableRouterMixin {
+class FloorTableRouter extends _$FloorTableRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(path: '/', page: FloorTableRoute.page),
-        placeOrder,
+        AutoRoute(page: FloorTableRoute.page),
+        AutoRoute(page: PlaceOrderRoute.page),
       ];
-}
-
-mixin FloorTableRouterMixin {
-  final floorTable = AutoRoute(path: 'floor-table', page: FloorTableRoute.page);
-  final placeOrder = AutoRoute(path: 'place-table', page: PlaceOrderRoute.page);
 }

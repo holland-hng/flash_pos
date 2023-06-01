@@ -21,12 +21,11 @@ export 'theme/app_typo.dart';
 
 //ui
 export 'package:expandable/expandable.dart';
-
 export 'package:shimmer/shimmer.dart';
 export 'package:core_ui/ui_manager/base_state.dart';
 export 'package:cached_network_image/cached_network_image.dart';
-
 export 'package:flutter_slidable/flutter_slidable.dart';
+export 'package:easy_sidemenu/easy_sidemenu.dart';
 
 // widget common
 export 'package:core_ui/widgets/image_view.dart';

@@ -12,7 +12,7 @@ final getIt = GetIt.instance;
 )
 Future<void> configureDependencies() async {
   List<Future> moduleDependencies = [
-    floor_table.configureDependencies(mainGetIt: getIt),
+    floor_table.floorFeatureConfigureDependencies(mainGetIt: getIt),
   ];
 
   await Future.wait(moduleDependencies);

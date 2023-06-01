@@ -1,5 +1,4 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 
 typedef OnTapMenuItem = Function(int);

@@ -1,10 +1,11 @@
-import 'package:authentication/core/route/authentication_router.dart';
 import 'package:core_router/core_router.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flash_staff/di/di.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  configureDependencies();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   runApp(const StaffApp());
 }
 
@@ -20,63 +21,22 @@ class _StaffAppState extends State<StaffApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: appRouter.config(
-        deepLinkBuilder: (_) => DeepLink.single(const LoginRoute()),
-      ),
-      title: 'Flash Staff App',
-      theme: ThemeData(
-        useMaterial3: false,
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return UIManager(builder: (locale) {
+      return MaterialApp.router(
+        locale: locale,
+        debugShowCheckedModeBanner: false,
+        routerConfig: appRouter.config(),
+        title: 'Flash Staff App',
+        theme: ThemeData(
+          useMaterial3: false,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+        localizationsDelegates: const [
+          AppLocalizationsDelegate(),
+          GlobalWidgetsLocalizations.delegate,
+          ...GlobalMaterialLocalizations.delegates,
+        ],
+        supportedLocales: localizedLabels.keys.toList(),
+      );
+    });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
+import 'package:flutter/foundation.dart';
 import 'package:menu/features/cart/domain/cart_summary_value.dart';
 import 'package:menu/features/cart/domain/cart_item.dart';
 import 'package:menu/features/cart/domain/seat_order.dart';
@@ -13,15 +14,17 @@ class CartHandler {
   static final SeatOrder _firstSeat = SeatOrder.fromName("Seat 1");
   final RxList<SeatOrder> rxSeatsOrder = RxList([_firstSeat]);
   final Rx<SeatOrder> rxTargetSeat = _firstSeat.obs;
+
   final Rx<CartSummary> rxCartSummary =
       Rx<CartSummary>(CartSummary.initialize());
+  final RxInt rxNumPeople = 1.obs;
 
   bool isSeatSelected(SeatOrder seatOrder) {
     return rxTargetSeat.value == seatOrder;
   }
 
   bool get isEmpty {
-    return rxCartSummary.value.itemCount == 0;
+    return rxCartSummary.value.itemCount == 0 && rxSeatsOrder.length == 1;
   }
 
   bool get isSingleSeat {
@@ -73,13 +76,13 @@ class CartHandler {
     _calculatorCartValue();
   }
 
-  void removeItem(CartItem item) {
+  void removeItem({required String seatName, required CartItem item}) {
     rxSeatsOrder[seatTargetIndex].cartItems.remove(item);
     _calculatorCartValue();
   }
 
-  void updateItem(int itemIndex, CartItem item) {
-    rxSeatsOrder[seatTargetIndex].cartItems[itemIndex] = item;
+  void updateItem({required String seatName, required CartItem item}) {
+    //rxSeatsOrder[seatTargetIndex].cartItems[itemIndex] = item;
     _calculatorCartValue();
   }
 
@@ -101,15 +104,37 @@ class CartHandler {
   }
 
   void selectNumberPeople(int num) {
-    final List<SeatOrder> oldTabCartItems = List.from(rxSeatsOrder);
+    final bool needShared = num > 1;
+    final List<SeatOrder> oldSeatsOrder = List.from(rxSeatsOrder);
+    rxNumPeople.value = num;
     rxSeatsOrder.clear();
+
+    //backup shared order
+    if (needShared) {
+      SeatOrder? shared;
+      try {
+        if (oldSeatsOrder.first.isShared) {
+          shared = oldSeatsOrder.removeAt(0);
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+      rxSeatsOrder.add(shared ?? SeatOrder.fromShared());
+    }
+    //backup seat order
     for (int seatIndex = 0; seatIndex < num; seatIndex++) {
       try {
-        rxSeatsOrder.add(oldTabCartItems[seatIndex]);
+        rxSeatsOrder.add(oldSeatsOrder[seatIndex]);
       } catch (e) {
         rxSeatsOrder.add(SeatOrder.fromName("Seat ${seatIndex + 1}"));
       }
     }
+    //reset target seat
+    bool needSetTargetSeat = seatTargetIndex < 0;
+    if (needSetTargetSeat) {
+      rxTargetSeat.value = rxSeatsOrder.last;
+    }
+    _calculatorCartValue();
   }
 
   void setSeatTarget(SeatOrder seatOrder) {
