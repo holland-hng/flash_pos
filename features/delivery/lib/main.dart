@@ -22,7 +22,9 @@ class _DeliveryAppState extends State<DeliveryApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: _appRouter.config(
-        deepLinkBuilder: (_) => const DeepLink([DeliveryMethodRoute()]),
+        deepLinkBuilder: (_) => DeepLink.single(
+          const DeliveryRoute(),
+        ),
       ),
       title: 'Delivery App',
       theme: ThemeData(

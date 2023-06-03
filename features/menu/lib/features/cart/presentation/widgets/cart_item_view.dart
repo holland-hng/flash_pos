@@ -67,7 +67,7 @@ class _ProductPreviewViewState extends State<ProductPreviewView> {
       ),
       child: Container(
         color: Colors.transparent,
-        padding: const EdgeInsets.only(top: 18),
+        padding: const EdgeInsets.only(top: 18, bottom: 0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -81,7 +81,6 @@ class _ProductPreviewViewState extends State<ProductPreviewView> {
                     item: widget.item,
                     key: ObjectKey(widget.item),
                   ),
-                  12.0.vertical,
                   ...widget.item.pickedDetails.map(
                     (detail) {
                       return _ItemOptionView(
@@ -110,8 +109,11 @@ class _CartItemHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
+      constraints: const BoxConstraints(
+        minHeight: 42,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,8 +121,8 @@ class _CartItemHeader extends StatelessWidget {
           Expanded(
             child: Text(
               "${item.quantity}x ${item.product.name}",
-              style: context.typo.subtitle1.semiBold,
-              maxLines: 3,
+              style: context.typo.body1.semiBold,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -128,7 +130,7 @@ class _CartItemHeader extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12),
             child: Text(
               "\$${item.price.toStringAsFixed(2)}",
-              style: context.typo.subtitle1.semiBold,
+              style: context.typo.body1.semiBold,
             ),
           ),
         ],
@@ -147,7 +149,7 @@ class _ItemOptionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 8),
       width: double.infinity,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +158,7 @@ class _ItemOptionView extends StatelessWidget {
           Expanded(
             child: Text(
               detail.name,
-              style: context.typo.subtitle2,
+              style: context.typo.body1,
             ),
           ),
           Padding(
@@ -165,7 +167,7 @@ class _ItemOptionView extends StatelessWidget {
             ),
             child: Text(
               "\$${detail.price}",
-              style: context.typo.subtitle2,
+              style: context.typo.body1,
             ),
           ),
         ],

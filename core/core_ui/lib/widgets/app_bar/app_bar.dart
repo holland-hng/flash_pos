@@ -29,6 +29,7 @@ class FlashAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      toolbarHeight: 50,
       backgroundColor: backgroundColor,
       elevation: elevation,
       flexibleSpace: FlexibleSpaceBar(

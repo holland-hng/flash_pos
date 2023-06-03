@@ -1,5 +1,4 @@
 import 'package:core_data/core_data.dart';
-import 'package:menu/core/database/database.dart';
 
 part 'category.g.dart';
 

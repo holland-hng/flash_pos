@@ -34,6 +34,12 @@ dependencies:
   floor_table:
     path: '../../features/floor_table'
 
+  orders:
+    path: '../../features/orders'
+
+  setting:
+    path: '../../features/setting'
+
   authentication:
     path: '../../features/authentication'
 
@@ -74,11 +80,28 @@ flutter:
   # example:
   # fonts:
   
-  #   - family: Trajan Pro
+  #   - family: SF Pro Text
   #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Ultralight.otf
+  #         weight: 100
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Thin.otf
+  #         weight: 200
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Light.otf
+  #         weight: 300
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Regular.otf
+  #         weight: 400
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Medium.otf
+  #         weight: 500
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Semibold.otf
+  #         weight: 600
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Bold.otf
   #         weight: 700
-  #
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Heavy.otf
+  #         weight: 800
+  #       - asset: packages/core_ui/fonts/SF-Pro-Text-Black.otf
+  #         weight: 900
+  
+
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -49,7 +49,7 @@ class _CategoryProductsViewState extends State<CategoryProductsView>
           final products = controller.rxProducts;
           return GridView.builder(
             key: PageStorageKey(category.id),
-            padding: const EdgeInsets.fromLTRB(18, 6, 18, 100),
+            padding: const EdgeInsets.fromLTRB(18, 12, 18, 100),
             itemCount: products.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisSpacing: 12,

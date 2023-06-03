@@ -21,7 +21,7 @@ class CartValueView extends StatelessWidget {
       color: Colors.white,
       child: Obx(() {
         return Padding(
-          padding: const EdgeInsets.only(left: 18, right: 18, bottom: 28),
+          padding: const EdgeInsets.only(left: 18, right: 18, bottom: 18),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -30,10 +30,10 @@ class CartValueView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Total (${rxCartSummary.value.itemCount})",
-                      style: context.typo.headline6.semiBold),
+                      style: context.typo.subtitle2.semiBold),
                   Text(
                     "\$${rxCartSummary.value.total.toStringAsFixed(2)}",
-                    style: context.typo.headline6.semiBold,
+                    style: context.typo.subtitle2.semiBold,
                   ),
                 ],
               ),
@@ -45,7 +45,7 @@ class CartValueView extends StatelessWidget {
                     type: CartButtonEnum.save,
                     onTap: onSave,
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 18),
                   CartButton(
                     type: CartButtonEnum.placeOrder,
                     onTap: onPlaceOrder,

@@ -1,11 +1,13 @@
+import 'package:core_data/src/app_config.dart';
 import 'package:core_dependency/core_dependency.dart';
 
 @module
 abstract class DIOModule {
   @lazySingleton
-  Dio dio() {
+  Dio dio(AppConfig appConfig) {
     final dio = Dio(
       BaseOptions(
+        baseUrl: appConfig.baseUrl,
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
         contentType: 'application/json',
@@ -21,14 +23,14 @@ abstract class DIOModule {
         error: true,
         compact: true,
         maxWidth: 120);
-
-    dio.interceptors.add(prettyDioLogger);
     final retryInterceptor = RetryInterceptor(
       dio: dio,
       retries: 3,
-      retryDelays: const [Duration.zero],
     );
-    dio.interceptors.add(retryInterceptor);
+    dio.interceptors.addAll([
+      prettyDioLogger,
+      retryInterceptor,
+    ]);
     return dio;
   }
 }

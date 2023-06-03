@@ -47,7 +47,7 @@ class _MenuViewState extends State<MenuView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.grey.shade100,
       body: Obx(
         () {
           switch (menuController.rxState.value) {
@@ -60,7 +60,6 @@ class _MenuViewState extends State<MenuView> {
               return DefaultTabController(
                 length: menuController.rxCategories.length,
                 child: ExtendedNestedScrollView(
-                  pinnedHeaderSliverHeightBuilder: () => 86,
                   onlyOneScrollInBody: true,
                   floatHeaderSlivers: true,
                   headerSliverBuilder: (context, _) {

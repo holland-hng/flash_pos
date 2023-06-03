@@ -21,6 +21,12 @@ abstract class _$DeliveryRouter extends RootStackRouter {
         child: const DeliveryProgressScreen(),
       );
     },
+    DeliveryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DeliveryScreen(),
+      );
+    },
     DeliveryMethodRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -40,6 +46,20 @@ class DeliveryProgressRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DeliveryProgressRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [DeliveryScreen]
+class DeliveryRoute extends PageRouteInfo<void> {
+  const DeliveryRoute({List<PageRouteInfo>? children})
+      : super(
+          DeliveryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DeliveryRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

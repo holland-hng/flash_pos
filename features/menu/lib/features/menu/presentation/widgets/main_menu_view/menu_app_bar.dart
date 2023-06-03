@@ -12,27 +12,28 @@ class MenuAppBar extends StatelessWidget {
     return FlashSliverAppBar(
       tabs: tabs,
       elevation: 0.5,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "Flash Menu",
-            style: context.typo.headline2.bold,
-          ),
-          const SizedBox(
-            width: 250,
-            height: 42,
-            child: SearchField(),
-          )
-        ],
+      title: Padding(
+        padding: const EdgeInsets.only(bottom: 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Menu",
+              style: context.typo.headline5.bold,
+            ),
+            const SizedBox(
+              width: 250,
+              height: 38,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 4),
+                child: SearchField(),
+              ),
+            )
+          ],
+        ),
       ),
-      titlePadding: const EdgeInsetsDirectional.only(
-        bottom: 62,
-        start: 18,
-        end: 18,
-      ),
-      bottomHeight: 62,
-      backgroundColor: Colors.grey.shade200,
+      bottomHeight: 52,
+      backgroundColor: Colors.grey.shade100,
     );
   }
 }

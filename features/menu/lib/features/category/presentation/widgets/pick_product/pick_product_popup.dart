@@ -29,7 +29,7 @@ class _PickProductPopupState extends State<PickProductPopup> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Stack(
           children: [
             GestureDetector(

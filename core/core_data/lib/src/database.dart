@@ -13,7 +13,10 @@ abstract class DatabaseFactory {
     Hive.registerAdapter<T>(adapter);
   }
 
-  Future<Database<T>> open<T>({required String name}) async {
+  Future<Database<T>> open<T>({
+    required String name,
+    HiveAesCipher? encryptionCipher,
+  }) async {
     Database<T> database;
     Box<T> box;
 
@@ -21,6 +24,7 @@ abstract class DatabaseFactory {
       box = await Hive.openBox<T>(
         name,
         path: databasePath,
+        encryptionCipher: encryptionCipher,
       );
     } catch (e) {
       await Hive.deleteBoxFromDisk(
@@ -30,6 +34,7 @@ abstract class DatabaseFactory {
       box = await Hive.openBox<T>(
         name,
         path: databasePath,
+        encryptionCipher: encryptionCipher,
       );
     }
     database = Database<T>(box);

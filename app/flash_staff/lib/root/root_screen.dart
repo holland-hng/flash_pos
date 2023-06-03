@@ -1,8 +1,13 @@
 import 'package:core_router/core_router.dart';
-import 'package:easy_sidemenu/easy_sidemenu.dart';
-import 'package:floor_table/core/route/floor_table_router.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:delivery/delivery.dart';
+import 'package:floor_table/floor_table.dart';
 import 'package:flutter/material.dart';
 import 'package:menu/menu.dart';
+import 'package:orders/core/router/orders_router.dart';
+import 'package:setting/core/router/setting_router.dart';
+
+import 'navigation_button_factory.dart';
 
 @RoutePage()
 class RootScreen extends StatefulWidget {
@@ -13,9 +18,6 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
-  final SideMenuController sideMenuController = SideMenuController();
-  int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
@@ -23,118 +25,67 @@ class _RootScreenState extends State<RootScreen> {
       routes: const [
         FloorTableRoute(),
         MenuRoute(),
+        OrdersRoute(),
+        DeliveryRoute(),
+        SettingRoute(),
       ],
       transitionBuilder: (context, child, animation) => child,
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
-
-        return Row(
-          children: [
-            NavigationRail(
-              backgroundColor: Colors.white,
-              selectedIndex: tabsRouter.activeIndex,
-              groupAlignment: -1,
-              onDestinationSelected: (int index) {
-                tabsRouter.setActiveIndex(index);
-              },
-              leading: Container(
-                padding: const EdgeInsets.only(top: 2),
-                margin: const EdgeInsets.only(top: 6, bottom: 90),
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.blueAccent),
-                    shape: BoxShape.circle),
-                child: Icon(
-                  Icons.flash_on,
-                  size: 34,
-                  color: Colors.blueGrey,
-                ),
-              ),
-              labelType: NavigationRailLabelType.all,
-              destinations: NavButtonFactory.createList(
-                [
-                  NavButtonEnum.table,
-                  NavButtonEnum.menu,
-                  NavButtonEnum.orders,
-                  NavButtonEnum.delivery,
-                  NavButtonEnum.setting,
-                ],
-              ),
-            ),
-            VerticalDivider(
-              thickness: 1,
-              width: 0.2,
-              color: Colors.grey.shade300,
-            ),
-            Expanded(child: child),
-          ],
+        return Scaffold(
+          body: child,
+          bottomNavigationBar: FlashBottomNavigationBar(
+            onTap: tabsRouter.setActiveIndex,
+            selectedIndex: tabsRouter.activeIndex,
+          ),
         );
       },
     );
   }
 }
 
-class NavButtonFactory {
-  static NavigationRailDestination create(NavButtonEnum type) {
-    return NavigationRailDestination(
-      icon: Icon(
-        type.iconData,
-        size: 34,
+class FlashBottomNavigationBar extends StatelessWidget {
+  final Function(int) onTap;
+  final int selectedIndex;
+  const FlashBottomNavigationBar({
+    super.key,
+    required this.onTap,
+    required this.selectedIndex,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.white,
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const HorDivider(),
+            Container(
+              color: Colors.white,
+              height: 46,
+              child: Row(
+                children: [
+                  const Expanded(child: SizedBox()),
+                  ...NavButtonFactory.createList(
+                    onTap: onTap,
+                    selectedIndex: AutoTabsRouter.of(context).activeIndex,
+                    types: [
+                      NavButtonEnum.table,
+                      NavButtonEnum.menu,
+                      NavButtonEnum.orders,
+                      NavButtonEnum.delivery,
+                      NavButtonEnum.setting,
+                    ],
+                  ),
+                  const Expanded(child: SizedBox()),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-      label: Padding(
-        padding: const EdgeInsets.only(top: 4),
-        child: Text(type.label),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 12),
     );
-  }
-
-  static List<NavigationRailDestination> createList(List<NavButtonEnum> types) {
-    return types.map((type) => create(type)).toList();
-  }
-}
-
-enum NavButtonEnum {
-  table,
-  menu,
-  orders,
-  delivery,
-  setting,
-}
-
-extension NavButtonEnumExtension on NavButtonEnum {
-  IconData get iconData {
-    switch (this) {
-      case NavButtonEnum.table:
-        return Icons.layers;
-      case NavButtonEnum.menu:
-        return Icons.widgets_rounded;
-      case NavButtonEnum.orders:
-        return Icons.event_note;
-      case NavButtonEnum.delivery:
-        return Icons.delivery_dining_sharp;
-      case NavButtonEnum.setting:
-        return Icons.settings;
-      default:
-        throw UnimplementedError();
-    }
-  }
-
-  String get label {
-    switch (this) {
-      case NavButtonEnum.table:
-        return "Table";
-      case NavButtonEnum.menu:
-        return "Menu";
-      case NavButtonEnum.orders:
-        return "Orders";
-      case NavButtonEnum.delivery:
-        return "Delivery";
-      case NavButtonEnum.setting:
-        return "Setting";
-      default:
-        throw UnimplementedError();
-    }
   }
 }

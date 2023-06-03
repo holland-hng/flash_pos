@@ -16,7 +16,7 @@ class CartButton extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: Ink(
-            height: 44,
+            height: 38,
             decoration: BoxDecoration(
               color: type.backgroundColor,
               borderRadius: BorderRadius.circular(4),
@@ -63,13 +63,13 @@ extension CartButtonEnumExtension on CartButtonEnum {
     switch (this) {
       case CartButtonEnum.placeOrder:
         return const TextStyle(
-          fontSize: 17,
+          fontSize: 15,
           fontWeight: FontWeight.w700,
           color: Colors.white,
         );
       case CartButtonEnum.save:
         return const TextStyle(
-          fontSize: 17,
+          fontSize: 15,
           fontWeight: FontWeight.w700,
           color: Colors.black,
         );

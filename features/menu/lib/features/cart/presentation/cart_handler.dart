@@ -77,13 +77,30 @@ class CartHandler {
   }
 
   void removeItem({required String seatName, required CartItem item}) {
-    rxSeatsOrder[seatTargetIndex].cartItems.remove(item);
-    _calculatorCartValue();
+    try {
+      final seatIndex = rxSeatsOrder.indexWhere(
+        (seat) => seat.seatName == seatName,
+      );
+      rxSeatsOrder[seatIndex].cartItems.remove(item);
+      _calculatorCartValue();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   void updateItem({required String seatName, required CartItem item}) {
-    //rxSeatsOrder[seatTargetIndex].cartItems[itemIndex] = item;
-    _calculatorCartValue();
+    try {
+      final seatIndex = rxSeatsOrder.indexWhere(
+        (seat) => seat.seatName == seatName,
+      );
+      final itemIndex = rxSeatsOrder[seatIndex].cartItems.indexWhere(
+            (cartItem) => cartItem.id == item.id,
+          );
+      rxSeatsOrder[seatIndex].cartItems[itemIndex] = item;
+      _calculatorCartValue();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   void saveOrder() {

@@ -1,25 +1,17 @@
 import 'package:core_router/core_router.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final Function(bool)? onResult;
+  const LoginScreen({super.key, this.onResult});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
-  void didUpdateWidget(covariant LoginScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,28 +24,16 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         toolbarHeight: 44,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          MaterialButton(
-            padding: const EdgeInsets.all(0),
-            onPressed: () {},
-            child: Container(
-              width: 300,
-              height: 40,
-              color: Colors.red,
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text("asd"),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.images.appLogo.svg(),
+            Text("id"),
+            Text("password"),
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        context.router.pushNamed(AppDeepLink().delivery);
-      }),
     );
   }
 }

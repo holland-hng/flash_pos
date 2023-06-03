@@ -35,6 +35,7 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
         prefixIcon: const Icon(
           CupertinoIcons.search,
+          size: 20,
         ),
         filled: true,
         fillColor: Colors.white,

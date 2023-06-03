@@ -22,6 +22,10 @@ class ProductCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(4),
+            border: Border.all(
+              width: 0.2,
+              color: const Color.fromARGB(255, 224, 224, 224),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,13 +39,13 @@ class ProductCard extends StatelessWidget {
                 product.name,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: context.typo.subtitle1.semiBold,
+                style: context.typo.body1.semiBold,
               ),
               const Spacer(),
               Text(
                 '\$ ${product.price}',
                 maxLines: 1,
-                style: context.typo.subtitle1.semiBold.mergeStyle(
+                style: context.typo.body1.semiBold.mergeStyle(
                   color: Colors.green,
                 ),
               ),

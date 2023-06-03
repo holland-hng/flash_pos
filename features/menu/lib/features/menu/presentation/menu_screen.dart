@@ -29,9 +29,13 @@ class _MenuScreenState extends State<MenuScreen> {
       body: Row(
         children: [
           Expanded(
+            flex: 7,
             child: MenuMiniApp(menuController: menuController),
           ),
-          MenuRightSideView(menuController: menuController),
+          Expanded(
+            flex: 3,
+            child: MenuRightSideView(menuController: menuController),
+          ),
         ],
       ),
     );

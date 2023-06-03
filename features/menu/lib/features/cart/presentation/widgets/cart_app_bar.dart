@@ -14,15 +14,16 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.white,
       child: SafeArea(
         child: FlashAppBar(
           tabBackgroundColor: Colors.grey.shade200,
           backgroundColor: Colors.white,
           floating: false,
-          bottomHeight: 56,
+          bottomHeight: 0,
           elevation: 0,
           titlePadding: const EdgeInsetsDirectional.only(
-            top: 16,
+            top: 0,
             start: 18,
             end: 18,
             bottom: 0,
@@ -35,7 +36,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   Text(
                     "Order details",
-                    style: context.typo.headline4.bold,
+                    style: context.typo.headline6.bold,
                   ),
                   Obx(() {
                     return MiraiPopupMenu<int>(
@@ -55,11 +56,14 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Icon(Icons.group),
+                            const Icon(
+                              Icons.group,
+                              size: 22,
+                            ),
                             6.0.horizontal,
                             Text(
                               '${cartHandler.rxNumPeople}',
-                              style: context.typo.subtitle1.semiBold,
+                              style: context.typo.subtitle2.semiBold,
                             ),
                           ],
                         ),
@@ -68,12 +72,11 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                   })
                 ],
               ),
-              14.0.vertical,
+              18.0.vertical,
               Text(
                 "Floor 1 - Table A002",
-                style: context.typo.headline6.bold,
+                style: context.typo.subtitle2.bold,
               ),
-              4.0.vertical,
             ],
           ),
         ),
@@ -82,5 +85,5 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(112);
+  Size get preferredSize => const Size.fromHeight(96);
 }

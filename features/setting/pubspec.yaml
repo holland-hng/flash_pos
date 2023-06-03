@@ -1,0 +1,46 @@
+name: setting
+description: Feature Setting
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  core_dependency:
+    path: ../../core/core_dependency
+  core_router:
+    path: ../../core/core_router
+  core_ui:
+    path: ../../core/core_ui
+  core_data:
+    path: ../../core/core_data
+
+  extended_nested_scroll_view: ^6.1.0
+  blur: ^3.1.0
+  drag_and_drop_lists: ^0.3.3
+  mirai_dropdown_menu: ^0.0.6+2
+  
+  flutter:
+    sdk: flutter
+
+dependency_overrides:
+  hive: ^3.0.0-dev
+
+dev_dependencies:
+  auto_route_generator: null
+  build_runner: null
+  json_serializable: ^6.7.0
+  flutter_lints: ^2.0.0
+  injectable_generator: null
+  retrofit_generator:
+  envied_generator:
+  hive_generator: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  
+
+flutter:
+  uses-material-design: true
+  

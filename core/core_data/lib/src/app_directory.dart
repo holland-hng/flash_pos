@@ -18,6 +18,8 @@ class AppDirectory {
   String get floorsFeature => _composePath(FeaturePath.floors);
   String get ordersFeature => _composePath(FeaturePath.orders);
   String get authenticationFeature => _composePath(FeaturePath.authentication);
+  String get settingFeature => _composePath(FeaturePath.setting);
+  String get deliveryFeature => _composePath(FeaturePath.delivery);
   String get mainApp => dir;
 
   String _composePath(FeaturePath feature) {
@@ -30,6 +32,8 @@ enum FeaturePath {
   floors,
   orders,
   authentication,
+  setting,
+  delivery,
 }
 
 extension FeaturePathExtension on FeaturePath {
@@ -43,6 +47,10 @@ extension FeaturePathExtension on FeaturePath {
         return "/database/orders";
       case FeaturePath.authentication:
         return "/database/authentication";
+      case FeaturePath.setting:
+        return "/database/setting";
+      case FeaturePath.delivery:
+        return "/database/delivery";
       default:
         throw UnimplementedError();
     }

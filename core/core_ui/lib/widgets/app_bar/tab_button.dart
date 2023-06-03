@@ -17,18 +17,22 @@ class TabButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: tabBackgroundColor ?? Colors.white,
           borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            width: 0.2,
+            color: const Color.fromARGB(255, 224, 224, 224),
+          ),
         ),
         child: Center(
           child: Text(
             title,
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
       ),
-      height: 38,
+      height: 34,
     );
   }
 }

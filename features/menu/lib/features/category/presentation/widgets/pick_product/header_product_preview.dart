@@ -21,11 +21,11 @@ class HeaderProductPreview extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         18.0.horizontal,
-        ImageView(thumb: product.thumb, width: 150),
+        ImageView(thumb: product.thumb, width: 120),
         12.0.horizontal,
         Container(
-          constraints: const BoxConstraints(minHeight: 168),
-          width: 320,
+          constraints: const BoxConstraints(minHeight: 142),
+          width: 350,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,7 @@ class HeaderProductPreview extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 18),
                     child: Text(
                       product.name,
-                      style: context.typo.headline4.bold,
+                      style: context.typo.headline5.bold,
                     ),
                   ),
                 ],
@@ -50,8 +50,8 @@ class HeaderProductPreview extends StatelessWidget {
                       width: 150,
                       child: Text(
                         "\$${pickProductHandler.rxPrice.value?.toStringAsFixed(2)}",
-                        style: context.typo.headline4.bold
-                            .mergeStyle(color: Colors.green),
+                        style: context.typo.headline5.bold
+                            .mergeStyle(color: Colors.blue),
                         overflow: TextOverflow.ellipsis,
                       ),
                     );
@@ -113,7 +113,7 @@ class _QuantityButton extends StatelessWidget {
       child: Container(
         color: Colors.white,
         width: 48,
-        height: 54,
+        height: 42,
         padding: iconData == Icons.remove
             ? const EdgeInsets.only(right: 8)
             : const EdgeInsets.only(left: 8),

@@ -13,12 +13,13 @@ Future<void> menuFeatureConfigureDependencies({GetIt? mainGetIt}) async {
   final isSubmodule = mainGetIt == null;
 
   if (isSubmodule) {
+    getIt.registerSingleton<AppConfig>(MenuAppConfig());
+
     List<Future> coreDependencies = [
       coreDataConfigureDependencies(mainGetIt: internalGetIt),
       registerRouter(),
     ];
     await Future.wait(coreDependencies);
-    registerAppConfig();
   }
 
   await internalGetIt.init();
@@ -28,8 +29,4 @@ Future<void> registerRouter() async {
   final managerRouter = MenuRouter();
   final appRouter = AppRouter(managerRouter);
   getIt.registerSingleton<AppRouter>(appRouter);
-}
-
-void registerAppConfig() {
-  getIt.registerSingleton<AppConfig>(MenuAppConfig(getIt<Dio>()));
 }

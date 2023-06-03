@@ -23,7 +23,11 @@ class CategoryController {
       rxState.value = BaseState.fetchingSuccess;
     } catch (e) {
       debugPrint(e.toString());
-      rxState.value = BaseState.fetchingError;
+      if (rxProducts.isEmpty) {
+        rxState.value = BaseState.fetchingError;
+      } else {
+        //fetch local success -> popup show network error
+      }
     }
   }
 

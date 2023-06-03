@@ -37,25 +37,23 @@ class _CartItemsListViewState extends State<CartItemsListView> {
       }
       final List<SeatOrder> seatsOrder = cartHandler.rxSeatsOrder;
       return DragAndDropLists(
-        lastItemTargetHeight: 30,
+        removeTopPadding: true,
+        lastItemTargetHeight: 20,
         contentsWhenEmpty: Center(
           key: UniqueKey(),
           child: Assets.gifs.gifEmptyCart.image(),
         ),
-        listPadding: const EdgeInsets.symmetric(
-          horizontal: 18,
-        ),
+        listPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 0),
         children: seatsOrder.map((seatOrder) {
           final isSelected = cartHandler.isSeatSelected(seatOrder);
           return DragAndDropList(
             header: cartHandler.isSingleSeat
                 ? null
-                : Material(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: cartHandler.isFirst(seatOrder) ? 12 : 0,
-                          bottom: 6),
+                : Padding(
+                    padding: EdgeInsets.only(
+                        top: cartHandler.isFirst(seatOrder) ? 17 : 0),
+                    child: Material(
+                      color: Colors.white,
                       child: InkWell(
                         onTap: () {
                           cartHandler.setSeatTarget(seatOrder);
@@ -70,9 +68,9 @@ class _CartItemsListViewState extends State<CartItemsListView> {
                           child: Text(
                             seatOrder.seatName,
                             style: isSelected
-                                ? context.typo.subtitle1.bold
+                                ? context.typo.body1.bold
                                     .mergeStyle(color: Colors.white)
-                                : context.typo.subtitle1.semiBold,
+                                : context.typo.body1.semiBold,
                           ),
                         ),
                       ),
@@ -95,8 +93,18 @@ class _CartItemsListViewState extends State<CartItemsListView> {
                 child: ProductPreviewView(
                   key: ObjectKey(item),
                   item: item,
-                  onRemove: () {},
-                  onUpdate: (item) {},
+                  onRemove: () {
+                    cartHandler.removeItem(
+                      seatName: seatOrder.seatName,
+                      item: item,
+                    );
+                  },
+                  onUpdate: (item) {
+                    cartHandler.updateItem(
+                      seatName: seatOrder.seatName,
+                      item: item,
+                    );
+                  },
                 ),
               );
             }).toList(),

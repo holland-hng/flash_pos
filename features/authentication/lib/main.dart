@@ -1,8 +1,12 @@
-import 'package:authentication/core/route/authentication_router.dart';
 import 'package:core_router/core_router.dart';
 import 'package:flutter/material.dart';
+import 'core/router/authentication_router.dart';
+import 'di/di.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await authFeatureConfigureDependencies();
+
   runApp(const AuthenticationApp());
 }
 
@@ -21,7 +25,7 @@ class _AuthenticationAppState extends State<AuthenticationApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: _appRouter.config(
-        deepLinkBuilder: (_) => const DeepLink([LoginRoute()]),
+        deepLinkBuilder: (_) => DeepLink([LoginRoute()]),
       ),
       title: 'Authentication App',
       theme: ThemeData(

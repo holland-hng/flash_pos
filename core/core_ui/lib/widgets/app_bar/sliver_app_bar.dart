@@ -29,15 +29,12 @@ class FlashSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      toolbarHeight: 50,
       floating: floating,
       pinned: pinned,
       backgroundColor: backgroundColor,
       elevation: elevation,
-      flexibleSpace: FlexibleSpaceBar(
-        expandedTitleScale: 1,
-        title: title,
-        titlePadding: titlePadding,
-      ),
+      title: title,
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(tabs.length <= 1 ? 0 : bottomHeight),
         child: Align(
@@ -54,8 +51,8 @@ class FlashSliverAppBar extends StatelessWidget {
                 ? null
                 : TabBar(
                     isScrollable: true,
-                    padding:
-                        const EdgeInsets.only(bottom: 12, left: 18, right: 6),
+                    padding: const EdgeInsets.only(
+                        bottom: 12, left: 18, right: 6, top: 6),
                     labelPadding: const EdgeInsets.only(right: 12),
                     indicatorPadding: const EdgeInsets.only(right: 12),
                     indicator: ShapeDecoration(

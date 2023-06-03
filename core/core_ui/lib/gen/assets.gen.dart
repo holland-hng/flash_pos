@@ -8,6 +8,61 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
+
+class $AssetsFontsGen {
+  const $AssetsFontsGen();
+
+  /// File path: assets/fonts/SF-Pro-Text-Black.otf
+  String get sFProTextBlack =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Black.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Bold.otf
+  String get sFProTextBold =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Bold.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Heavy.otf
+  String get sFProTextHeavy =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Heavy.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Light.otf
+  String get sFProTextLight =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Light.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Medium.otf
+  String get sFProTextMedium =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Medium.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Regular.otf
+  String get sFProTextRegular =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Regular.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Semibold.otf
+  String get sFProTextSemibold =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Semibold.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Thin.otf
+  String get sFProTextThin =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Thin.otf';
+
+  /// File path: assets/fonts/SF-Pro-Text-Ultralight.otf
+  String get sFProTextUltralight =>
+      'packages/core_ui/assets/fonts/SF-Pro-Text-Ultralight.otf';
+
+  /// List of all assets
+  List<String> get values => [
+        sFProTextBlack,
+        sFProTextBold,
+        sFProTextHeavy,
+        sFProTextLight,
+        sFProTextMedium,
+        sFProTextRegular,
+        sFProTextSemibold,
+        sFProTextThin,
+        sFProTextUltralight
+      ];
+}
 
 class $AssetsGifsGen {
   const $AssetsGifsGen();
@@ -20,10 +75,22 @@ class $AssetsGifsGen {
   List<AssetGenImage> get values => [gifEmptyCart];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/app_logo.svg
+  SvgGenImage get appLogo => const SvgGenImage('assets/images/app_logo.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [appLogo];
+}
+
 class Assets {
   Assets._();
 
+  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsGifsGen gifs = $AssetsGifsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {
@@ -92,6 +159,59 @@ class AssetGenImage {
       _assetName,
       bundle: bundle,
       package: package,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => 'packages/core_ui/$_assetName';
+}
+
+class SvgGenImage {
+  const SvgGenImage(this._assetName);
+
+  final String _assetName;
+
+  SvgPicture svg({
+    Key? key,
+    bool matchTextDirection = false,
+    AssetBundle? bundle,
+    String? package = 'core_ui',
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    AlignmentGeometry alignment = Alignment.center,
+    bool allowDrawingOutsideViewBox = false,
+    WidgetBuilder? placeholderBuilder,
+    String? semanticsLabel,
+    bool excludeFromSemantics = false,
+    SvgTheme theme = const SvgTheme(),
+    ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated bool cacheColorFilter = false,
+  }) {
+    return SvgPicture.asset(
+      _assetName,
+      key: key,
+      matchTextDirection: matchTextDirection,
+      bundle: bundle,
+      package: package,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+      placeholderBuilder: placeholderBuilder,
+      semanticsLabel: semanticsLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      theme: theme,
+      colorFilter: colorFilter,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
     );
   }
 
