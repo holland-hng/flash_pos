@@ -208,6 +208,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  core_data:
+    dependency: transitive
+    description:
+      path: "../../core/core_data"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   core_dependency:
     dependency: "direct main"
     description:
@@ -237,6 +244,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  cryptography:
+    dependency: transitive
+    description:
+      name: cryptography
+      sha256: df156c5109286340817d21fa7b62f9140f17915077127dd70f8bd7a2a0997a35
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
   cupertino_icons:
     dependency: transitive
     description:
@@ -308,6 +323,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
+  event_bus:
+    dependency: transitive
+    description:
+      name: event_bus
+      sha256: "44baa799834f4c803921873e7446a2add0f3efa45e101a054b1f0ab9b95f8edc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   expandable:
     dependency: transitive
     description:
@@ -480,6 +503,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      sha256: "00806ba9fd0e725804c7c524e79a0f979bf562e71ada0d69ba7299d0d34d1a37"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-dev"
+  hive_flutter:
+    dependency: transitive
+    description:
+      name: hive_flutter
+      sha256: a9f07cabf8fa205cde01cc782f56804987bbd164dc02b07fd9b30ed0426267da
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0-dev"
   http:
     dependency: transitive
     description:

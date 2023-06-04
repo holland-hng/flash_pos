@@ -8,7 +8,7 @@ final getIt = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: true, // default
 )
-Future<void> floorFeatureConfigureDependencies({GetIt? mainGetIt}) async {
+Future<void> configureDependencies({GetIt? mainGetIt}) async {
   final internalGetIt = mainGetIt ?? getIt;
   internalGetIt.init();
 }

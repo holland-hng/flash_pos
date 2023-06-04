@@ -1,8 +1,16 @@
 import 'package:core_data/src/app_config.dart';
+import 'package:core_data/src/app_directory.dart';
 import 'package:core_dependency/core_dependency.dart';
+import 'package:event_bus/event_bus.dart';
 
 @module
-abstract class DIOModule {
+abstract class DIModule {
+  @preResolve
+  Future<AppDirectory> get appDirectory => AppDirectory.getInstance();
+
+  @lazySingleton
+  EventBus get eventBus => EventBus();
+
   @lazySingleton
   Dio dio(AppConfig appConfig) {
     final dio = Dio(
@@ -16,17 +24,19 @@ abstract class DIOModule {
     );
 
     final prettyDioLogger = PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: true,
-        responseHeader: false,
-        error: true,
-        compact: true,
-        maxWidth: 120);
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: 120,
+    );
     final retryInterceptor = RetryInterceptor(
       dio: dio,
       retries: 3,
     );
+
     dio.interceptors.addAll([
       prettyDioLogger,
       retryInterceptor,

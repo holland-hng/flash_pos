@@ -1,3 +1,4 @@
+import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
 import 'package:flutter/foundation.dart';
 import 'package:menu/features/menu/presentation/menu_screen.dart';
@@ -6,6 +7,7 @@ import 'package:menu/features/place_order/presentation/place_order_screen.dart';
 
 part 'menu_router.gr.dart';
 
+@singleton
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
 class MenuRouter extends _$MenuRouter {
   @override

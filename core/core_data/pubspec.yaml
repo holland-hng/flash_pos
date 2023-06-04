@@ -16,10 +16,14 @@ dependencies:
   core_dependency:
     path: '../core_dependency'
 
+  core_router:
+    path: '../core_router'
+
   path_provider: ^2.0.15
   event_bus: ^2.0.0
   hive: ^3.0.0-dev
   hive_flutter: ^2.0.0-dev
+  
 
 
 dev_dependencies:

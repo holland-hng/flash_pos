@@ -4,10 +4,6 @@ part 'app_config.g.dart';
 
 @Envied(path: '.env')
 class AuthAppConfig implements AppConfig {
-  @factoryMethod
-  AuthAppConfig(Dio dio) {
-    dio.options.baseUrl = baseUrl;
-  }
   @override
   @EnviedField(varName: 'baseUrl', obfuscate: true)
   final String baseUrl = _AuthAppConfig.baseUrl;

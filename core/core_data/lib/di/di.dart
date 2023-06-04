@@ -1,14 +1,17 @@
 import 'package:core_dependency/core_dependency.dart';
+import 'package:core_router/core_router.dart';
 import 'di.config.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit(
-  initializerName: 'init', // default
-  preferRelativeImports: true, // default
-  asExtension: true, // default
-)
-Future<void> coreDataConfigureDependencies({GetIt? mainGetIt}) async {
-  final internalGetIt = mainGetIt ?? getIt;
-  await internalGetIt.init();
+@InjectableInit()
+Future<void> coreDataConfigureDependencies({
+  required GetIt mainGetIt,
+}) async {
+  await mainGetIt.init();
+}
+
+Future<void> initCoreDependencies({required GetIt mainGetIt}) async {
+  coreRouterConfigureDependencies(mainGetIt: getIt);
+  await coreDataConfigureDependencies(mainGetIt: getIt);
 }

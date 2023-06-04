@@ -1,7 +1,7 @@
-import 'package:authentication/core/database/database.dart';
-import 'package:authentication/features/auth/data/dao/auth_dao.dart';
 import 'package:core_data/core_data.dart';
+import 'package:core_data/src/auth/data/dao/auth_dao.dart';
 import 'package:core_dependency/core_dependency.dart';
+import 'database.dart';
 
 @singleton
 class AuthLocalDataSource {
@@ -29,5 +29,9 @@ class AuthLocalDataSource {
     } catch (e) {
       return Auth.empty();
     }
+  }
+
+  Future<void> cacheAuth(Auth auth) async {
+    await database.put(AuthDao.hiveKey, AuthDao.fromDomain(auth));
   }
 }

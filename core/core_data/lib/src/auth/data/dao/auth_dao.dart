@@ -14,4 +14,8 @@ class AuthDao extends HiveObject implements Auth {
   AuthDao(this.token, this.refreshToken);
 
   static const String hiveKey = 'auth';
+
+  factory AuthDao.fromDomain(Auth auth) {
+    return AuthDao(auth.token, auth.refreshToken);
+  }
 }

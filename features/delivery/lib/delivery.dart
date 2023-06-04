@@ -1,3 +1,4 @@
 library delivery;
 
-export '/core/route/delivery_route.dart';
+export '/core/router/delivery_router.dart';
+export '/di/di.dart';

@@ -19,6 +19,9 @@ dependencies:
   core_router:
     path: '../../core/core_router'
 
+  core_data:
+    path: '../../core/core_data'
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

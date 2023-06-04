@@ -1,6 +1,8 @@
 import 'package:core_router/core_router.dart';
-import 'package:delivery/core/route/delivery_route.dart';
 import 'package:flutter/material.dart';
+
+import 'core/router/delivery_router.dart';
+import 'di/di.dart';
 
 void main() {
   runApp(const DeliveryApp());
@@ -14,7 +16,7 @@ class DeliveryApp extends StatefulWidget {
 }
 
 class _DeliveryAppState extends State<DeliveryApp> {
-  final _appRouter = DeliveryRouter();
+  final _appRouter = getIt<DeliveryRouter>();
 
   @override
   Widget build(BuildContext context) {

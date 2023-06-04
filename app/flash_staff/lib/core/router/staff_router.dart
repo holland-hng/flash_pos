@@ -1,7 +1,8 @@
 import 'package:authentication/authentication.dart';
+import 'package:core_data/core_data.dart';
+import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
-import 'package:delivery/core/route/delivery_route.dart';
-import 'package:flash_staff/di/di.dart';
+import 'package:delivery/delivery.dart';
 import 'package:flash_staff/root/root_screen.dart';
 import 'package:floor_table/floor_table.dart';
 import 'package:menu/menu.dart';
@@ -9,15 +10,17 @@ import 'package:orders/core/router/orders_router.dart';
 import 'package:setting/setting.dart';
 part 'staff_router.gr.dart';
 
+@singleton
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
 class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
-  final authRouter = AuthenticationRouter();
-  final deliveryRouter = DeliveryRouter();
-  final menuRouter = MenuRouter();
-  final floorRouter = FloorTableRouter();
-  final ordersRouter = OrdersRouter();
-  final settingRouter = SettingRouter();
-  final AuthGuard authGuard = getIt<AuthGuard>();
+  final AuthenticationRouter authRouter;
+  final DeliveryRouter deliveryRouter;
+  final MenuRouter menuRouter;
+  final FloorTableRouter floorRouter;
+  final OrdersRouter ordersRouter;
+  final SettingRouter settingRouter;
+  final AuthService authService;
+  final AppRouter appRouter;
 
   @override
   List<AutoRoute> get routes => [
@@ -33,14 +36,19 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
           ],
         ),
         ...authRouter.routes,
-        // ...deliveryRouter.routes,
-        // ...menuRouter.routes,
-        // ...floorRouter.routes,
-        // ...ordersRouter.routes,
-        // ...settingRouter.routes,
       ];
 
-  StaffRouter() {
+  StaffRouter(
+    this.authService,
+    this.authRouter,
+    this.deliveryRouter,
+    this.menuRouter,
+    this.floorRouter,
+    this.ordersRouter,
+    this.settingRouter,
+    this.appRouter,
+  ) {
+    appRouter.delegateStackRouter(this);
     pagesMap.addAll(authRouter.pagesMap);
     pagesMap.addAll(deliveryRouter.pagesMap);
     pagesMap.addAll(menuRouter.pagesMap);
@@ -50,7 +58,14 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
   }
 
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) {
-    authGuard.onNavigation(resolver, router);
+  Future<void> onNavigation(
+      NavigationResolver resolver, StackRouter router) async {
+    if (authService.authenticated || resolver.route.name == LoginRoute.name) {
+      resolver.next(true);
+    } else {
+      router.replace<bool>(
+        const LoginRoute(),
+      );
+    }
   }
 }

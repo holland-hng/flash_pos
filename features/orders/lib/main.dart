@@ -7,7 +7,7 @@ import 'di/di.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ordersFeatureConfigureDependencies();
+  await configureDependencies();
   runApp(const OrdersApp());
 }
 

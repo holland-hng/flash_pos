@@ -1,9 +1,11 @@
+import 'package:authentication/features/login/presentation/login_screen.dart';
+import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
-import 'package:flutter/material.dart';
 import '/features/forgot_password/forgot_password.dart';
-import '/features/login/login_screen.dart';
+
 part 'authentication_router.gr.dart';
 
+@singleton
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
 class AuthenticationRouter extends _$AuthenticationRouter {
   @override

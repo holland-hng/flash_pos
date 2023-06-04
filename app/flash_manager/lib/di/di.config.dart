@@ -9,14 +9,17 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:core_router/core_router.dart' as _i3;
+import 'package:authentication/authentication.dart' as _i6;
+import 'package:core_router/core_router.dart' as _i9;
+import 'package:delivery/delivery.dart' as _i7;
+import 'package:floor_table/floor_table.dart' as _i8;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../features/dashboard/presentation/dash_board_controller.dart' as _i5;
+import '../core/router/manager_router.dart' as _i5;
+import '../features/dashboard/presentation/dash_board_controller.dart' as _i4;
 import '../features/dashboard/presentation/widgets/chart_view_factory.dart'
-    as _i4;
-import 'module.dart' as _i6;
+    as _i3;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -29,12 +32,14 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    final module = _$Module();
-    gh.lazySingleton<_i3.AppRouter>(() => module.appRouter);
-    gh.factory<_i4.ChartViewFactory>(() => _i4.ChartViewFactory());
-    gh.factory<_i5.DashBoardController>(() => _i5.DashBoardController());
+    gh.factory<_i3.ChartViewFactory>(() => _i3.ChartViewFactory());
+    gh.factory<_i4.DashBoardController>(() => _i4.DashBoardController());
+    gh.singleton<_i5.ManagerRouter>(_i5.ManagerRouter(
+      gh<_i6.AuthenticationRouter>(),
+      gh<_i7.DeliveryRouter>(),
+      gh<_i8.FloorTableRouter>(),
+      gh<_i9.AppRouter>(),
+    ));
     return this;
   }
 }
-
-class _$Module extends _i6.Module {}

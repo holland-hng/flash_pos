@@ -7,7 +7,7 @@
 // ignore_for_file: type=lint
 // coverage:ignore-file
 
-part of 'delivery_route.dart';
+part of 'delivery_router.dart';
 
 abstract class _$DeliveryRouter extends RootStackRouter {
   // ignore: unused_element

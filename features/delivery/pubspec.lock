@@ -169,6 +169,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  core_data:
+    dependency: "direct main"
+    description:
+      path: "../../core/core_data"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   core_dependency:
     dependency: "direct main"
     description:
@@ -191,6 +198,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  cryptography:
+    dependency: transitive
+    description:
+      name: cryptography
+      sha256: df156c5109286340817d21fa7b62f9140f17915077127dd70f8bd7a2a0997a35
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
   cupertino_icons:
     dependency: transitive
     description:
@@ -239,6 +254,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
+  event_bus:
+    dependency: transitive
+    description:
+      name: event_bus
+      sha256: "44baa799834f4c803921873e7446a2add0f3efa45e101a054b1f0ab9b95f8edc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -334,6 +357,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      sha256: "00806ba9fd0e725804c7c524e79a0f979bf562e71ada0d69ba7299d0d34d1a37"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-dev"
+  hive_flutter:
+    dependency: transitive
+    description:
+      name: hive_flutter
+      sha256: a9f07cabf8fa205cde01cc782f56804987bbd164dc02b07fd9b30ed0426267da
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0-dev"
   http_multi_server:
     dependency: transitive
     description:
@@ -454,6 +493,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
+  path_provider:
+    dependency: transitive
+    description:
+      name: path_provider
+      sha256: "3087813781ab814e4157b172f1a11c46be20179fcc9bea043e0fba36bc0acaa2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.15"
+  path_provider_android:
+    dependency: transitive
+    description:
+      name: path_provider_android
+      sha256: "2cec049d282c7f13c594b4a73976b0b4f2d7a1838a6dd5aaf7bd9719196bee86"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.27"
+  path_provider_foundation:
+    dependency: transitive
+    description:
+      name: path_provider_foundation
+      sha256: "1995d88ec2948dac43edf8fe58eb434d35d22a2940ecee1a9fefcd62beee6eb3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   path_provider_linux:
     dependency: transitive
     description:
@@ -773,4 +836,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.0.0 <4.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=3.3.0"

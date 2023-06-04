@@ -6,9 +6,9 @@ class FlashDarkTheme extends AppTheme {
   @override
   AppColor get color => AppColor(
         hint: Colors.grey.shade400,
-        background: Colors.white,
+        background: const Color(0xffF5F6FA),
         hintContainer: Colors.white,
-        inactive: Colors.grey.shade300,
+        inactive: const Color(0xff909090),
         inactiveContainer: Colors.grey.shade400,
         onHintContainer: Colors.white,
         onInactiveContainer: Colors.white,
@@ -16,12 +16,12 @@ class FlashDarkTheme extends AppTheme {
         onSecondary: Colors.white,
         onTertiary: Colors.white,
         onToastContainer: Colors.white,
-        primary: const Color(0xffF2AC65),
-        secondary: const Color(0xffFADC62),
+        primary: const Color(0xff4F52FF),
+        secondary: const Color(0xff96ADFF),
         subtext: Colors.grey,
         surface: Colors.white,
-        tertiary: Colors.white,
-        text: Colors.black,
+        tertiary: const Color(0xffC7D3FF),
+        text: const Color(0xff333333),
         toastContainer: Colors.white,
       );
   @override
