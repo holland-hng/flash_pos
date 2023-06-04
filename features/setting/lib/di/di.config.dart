@@ -17,19 +17,17 @@ import 'package:setting/core/router/setting_router.dart' as _i5;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i1.GetIt> init({
+  _i1.GetIt init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
-  }) async {
+  }) {
     final gh = _i2.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
-    await gh.singletonAsync<_i3.MenuDatabaseFactory>(
-      () => _i3.MenuDatabaseFactory.getInstance(gh<_i4.AppDirectory>()),
-      preResolve: true,
-    );
+    gh.lazySingleton<_i3.MenuDatabaseFactory>(
+        () => _i3.MenuDatabaseFactory(gh<_i4.AppDirectory>()));
     gh.singleton<_i5.SettingRouter>(_i5.SettingRouter());
     return this;
   }

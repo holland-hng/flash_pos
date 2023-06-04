@@ -14,8 +14,11 @@ class MenuLocalDataSource {
   @preResolve
   @factoryMethod
   static Future<MenuLocalDataSource> getInstance(
-      MenuDatabaseFactory databaseFactory) async {
-    final database = await databaseFactory.open<CategoryDao>(name: 'menu');
+    MenuDatabaseFactory databaseFactory,
+  ) async {
+    final database = await databaseFactory.open<CategoryDao>(
+      name: 'menu',
+    );
     return MenuLocalDataSource(database);
   }
 

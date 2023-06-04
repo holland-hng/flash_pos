@@ -10,8 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:core_data/core_data.dart' as _i5;
-import 'package:core_data/di/di_module.dart' as _i14;
-import 'package:core_data/src/app_config.dart' as _i8;
+import 'package:core_data/di/module.dart' as _i14;
+import 'package:core_data/src/app_config/app_config.dart' as _i8;
 import 'package:core_data/src/app_directory.dart' as _i3;
 import 'package:core_data/src/auth/data/repository/auth_local_data_source.dart'
     as _i6;
@@ -44,7 +44,7 @@ extension GetItInjectableX on _i1.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i4.AuthDatabaseFactory>(
-        () => _i4.AuthDatabaseFactory.getInstance(gh<_i5.AppDirectory>()));
+        () => _i4.AuthDatabaseFactory(gh<_i5.AppDirectory>()));
     await gh.singletonAsync<_i6.AuthLocalDataSource>(
       () => _i6.AuthLocalDataSource.getInstance(
         gh<_i4.AuthDatabaseFactory>(),

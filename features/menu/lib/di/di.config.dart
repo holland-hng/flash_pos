@@ -58,10 +58,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i3.CartHandler>(() => _i3.CartHandler(gh<_i4.AppRouter>()));
     gh.lazySingleton<_i5.CategoryRemoteDataSource>(
         () => _i5.CategoryRemoteDataSource(gh<_i6.Dio>()));
-    await gh.singletonAsync<_i7.MenuDatabaseFactory>(
-      () => _i7.MenuDatabaseFactory.getInstance(gh<_i8.AppDirectory>()),
-      preResolve: true,
-    );
+    gh.lazySingleton<_i7.MenuDatabaseFactory>(
+        () => _i7.MenuDatabaseFactory(gh<_i8.AppDirectory>()));
     await gh.lazySingletonAsync<_i9.MenuLocalDataSource>(
       () => _i9.MenuLocalDataSource.getInstance(gh<_i7.MenuDatabaseFactory>()),
       preResolve: true,

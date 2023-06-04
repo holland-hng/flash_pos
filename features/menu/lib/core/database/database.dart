@@ -6,19 +6,9 @@ import 'package:menu/features/category/data/dao/product.dart';
 
 import '../../features/category/data/dao/product_option.dart';
 
-@singleton
+@lazySingleton
 class MenuDatabaseFactory extends DatabaseFactory {
-  MenuDatabaseFactory(AppDirectory appDir)
-      : super(
-          databasePath: appDir.menuFeature,
-        );
-
-  @preResolve
-  @factoryMethod
-  static Future<MenuDatabaseFactory> getInstance(AppDirectory appDir) async {
-    final menuDatabase = MenuDatabaseFactory(appDir);
-    return menuDatabase;
-  }
+  MenuDatabaseFactory(AppDirectory appDir) : super(appDir.menuFeature);
 
   @override
   void initialize() {

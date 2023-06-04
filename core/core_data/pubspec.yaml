@@ -23,16 +23,21 @@ dependencies:
   event_bus: ^2.0.0
   hive: ^3.0.0-dev
   hive_flutter: ^2.0.0-dev
+
+dependency_overrides:
+  hive: ^3.0.0-dev
   
-
-
 dev_dependencies:
 
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.7.0
   flutter_lints: ^2.0.0
-  build_runner:
-  injectable_generator:
+  build_runner: null
+  injectable_generator: null
+  retrofit_generator:
+  envied_generator:
+  hive_generator:
   
   
 

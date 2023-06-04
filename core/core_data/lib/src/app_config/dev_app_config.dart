@@ -1,16 +1,17 @@
-import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
-part 'app_config.g.dart';
+import 'app_config.dart';
+
+part 'dev_app_config.g.dart';
 
 @Envied(path: '.env')
-class AuthAppConfig implements AppConfig {
+class DevAppConfig extends AppConfig {
   @override
   @EnviedField(varName: 'baseUrl', obfuscate: true)
-  final String baseUrl = _AuthAppConfig.baseUrl;
+  final String baseUrl = _DevAppConfig.baseUrl;
 
   @override
   @EnviedField(varName: 'encryptionKey', obfuscate: true)
-  final String encryptionKey = _AuthAppConfig.encryptionKey;
+  final String encryptionKey = _DevAppConfig.encryptionKey;
 
   @override
   List<int> get hiveEncryptionKey {

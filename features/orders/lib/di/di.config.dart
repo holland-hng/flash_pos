@@ -17,19 +17,17 @@ import 'package:orders/core/router/orders_router.dart' as _i5;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i1.GetIt> init({
+  _i1.GetIt init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
-  }) async {
+  }) {
     final gh = _i2.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
-    await gh.singletonAsync<_i3.OrdersDatabaseFactory>(
-      () => _i3.OrdersDatabaseFactory.getInstance(gh<_i4.AppDirectory>()),
-      preResolve: true,
-    );
+    gh.singleton<_i3.OrdersDatabaseFactory>(
+        _i3.OrdersDatabaseFactory(gh<_i4.AppDirectory>()));
     gh.singleton<_i5.OrdersRouter>(_i5.OrdersRouter());
     return this;
   }

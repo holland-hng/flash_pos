@@ -17,20 +17,8 @@
             "type": "dart"
         },
         {
-            "name": "core_dependency",
-            "cwd": "core/core_dependency",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "core_router",
-            "cwd": "core/core_router",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "core_ui",
-            "cwd": "core/core_ui",
+            "name": "menu",
+            "cwd": "features/menu",
             "request": "launch",
             "type": "dart"
         },
@@ -67,27 +55,6 @@
             "flutterMode": "profile"
         },
         {
-            "name": "core_dependency (profile)",
-            "cwd": "core/core_dependency",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "core_router (profile)",
-            "cwd": "core/core_router",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "core_ui (profile)",
-            "cwd": "core/core_ui",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
             "name": "feature_authentication (profile)",
             "cwd": "features/authentication",
             "request": "launch",
@@ -118,20 +85,6 @@
         {
             "name": "flash_staff (release)",
             "cwd": "app/flash_staff",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "core_dependency (release)",
-            "cwd": "core/core_dependency",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "core_router (release)",
-            "cwd": "core/core_router",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

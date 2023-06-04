@@ -5,15 +5,7 @@ import 'package:core_dependency/core_dependency.dart';
 @lazySingleton
 class AuthDatabaseFactory extends DatabaseFactory {
   AuthDatabaseFactory(AppDirectory appDir)
-      : super(
-          databasePath: appDir.authenticationFeature,
-        );
-
-  @factoryMethod
-  static AuthDatabaseFactory getInstance(AppDirectory appDir) {
-    final database = AuthDatabaseFactory(appDir);
-    return database;
-  }
+      : super(appDir.authenticationFeature);
 
   @override
   void initialize() {
