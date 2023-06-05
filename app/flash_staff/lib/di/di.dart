@@ -31,3 +31,8 @@ Future<void> initFeatureDependencies() async {
   ];
   await Future.wait(featureDependencies);
 }
+
+Future<void> resetDependencies() async {
+  await getIt.reset();
+  await configureDependencies();
+}

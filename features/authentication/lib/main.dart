@@ -23,7 +23,7 @@ class _AuthenticationAppState extends State<AuthenticationApp> {
 
   @override
   Widget build(BuildContext context) {
-    return UIManager(builder: (locale) {
+    return AppManager(builder: (locale) {
       return MaterialApp.router(
         locale: locale,
         debugShowCheckedModeBanner: false,

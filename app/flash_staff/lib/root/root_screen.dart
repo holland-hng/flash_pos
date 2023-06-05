@@ -64,7 +64,7 @@ class FlashBottomNavigationBar extends StatelessWidget {
             const HorDivider(),
             Container(
               color: Colors.white,
-              height: 46,
+              height: 40,
               child: Row(
                 children: [
                   const Expanded(child: SizedBox()),

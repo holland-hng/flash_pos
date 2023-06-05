@@ -17,26 +17,27 @@ class StaffApp extends StatefulWidget {
 }
 
 class _StaffAppState extends State<StaffApp> {
-  final appRouter = getIt<AppRouter>().router;
-
   @override
   Widget build(BuildContext context) {
-    return UIManager(builder: (locale) {
-      return MaterialApp.router(
-        locale: locale,
-        debugShowCheckedModeBanner: false,
-        routerConfig: appRouter.config(),
-        title: 'Flash Staff App',
-        theme: ThemeData(
-          useMaterial3: false,
-        ),
-        localizationsDelegates: const [
-          AppLocalizationsDelegate(),
-          GlobalWidgetsLocalizations.delegate,
-          ...GlobalMaterialLocalizations.delegates,
-        ],
-        supportedLocales: localizedLabels.keys.toList(),
-      );
-    });
+    return AppManager(
+      delegateReset: resetDependencies,
+      builder: (locale) {
+        return MaterialApp.router(
+          locale: locale,
+          debugShowCheckedModeBanner: false,
+          routerConfig: getIt<AppRouter>().router.config(),
+          title: 'Flash Staff App',
+          theme: ThemeData(
+            useMaterial3: false,
+          ),
+          localizationsDelegates: const [
+            AppLocalizationsDelegate(),
+            GlobalWidgetsLocalizations.delegate,
+            ...GlobalMaterialLocalizations.delegates,
+          ],
+          supportedLocales: localizedLabels.keys.toList(),
+        );
+      },
+    );
   }
 }

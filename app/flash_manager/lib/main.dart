@@ -24,7 +24,7 @@ class _FlashManagerAppState extends State<FlashManagerApp> {
 
   @override
   Widget build(BuildContext context) {
-    return UIManager(
+    return AppManager(
       builder: (locale) {
         return MaterialApp.router(
           locale: locale,

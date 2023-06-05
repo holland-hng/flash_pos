@@ -6,11 +6,17 @@ import 'package:flutter/foundation.dart';
 @injectable
 class AuthController {
   final AuthService authService;
-  final RxBool isLoading = false.obs;
   final AppRouter appRouter;
+  final AppDeepLink deepLink;
+  final RxBool isLoading = false.obs;
   FormLogin formLogin = const FormLogin();
 
-  AuthController(this.authService, this.appRouter);
+  AuthController(
+    this.authService,
+    this.appRouter,
+    this.deepLink,
+  );
+
   String? emailValidator(String? email) {
     formLogin = formLogin.copyWith(email: email);
     if (email == null || email.isEmpty) {
@@ -44,7 +50,7 @@ class AuthController {
       try {
         await authService.login(formLogin);
         if (authService.authenticated) {
-          appRouter.replaceNamed('/');
+          appRouter.replaceNamed(deepLink.root);
         } else {
           // :)) oh wow
         }

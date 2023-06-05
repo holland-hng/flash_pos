@@ -31,6 +31,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i3.AuthController>(() => _i3.AuthController(
           gh<_i4.AuthService>(),
           gh<_i5.AppRouter>(),
+          gh<_i5.AppDeepLink>(),
         ));
     gh.singleton<_i6.AuthenticationRouter>(_i6.AuthenticationRouter());
     return this;

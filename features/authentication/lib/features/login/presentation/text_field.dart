@@ -14,6 +14,8 @@ class AppTextField extends StatefulWidget {
   final bool enableSuggestions;
   final bool autocorrect;
   final Widget? suffixIcon;
+  final TextInputType? keyboardType;
+  final AutovalidateMode autovalidateMode;
 
   const AppTextField({
     super.key,
@@ -29,6 +31,8 @@ class AppTextField extends StatefulWidget {
     this.enableSuggestions = true,
     this.autocorrect = true,
     this.suffixIcon,
+    this.keyboardType,
+    this.autovalidateMode = AutovalidateMode.disabled,
   });
 
   @override
@@ -39,6 +43,7 @@ class _AppTextFieldState extends State<AppTextField> {
   final TextEditingController controller = TextEditingController();
   late bool obscureText = widget.obscureText;
   late bool showingSuffix = widget.suffixIcon != null;
+  late AutovalidateMode autovalidateMode = widget.autovalidateMode;
   Widget? get suffixIcon {
     if (widget.suffixIcon != null) {
       return widget.suffixIcon;
@@ -98,6 +103,8 @@ class _AppTextFieldState extends State<AppTextField> {
     super.dispose();
   }
 
+  final key = GlobalKey<FormFieldState>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -112,19 +119,29 @@ class _AppTextFieldState extends State<AppTextField> {
             ),
           ),
         TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          key: key,
+          autovalidateMode: autovalidateMode,
           controller: controller,
           maxLines: 1,
           obscureText: obscureText,
           autocorrect: widget.autocorrect,
           enableSuggestions: widget.enableSuggestions,
           onChanged: widget.onChanged,
-          onFieldSubmitted: widget.onSubmitted,
+          onFieldSubmitted: (text) {
+            final isValid = key.currentState?.validate() ?? false;
+            setState(() {
+              autovalidateMode = isValid
+                  ? AutovalidateMode.disabled
+                  : AutovalidateMode.onUserInteraction;
+            });
+            widget.onSubmitted?.call(text);
+          },
           onTapOutside: (_) {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           validator: widget.validator,
           textInputAction: widget.textInputAction,
+          keyboardType: widget.keyboardType,
           decoration: InputDecoration(
             prefixIcon: widget.prefixIcon,
             suffixIcon: needShowSuffix ? suffixIcon : null,

@@ -63,9 +63,7 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
     if (authService.authenticated || resolver.route.name == LoginRoute.name) {
       resolver.next(true);
     } else {
-      router.replace<bool>(
-        const LoginRoute(),
-      );
+      router.replace(const LoginRoute());
     }
   }
 }

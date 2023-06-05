@@ -16,11 +16,6 @@ dependencies:
     path: ../../core/core_ui
   core_data:
     path: ../../core/core_data
-
-  extended_nested_scroll_view: ^6.1.0
-  blur: ^3.1.0
-  drag_and_drop_lists: ^0.3.3
-  mirai_dropdown_menu: ^0.0.6+2
   
   flutter:
     sdk: flutter

@@ -21,12 +21,9 @@ class NavButton extends StatefulWidget {
 }
 
 class _NavButtonState extends State<NavButton> {
-  final Color activeColor = Colors.blueAccent;
-  final Color inactiveColor = Colors.grey;
-
   @override
   Widget build(BuildContext context) {
-    Color color = widget.isActive ? activeColor : inactiveColor;
+    Color color = widget.isActive ? context.color.primary : Colors.grey;
     return Expanded(
       child: Material(
         color: Colors.white,
@@ -37,17 +34,18 @@ class _NavButtonState extends State<NavButton> {
           child: Ink(
             height: 46,
             width: 80,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   widget.iconData,
                   color: color,
+                  size: 18,
                 ),
-                1.0.vertical,
+                8.0.horizontal,
                 Text(
-                  widget.label,
-                  style: context.typo.body2.mergeStyle(color: color),
+                  widget.label.toUpperCase(),
+                  style: context.typo.body1.bold.mergeStyle(color: color),
                 ),
               ],
             ),

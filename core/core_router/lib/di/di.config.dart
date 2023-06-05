@@ -9,7 +9,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:core_router/src/app_router.dart' as _i3;
+import 'package:core_router/src/app_deep_link.dart' as _i3;
+import 'package:core_router/src/app_router.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -24,7 +25,8 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.singleton<_i3.AppRouter>(_i3.AppRouter());
+    gh.lazySingleton<_i3.AppDeepLink>(() => _i3.AppDeepLink());
+    gh.singleton<_i4.AppRouter>(_i4.AppRouter());
     return this;
   }
 }
