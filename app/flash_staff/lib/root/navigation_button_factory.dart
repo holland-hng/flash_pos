@@ -43,8 +43,8 @@ enum NavButtonEnum {
   table,
   menu,
   orders,
-  delivery,
-  setting,
+  customers,
+  settings,
 }
 
 extension NavButtonEnumExtension on NavButtonEnum {
@@ -56,9 +56,9 @@ extension NavButtonEnumExtension on NavButtonEnum {
         return Icons.widgets_rounded;
       case NavButtonEnum.orders:
         return Icons.event_note;
-      case NavButtonEnum.delivery:
-        return Icons.delivery_dining_sharp;
-      case NavButtonEnum.setting:
+      case NavButtonEnum.customers:
+        return Icons.person_2;
+      case NavButtonEnum.settings:
         return Icons.settings;
       default:
         throw UnimplementedError();
@@ -73,10 +73,10 @@ extension NavButtonEnumExtension on NavButtonEnum {
         return "Menu";
       case NavButtonEnum.orders:
         return "Orders";
-      case NavButtonEnum.delivery:
-        return "Delivery";
-      case NavButtonEnum.setting:
-        return "Setting";
+      case NavButtonEnum.customers:
+        return "Customers";
+      case NavButtonEnum.settings:
+        return "Settings";
       default:
         throw UnimplementedError();
     }

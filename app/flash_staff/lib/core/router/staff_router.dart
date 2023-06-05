@@ -2,6 +2,7 @@ import 'package:authentication/authentication.dart';
 import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
+import 'package:customers/core/router/customers_router.dart';
 import 'package:delivery/delivery.dart';
 import 'package:flash_staff/root/root_screen.dart';
 import 'package:floor_table/floor_table.dart';
@@ -19,6 +20,7 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
   final FloorTableRouter floorRouter;
   final OrdersRouter ordersRouter;
   final SettingRouter settingRouter;
+  final CustomersRouter customersRouter;
   final AuthService authService;
   final AppRouter appRouter;
 
@@ -31,7 +33,7 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
             AutoRoute(path: '', page: FloorTableRoute.page),
             AutoRoute(page: MenuRoute.page),
             AutoRoute(page: OrdersRoute.page),
-            AutoRoute(page: DeliveryRoute.page),
+            AutoRoute(page: CustomersRoute.page),
             AutoRoute(page: SettingRoute.page),
           ],
         ),
@@ -47,6 +49,7 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
     this.ordersRouter,
     this.settingRouter,
     this.appRouter,
+    this.customersRouter,
   ) {
     appRouter.delegateStackRouter(this);
     pagesMap.addAll(authRouter.pagesMap);
@@ -55,6 +58,7 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
     pagesMap.addAll(floorRouter.pagesMap);
     pagesMap.addAll(ordersRouter.pagesMap);
     pagesMap.addAll(settingRouter.pagesMap);
+    pagesMap.addAll(customersRouter.pagesMap);
   }
 
   @override

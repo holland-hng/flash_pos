@@ -12,6 +12,7 @@
 import 'package:authentication/authentication.dart' as _i5;
 import 'package:core_data/core_data.dart' as _i4;
 import 'package:core_router/core_router.dart' as _i11;
+import 'package:customers/core/router/customers_router.dart' as _i12;
 import 'package:delivery/delivery.dart' as _i6;
 import 'package:flash_staff/core/router/staff_router.dart' as _i3;
 import 'package:floor_table/floor_table.dart' as _i8;
@@ -41,6 +42,7 @@ extension GetItInjectableX on _i1.GetIt {
       gh<_i9.OrdersRouter>(),
       gh<_i10.SettingRouter>(),
       gh<_i11.AppRouter>(),
+      gh<_i12.CustomersRouter>(),
     ));
     return this;
   }

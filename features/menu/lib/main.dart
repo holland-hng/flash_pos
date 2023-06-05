@@ -18,22 +18,25 @@ class MenuApp extends StatefulWidget {
 }
 
 class _MenuAppState extends State<MenuApp> {
-  final appRouter = getIt<AppRouter>().router;
+  final appRouter = getIt<AppRouter>();
+  final customerRouter = getIt<MenuRouter>();
+
+  @override
+  void initState() {
+    appRouter.delegateStackRouter(customerRouter);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ThemeInjector(
-      themeService: ThemeService(
-        brightness: Brightness.light,
-        lightTheme: FlashLightTheme(),
-        darkTheme: FlashDarkTheme(),
-      ),
-      child: MaterialApp.router(
+    return AppManager(builder: (context) {
+      return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Menu App',
-        routerConfig: appRouter.config(
+        routerConfig: customerRouter.config(
           deepLinkBuilder: (_) => DeepLink.single(const MenuRoute()),
         ),
-      ),
-    );
+      );
+    });
   }
 }

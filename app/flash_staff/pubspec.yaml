@@ -43,6 +43,9 @@ dependencies:
   authentication:
     path: '../../features/authentication'
 
+  customers:
+    path: '../../features/customers'
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

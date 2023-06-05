@@ -110,36 +110,45 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SafeArea(
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 10, top: 100),
-              width: 388,
-              child: Center(
-                child: Builder(builder: (context) {
-                  return RichText(
-                    text: TextSpan(
-                      text: 'By continuing, you accept the ',
-                      style: DefaultTextStyle.of(context).style,
-                      children: const <TextSpan>[
-                        TextSpan(
-                          text: 'terms of use',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
-                          ),
+      bottomNavigationBar: const _BottomNavigationBar(),
+    );
+  }
+}
+
+class _BottomNavigationBar extends StatelessWidget {
+  const _BottomNavigationBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SafeArea(
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 10, top: 100),
+            width: 388,
+            child: Center(
+              child: Builder(builder: (context) {
+                return RichText(
+                  text: TextSpan(
+                    text: 'By continuing, you accept the ',
+                    style: DefaultTextStyle.of(context).style,
+                    children: const <TextSpan>[
+                      TextSpan(
+                        text: 'terms of use',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
                         ),
-                      ],
-                    ),
-                  );
-                }),
-              ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

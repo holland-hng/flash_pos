@@ -1,7 +1,6 @@
 import 'package:core_router/core_router.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/orders_app_bar.dart';
 
 @RoutePage()
 class OrdersScreen extends StatefulWidget {
@@ -15,8 +14,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-      appBar: CartAppBar(),
+      backgroundColor: context.color.background,
+      appBar: const FlashAppBar(title: 'Orders'),
     );
   }
 }

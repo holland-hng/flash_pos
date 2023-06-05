@@ -16,7 +16,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Material(
       color: Colors.white,
       child: SafeArea(
-        child: FlashAppBar(
+        child: FlashAppBarDeprecated(
           tabBackgroundColor: Colors.grey.shade200,
           backgroundColor: Colors.white,
           floating: false,
@@ -35,7 +35,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Order details",
+                    "Tickets",
                     style: context.typo.headline6.bold,
                   ),
                   Obx(() {

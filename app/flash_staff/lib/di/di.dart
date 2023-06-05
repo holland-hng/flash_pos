@@ -8,6 +8,7 @@ import 'package:orders/orders.dart' as orders;
 import 'package:setting/setting.dart' as setting;
 import 'package:delivery/delivery.dart' as delivery;
 import 'package:authentication/authentication.dart' as auth;
+import 'package:customers/customers.dart' as customers;
 import 'di.config.dart';
 
 final getIt = GetIt.instance;
@@ -28,6 +29,7 @@ Future<void> initFeatureDependencies() async {
     orders.configureDependencies(mainGetIt: getIt),
     setting.configureDependencies(mainGetIt: getIt),
     delivery.configureDependencies(mainGetIt: getIt),
+    customers.configureDependencies(mainGetIt: getIt),
   ];
   await Future.wait(featureDependencies);
 }

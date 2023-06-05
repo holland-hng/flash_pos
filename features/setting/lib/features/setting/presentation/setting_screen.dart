@@ -1,5 +1,6 @@
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:setting/di/di.dart';
 import 'setting_controller.dart';
@@ -20,19 +21,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.color.surface,
-      appBar: AppBar(
-        backgroundColor: context.color.surface,
-        toolbarHeight: 40,
-        elevation: 0.1,
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 4),
-          child: Text(
-            "Settings",
-            style: context.typo.subtitle1.semiBold
-                .mergeStyle(color: context.color.text),
-          ),
-        ),
-      ),
+      appBar: const FlashAppBar(title: 'Settings'),
       body: Row(
         children: [
           Expanded(
@@ -49,10 +38,17 @@ class _SettingScreenState extends State<SettingScreen> {
               child: Center(
                 child: TextButton(
                   onPressed: () async {
+                    if (kIsWeb) {
+                      appRouter.replaceNamed(deepLink.login);
+                    }
                     await settingController.logout();
                     if (mounted) {
                       await context.appBehavior.logout();
-                      appRouter.replaceNamed(deepLink.root);
+                      if (kIsWeb) {
+                        //do nothing
+                      } else {
+                        appRouter.replaceNamed(deepLink.login);
+                      }
                     }
                   },
                   child: const Text("Logout"),

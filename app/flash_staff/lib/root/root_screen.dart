@@ -1,12 +1,11 @@
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:delivery/delivery.dart';
+import 'package:customers/customers.dart';
 import 'package:floor_table/floor_table.dart';
 import 'package:flutter/material.dart';
 import 'package:menu/menu.dart';
 import 'package:orders/core/router/orders_router.dart';
 import 'package:setting/core/router/setting_router.dart';
-
 import 'navigation_button_factory.dart';
 
 @RoutePage()
@@ -26,7 +25,7 @@ class _RootScreenState extends State<RootScreen> {
         FloorTableRoute(),
         MenuRoute(),
         OrdersRoute(),
-        DeliveryRoute(),
+        CustomersRoute(),
         SettingRoute(),
       ],
       transitionBuilder: (context, child, animation) => child,
@@ -75,8 +74,8 @@ class FlashBottomNavigationBar extends StatelessWidget {
                       NavButtonEnum.table,
                       NavButtonEnum.menu,
                       NavButtonEnum.orders,
-                      NavButtonEnum.delivery,
-                      NavButtonEnum.setting,
+                      NavButtonEnum.customers,
+                      NavButtonEnum.settings,
                     ],
                   ),
                   const Expanded(child: SizedBox()),

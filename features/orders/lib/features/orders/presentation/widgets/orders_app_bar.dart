@@ -8,7 +8,7 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlashAppBar(
+    return FlashAppBarDeprecated(
       backgroundColor: Colors.grey.shade200,
       elevation: 0,
       title: Align(

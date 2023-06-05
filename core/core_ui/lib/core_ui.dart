@@ -29,6 +29,7 @@ export 'package:easy_sidemenu/easy_sidemenu.dart';
 
 // widget common
 export 'package:core_ui/widgets/image_view.dart';
+export 'package:core_ui/widgets/app_bar/app_bar_deprecated.dart';
 export 'package:core_ui/widgets/app_bar/app_bar.dart';
 export 'package:core_ui/widgets/app_bar/sliver_app_bar.dart';
 export 'package:core_ui/widgets/app_bar/tab_button.dart';
