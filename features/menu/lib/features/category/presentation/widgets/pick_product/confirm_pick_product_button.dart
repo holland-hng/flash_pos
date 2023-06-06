@@ -40,7 +40,7 @@ class ConfirmPickProductButton extends StatelessWidget {
             ),
             child: Center(
                 child: Text(
-              "Confirm",
+              "Add to ticket",
               style: context.typo.headline6.bold.mergeStyle(
                 color: Colors.white,
               ),

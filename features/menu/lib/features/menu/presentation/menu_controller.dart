@@ -26,11 +26,11 @@ class MenuFlashController {
     try {
       final result = await _repository.getCategories();
       rxCategories.value = result;
-      rxState.value = BaseState.fetchingSuccess;
+      rxState.value = BaseState.fetchSuccess;
     } catch (e) {
       debugPrint(e.toString());
       if (rxCategories.isEmpty) {
-        rxState.value = BaseState.fetchingError;
+        rxState.value = BaseState.fetchError;
       } else {
         //fetch local success -> popup show network error
       }
@@ -45,7 +45,7 @@ class MenuFlashController {
       final result = _repository.getCachedCategories();
       if (result.isNotEmpty) {
         rxCategories.value = result;
-        rxState.value = BaseState.fetchingSuccess;
+        rxState.value = BaseState.fetchSuccess;
       }
     } catch (e) {
       debugPrint(e.toString());

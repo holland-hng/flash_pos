@@ -20,11 +20,11 @@ class CategoryController {
     try {
       final result = await repository.getProducts(category.name);
       rxProducts.value = result;
-      rxState.value = BaseState.fetchingSuccess;
+      rxState.value = BaseState.fetchSuccess;
     } catch (e) {
       debugPrint(e.toString());
       if (rxProducts.isEmpty) {
-        rxState.value = BaseState.fetchingError;
+        rxState.value = BaseState.fetchError;
       } else {
         //fetch local success -> popup show network error
       }
@@ -39,7 +39,7 @@ class CategoryController {
       final result = repository.getCachedProducts(category.name);
       if (result.isNotEmpty) {
         rxProducts.value = result;
-        rxState.value = BaseState.fetchingSuccess;
+        rxState.value = BaseState.fetchSuccess;
       }
     } catch (e) {
       debugPrint(e.toString());

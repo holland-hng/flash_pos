@@ -1,10 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_design_system/flutter_design_system.dart';
 
-class FlashAppTypo extends AppTypo {
-  FlashAppTypo({required super.typo, required super.fontColor});
-}
+// TODO: GOOD IDEA
+// extension BuildContextTextStyle on BuildContext{
+//   TextStyle style(){
+//     this.typo.headline1
+
+//   }
+// }
 
 extension TextStyleExtension on TextStyle {
   TextStyle get ultraBold {
@@ -59,6 +62,10 @@ extension TextStyleExtension on TextStyle {
     return merge(
       const TextStyle(fontWeight: FontWeight.w100),
     );
+  }
+
+  TextStyle mergeColor(Color color) {
+    return mergeStyle(color: color);
   }
 
   TextStyle mergeStyle({

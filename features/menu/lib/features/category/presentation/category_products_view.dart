@@ -45,7 +45,7 @@ class _CategoryProductsViewState extends State<CategoryProductsView>
           return const Center(
             child: CircularProgressIndicator.adaptive(),
           );
-        case BaseState.fetchingSuccess:
+        case BaseState.fetchSuccess:
           final products = controller.rxProducts;
           return GridView.builder(
             key: PageStorageKey(category.id),

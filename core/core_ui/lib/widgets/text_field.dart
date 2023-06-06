@@ -4,7 +4,7 @@ final enabledBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(4),
   borderSide: const BorderSide(
     width: 0.2,
-    color: Color.fromARGB(255, 200, 200, 200),
+    color: Color.fromARGB(244, 210, 210, 210),
   ),
 );
 final focusedBorder = OutlineInputBorder(

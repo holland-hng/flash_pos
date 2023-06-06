@@ -35,3 +35,4 @@ export 'package:core_ui/widgets/app_bar/sliver_app_bar.dart';
 export 'package:core_ui/widgets/app_bar/tab_button.dart';
 export 'package:core_ui/widgets/spacer.dart';
 export 'package:core_ui/widgets/text_field.dart';
+export 'package:core_ui/widgets/search_field.dart';

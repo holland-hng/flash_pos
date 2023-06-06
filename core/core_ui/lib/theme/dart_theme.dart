@@ -5,7 +5,7 @@ import 'package:flutter_design_system/flutter_design_system.dart';
 class FlashDarkTheme extends AppTheme {
   @override
   AppColor get color => AppColor(
-        hint: Colors.grey.shade400,
+        hint: const Color(0xffB2B2B2),
         background: const Color(0xffF5F6FA),
         hintContainer: Colors.white,
         inactive: const Color(0xff909090),
@@ -26,7 +26,7 @@ class FlashDarkTheme extends AppTheme {
       );
   @override
   AppTypo get typo => AppTypo(
-        fontColor: Colors.white,
+        fontColor: color.text,
         typo: FlashTypo(),
       );
 }

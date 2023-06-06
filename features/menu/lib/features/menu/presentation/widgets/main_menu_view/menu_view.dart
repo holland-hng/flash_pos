@@ -56,7 +56,7 @@ class _MenuViewState extends State<MenuView> {
               return const Center(
                 child: CircularProgressIndicator.adaptive(),
               );
-            case BaseState.fetchingSuccess:
+            case BaseState.fetchSuccess:
               return DefaultTabController(
                 length: menuController.rxCategories.length,
                 child: ExtendedNestedScrollView(

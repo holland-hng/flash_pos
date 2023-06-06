@@ -1,6 +1,5 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'search_field.dart';
 
 class MenuAppBar extends StatelessWidget {
   final List<String> tabs;
@@ -26,7 +25,9 @@ class MenuAppBar extends StatelessWidget {
               height: 38,
               child: Padding(
                 padding: EdgeInsets.only(bottom: 4),
-                child: SearchField(),
+                child: SearchField(
+                  hintText: 'Food\'s name...',
+                ),
               ),
             )
           ],

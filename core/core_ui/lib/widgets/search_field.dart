@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchField extends StatefulWidget {
+  final String? hintText;
   const SearchField({
     super.key,
+    this.hintText,
   });
 
   @override
@@ -18,6 +20,7 @@ class _SearchFieldState extends State<SearchField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
+      style: context.typo.body1,
       onChanged: (value) {
         if (isSearching == false && value.isNotEmpty) {
           setState(() {
@@ -32,11 +35,8 @@ class _SearchFieldState extends State<SearchField> {
       onTapOutside: (_) {
         FocusManager.instance.primaryFocus?.unfocus();
       },
+      cursorColor: context.color.primary,
       decoration: InputDecoration(
-        prefixIcon: const Icon(
-          CupertinoIcons.search,
-          size: 20,
-        ),
         filled: true,
         fillColor: Colors.white,
         suffixIcon: isSearching
@@ -48,17 +48,29 @@ class _SearchFieldState extends State<SearchField> {
                     FocusManager.instance.primaryFocus?.unfocus();
                   });
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.cancel,
                   size: 18,
+                  color: context.color.subtext,
                 ),
               )
-            : null,
-        hintText: 'Food\'s name...',
+            : Icon(
+                CupertinoIcons.search,
+                size: 20,
+                color: context.color.subtext,
+              ),
+        hintText: widget.hintText,
+        hintStyle: context.typo.body1.mergeColor(context.color.hint),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+        contentPadding: const EdgeInsets.only(left: 12),
         enabledBorder: enabledBorder,
-        focusedBorder: focusedBorder,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4),
+          borderSide: BorderSide(
+            width: 0.2,
+            color: context.color.primary,
+          ),
+        ),
       ),
     );
   }

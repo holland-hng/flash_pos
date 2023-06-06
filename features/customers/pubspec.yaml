@@ -17,6 +17,8 @@ dependencies:
   core_data:
     path: ../../core/core_data
 
+  flutter_animated_dialog: ^2.0.1
+
   
   flutter:
     sdk: flutter

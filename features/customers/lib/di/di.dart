@@ -5,7 +5,7 @@ import 'di.config.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit()
+@InjectableInit(ignoreUnregisteredTypes: [AppDirectory, Dio])
 Future<void> configureDependencies({GetIt? mainGetIt}) async {
   final internalGetIt = mainGetIt ?? getIt;
   final isSubmodule = mainGetIt == null;
