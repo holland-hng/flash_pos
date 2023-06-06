@@ -23,6 +23,7 @@ dependencies:
   event_bus: ^2.0.0
   hive: ^3.0.0-dev
   hive_flutter: ^2.0.0-dev
+  connectivity_plus: ^4.0.1
 
 dependency_overrides:
   hive: ^3.0.0-dev

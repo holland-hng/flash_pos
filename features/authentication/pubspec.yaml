@@ -8,6 +8,8 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
+
+  # CORE 
   core_dependency:
     path: ../../core/core_dependency
   core_router:
@@ -16,6 +18,11 @@ dependencies:
     path: ../../core/core_ui
   core_data:
     path: ../../core/core_data
+  
+  # SERVICE
+
+  auth_service:
+    path: ../../services/auth
   
   flutter:
     sdk: flutter

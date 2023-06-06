@@ -12,7 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
+  
+  # CORE
   core_dependency:
     path: '../../core/core_dependency'
 
@@ -24,6 +25,19 @@ dependencies:
 
   core_ui:
     path: '../../core/core_ui'
+
+# SERVICE
+
+  auth_service:
+    path: '../../services/auth'
+
+  customers_service:
+    path: '../../services/customers'
+
+  subscription_service:
+    path: '../../services/subscription'
+
+# FEATURE
 
   delivery:
     path: '../../features/delivery'
@@ -43,8 +57,9 @@ dependencies:
   authentication:
     path: '../../features/authentication'
 
-  customers:
-    path: '../../features/customers'
+  flutter_native_splash: ^2.3.1
+
+  
 
 dev_dependencies:
   flutter_test:

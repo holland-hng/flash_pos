@@ -26,6 +26,7 @@ export 'package:core_ui/ui_manager/base_state.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:flutter_slidable/flutter_slidable.dart';
 export 'package:easy_sidemenu/easy_sidemenu.dart';
+export 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 // widget common
 export 'package:core_ui/widgets/image_view.dart';

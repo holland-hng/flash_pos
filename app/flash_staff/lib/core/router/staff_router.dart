@@ -1,14 +1,15 @@
+import 'package:auth_service/auth_service.dart';
 import 'package:authentication/authentication.dart';
-import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
-import 'package:customers/core/router/customers_router.dart';
+import 'package:customers_service/core/router/customers_router.dart';
 import 'package:delivery/delivery.dart';
 import 'package:flash_staff/root/root_screen.dart';
 import 'package:floor_table/floor_table.dart';
 import 'package:menu/menu.dart';
 import 'package:orders/core/router/orders_router.dart';
 import 'package:setting/setting.dart';
+import 'package:subscription_service/subscription_service.dart';
 part 'staff_router.gr.dart';
 
 @singleton
@@ -23,6 +24,9 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
   final CustomersRouter customersRouter;
   final AuthService authService;
   final AppRouter appRouter;
+  final SubscriptionService subscriptionService;
+
+  late final Subscription subscription = subscriptionService.subscription;
 
   @override
   List<AutoRoute> get routes => [
@@ -30,10 +34,11 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
           path: '/',
           page: RootRoute.page,
           children: [
-            AutoRoute(path: '', page: FloorTableRoute.page),
+            if (subscription.isFullService)
+              AutoRoute(path: '', page: FloorTableRoute.page),
             AutoRoute(page: MenuRoute.page),
             AutoRoute(page: OrdersRoute.page),
-            AutoRoute(page: CustomersRoute.page),
+            AutoRoute(page: DeliveryRoute.page),
             AutoRoute(page: SettingRoute.page),
           ],
         ),
@@ -50,6 +55,7 @@ class StaffRouter extends _$StaffRouter implements AutoRouteGuard {
     this.settingRouter,
     this.appRouter,
     this.customersRouter,
+    this.subscriptionService,
   ) {
     appRouter.delegateStackRouter(this);
     pagesMap.addAll(authRouter.pagesMap);

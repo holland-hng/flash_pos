@@ -1,4 +1,5 @@
 import 'package:core_router/core_router.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -13,9 +14,8 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Delivery Screen"),
-      ),
+      backgroundColor: context.color.background,
+      appBar: const FlashAppBar(title: 'Delivery'),
     );
   }
 }

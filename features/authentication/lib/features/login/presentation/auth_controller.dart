@@ -1,4 +1,4 @@
-import 'package:core_data/core_data.dart';
+import 'package:auth_service/auth_service.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
 import 'package:flutter/foundation.dart';

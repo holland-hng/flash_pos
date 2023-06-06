@@ -9,10 +9,10 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:auth_service/auth_service.dart' as _i4;
 import 'package:authentication/core/router/authentication_router.dart' as _i6;
 import 'package:authentication/features/login/presentation/auth_controller.dart'
     as _i3;
-import 'package:core_data/core_data.dart' as _i4;
 import 'package:core_router/core_router.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
