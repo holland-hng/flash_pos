@@ -40,8 +40,6 @@ class SubscriptionRepositoryImpl extends SubscriptionService {
             type: SubscriptionType.express,
           ),
         );
-        print("DEBUGGG");
-
         //result = SubscriptionSnapshot(error: GetSubscriptionError());
       }
     }
