@@ -9,27 +9,30 @@ class FlashAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final bool automaticallyImplyLeading;
   final double? elevation;
+  final bool? centerTitle;
   const FlashAppBar({
     super.key,
     required this.title,
     this.leading,
     this.actions,
     this.elevation,
-    this.height = 44,
+    this.height = 34,
     this.automaticallyImplyLeading = true,
+    this.centerTitle,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: centerTitle,
       leading: leading,
       actions: actions,
       automaticallyImplyLeading: automaticallyImplyLeading,
       backgroundColor: context.color.surface,
-      toolbarHeight: 40,
+      toolbarHeight: height,
       elevation: elevation ?? 0.1,
       title: Padding(
-        padding: const EdgeInsets.only(bottom: 4),
+        padding: const EdgeInsets.only(bottom: 8),
         child: Text(
           title,
           style: context.typo.subtitle1.semiBold

@@ -2,15 +2,12 @@ import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flash_staff/di/di.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await configureDependencies();
-  Future.delayed(const Duration(seconds: 3)).then((_) {
-    FlutterNativeSplash.remove();
-  });
   runApp(const StaffApp());
 }
 
