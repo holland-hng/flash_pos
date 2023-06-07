@@ -1,12 +1,9 @@
 import 'package:core_router/core_router.dart';
-
 import 'package:core_ui/core_ui.dart';
 import 'package:customers_service/di/di.dart';
 import 'package:customers_service/features/customers/presentation/widgets/customer_info_view.dart';
 import 'package:customers_service/features/customers/presentation/widgets/customers_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
-
 import 'customers_controller.dart';
 
 @RoutePage()
