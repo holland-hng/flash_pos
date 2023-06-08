@@ -1,50 +1,18 @@
-import 'package:core_router/core_router.dart';
-import 'package:core_ui/core_ui.dart';
+import 'dart:async';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flash_staff/di/di.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'app.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  //WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+FutureOr<void> main() async {
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
   await configureDependencies();
   runApp(const StaffApp());
-}
-
-class StaffApp extends StatefulWidget {
-  const StaffApp({super.key});
-
-  @override
-  State<StaffApp> createState() => _StaffAppState();
-}
-
-class _StaffAppState extends State<StaffApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AppManager(
-      delegateReset: resetDependencies,
-      builder: (locale) {
-        return MaterialApp.router(
-          locale: locale,
-          debugShowCheckedModeBanner: false,
-          routerConfig: getIt<AppRouter>().router.config(),
-          title: 'Flash Staff App',
-          theme: ThemeData(
-            useMaterial3: false,
-          ),
-          localizationsDelegates: const [
-            AppLocalizationsDelegate(),
-            GlobalWidgetsLocalizations.delegate,
-            ...GlobalMaterialLocalizations.delegates,
-          ],
-          supportedLocales: localizedLabels.keys.toList(),
-        );
-      },
-    );
-  }
 }

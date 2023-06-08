@@ -1,0 +1,27 @@
+flavors:
+  production:
+    app:
+      name: "Flash POS"
+    android:
+      flavorDimensions: "flavor-type"
+      applicationId: "com.holland.flash_staff"
+      firebase:
+        config: ".firebase/production/google-services.json"
+    ios:
+      bundleId: "com.holland.flashStaff"
+      firebase:
+        config: ".firebase/production/GoogleService-Info.plist"
+    
+  staging:
+    app:
+      name: "Flash POS Staging"
+    android:
+      flavorDimensions: "flavor-type"
+      applicationId: "com.holland.flash_staff.staging"
+      firebase:
+        config: ".firebase/staging/google-services.json"
+    ios:
+      bundleId: "com.holland.flashStaff.staging"
+      firebase:
+        config: ".firebase/staging/GoogleService-Info.plist"
+    

@@ -11,111 +11,30 @@
             "type": "dart"
         },
         {
-            "name": "flash_staff",
-            "cwd": "app/flash_staff",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "menu",
-            "cwd": "features/menu",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "authentication",
-            "cwd": "features/authentication",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "delivery",
-            "cwd": "features/delivery",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "floor_table",
-            "cwd": "features/floor_table",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "flash_manager (profile)",
-            "cwd": "app/flash_manager",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "flash_staff (profile)",
+            "name": "Staff Staging",
             "cwd": "app/flash_staff",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "args": [
+                "run",
+                "--flavor",
+                "staging",
+                "-t",
+                "lib/main_staging.dart"
+            ]
         },
         {
-            "name": "feature_authentication (profile)",
-            "cwd": "features/authentication",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "feature_delivery (profile)",
-            "cwd": "features/delivery",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "feature_floor_table (profile)",
-            "cwd": "features/floor_table",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "flash_manager (release)",
-            "cwd": "app/flash_manager",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "flash_staff (release)",
+            "name": "Staff Prod",
             "cwd": "app/flash_staff",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "core_ui (release)",
-            "cwd": "core/core_ui",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "feature_authentication (release)",
-            "cwd": "features/authentication",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "feature_delivery (release)",
-            "cwd": "features/delivery",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "feature_floor_table (release)",
-            "cwd": "features/floor_table",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
+            "args": [
+                "run",
+                "--flavor",
+                "production",
+                "-t",
+                "lib/main_production.dart"
+            ]
         },
     ]
 }

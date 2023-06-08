@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "144419899830",
+    "project_id": "flashpos-cd12e",
+    "storage_bucket": "flashpos-cd12e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144419899830:android:cb3803b4fac7a0623e5917",
+        "android_client_info": {
+          "package_name": "com.holland.flash_staff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144419899830-f01djgpbf8vebbsl1b2d3fdvvma4q4di.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7tTpA20ca3dBGkfAiqmjhq8gogMwZM7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144419899830-f01djgpbf8vebbsl1b2d3fdvvma4q4di.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "144419899830-e49saifbrav7t637f9qmj9qil6j3e42j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.holland.flashStaff.staging"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144419899830:android:f34d44ded89f70683e5917",
+        "android_client_info": {
+          "package_name": "com.holland.flash_staff.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144419899830-f01djgpbf8vebbsl1b2d3fdvvma4q4di.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7tTpA20ca3dBGkfAiqmjhq8gogMwZM7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144419899830-f01djgpbf8vebbsl1b2d3fdvvma4q4di.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "144419899830-e49saifbrav7t637f9qmj9qil6j3e42j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.holland.flashStaff.staging"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
