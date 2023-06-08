@@ -1,6 +1,7 @@
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:delivery/delivery.dart';
+import 'package:flash_staff/di/di.dart';
 import 'package:floor_table/floor_table.dart';
 import 'package:flutter/material.dart';
 import 'package:menu/menu.dart';

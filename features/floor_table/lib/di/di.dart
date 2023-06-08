@@ -3,12 +3,13 @@ import 'di.config.dart';
 
 final getIt = GetIt.instance;
 
+@InjectableInit.microPackage()
+initMicroPackage() {}
+
+// just for single module run testing
 @InjectableInit(
-  initializerName: 'init', // default
-  preferRelativeImports: true, // default
-  asExtension: true, // default
+  includeMicroPackages: false,
 )
-Future<void> configureDependencies({GetIt? mainGetIt}) async {
-  final internalGetIt = mainGetIt ?? getIt;
-  internalGetIt.init();
+Future<void> configureDependencies() async {
+  await getIt.init();
 }

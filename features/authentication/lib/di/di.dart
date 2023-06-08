@@ -1,26 +1,26 @@
-import 'package:auth_service/auth_service.dart' as auth_service;
+import 'package:auth_service/auth_service.dart';
 import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
+import 'package:core_router/core_router.dart';
 import 'di.config.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit()
-Future<void> configureDependencies({GetIt? mainGetIt}) async {
-  final internalGetIt = mainGetIt ?? getIt;
-  final isSubmodule = mainGetIt == null;
+@InjectableInit.microPackage(
+  ignoreUnregisteredTypes: [AuthService, AppRouter, AppDeepLink],
+)
+initMicroPackage() {}
 
-  if (isSubmodule) {
-    await initCoreDependencies(mainGetIt: getIt);
-    await initServiceDependencies();
-  }
-
-  internalGetIt.init();
-}
-
-Future<void> initServiceDependencies() async {
-  List<Future> featureDependencies = [
-    auth_service.configureDependencies(mainGetIt: getIt),
-  ];
-  await Future.wait(featureDependencies);
+// just for single module run testing
+@InjectableInit(
+  externalPackageModules: [
+    CoreDataPackageModule,
+    CoreRouterPackageModule,
+    AuthServicePackageModule,
+  ],
+  includeMicroPackages: false,
+  ignoreUnregisteredTypes: [AuthService, AppRouter, AppDeepLink],
+)
+Future<void> configureDependencies() async {
+  await getIt.init();
 }

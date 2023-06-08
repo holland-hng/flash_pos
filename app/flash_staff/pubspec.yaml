@@ -37,6 +37,9 @@ dependencies:
   subscription_service:
     path: '../../services/subscription'
 
+  firebase_service:
+    path: '../../services/firebase'
+
 # FEATURE
 
   delivery:

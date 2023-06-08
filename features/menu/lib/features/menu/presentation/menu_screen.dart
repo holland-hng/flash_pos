@@ -1,9 +1,9 @@
-import 'package:core_data/di/di.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_scroll_view/grouped_scroll_view.dart';
+import 'package:menu/di/di.dart';
 import 'menu_controller.dart';
 
 @RoutePage()
