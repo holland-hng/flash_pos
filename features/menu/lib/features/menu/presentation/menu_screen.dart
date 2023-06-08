@@ -36,35 +36,49 @@ class _MenuScreenState extends State<MenuScreen> {
               body: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Obx(() {
-                  return GroupedScrollView(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 0,
-                      crossAxisSpacing: 18,
-                      crossAxisCount: 4,
-                      childAspectRatio: 2,
-                    ),
-                    data: menuController.rxCategories,
-                    itemBuilder: (BuildContext context, item) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(
-                            4,
-                          ),
-                        ),
-                        margin: const EdgeInsets.only(top: 18),
-                        //constraints: const BoxConstraints.tightFor(width: 100),
-
-                        child: Center(
-                          child: Text(
-                            item.name,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                  switch (menuController.rxState.value) {
+                    case BaseState.fetchError:
+                    case BaseState.idle:
+                    case BaseState.fetching:
+                      return const Center(
+                        child: CircularProgressIndicator.adaptive(),
                       );
-                    },
-                  );
+                    case BaseState.fetchSuccess:
+                      return GroupedScrollView(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          mainAxisSpacing: 0,
+                          crossAxisSpacing: 18,
+                          crossAxisCount: 4,
+                          childAspectRatio: 2,
+                        ),
+                        data: menuController.rxCategories,
+                        itemBuilder: (BuildContext context, item) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(
+                                4,
+                              ),
+                            ),
+                            margin: const EdgeInsets.only(top: 18),
+                            //constraints: const BoxConstraints.tightFor(width: 100),
+
+                            child: Center(
+                              child: Text(
+                                item.name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    default:
+                      return const Center(
+                        child: Text("Error"),
+                      );
+                  }
                 }),
               ),
             ),
