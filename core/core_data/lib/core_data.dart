@@ -1,5 +1,6 @@
 library core_data;
 
+export 'package:core_data/src/environment/environment.dart';
 export 'package:core_data/src/app_config/app_config.dart';
 export 'di/di.dart' hide getIt;
 

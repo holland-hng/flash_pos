@@ -1,5 +1,8 @@
 import 'package:core_data/src/app_config/app_config.dart';
+import 'package:core_data/src/app_config/production_config.dart';
+import 'package:core_data/src/app_config/staging_config.dart';
 import 'package:core_data/src/app_directory/app_directory.dart';
+import 'package:core_data/src/environment/environment.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:event_bus/event_bus.dart';
 
@@ -42,5 +45,24 @@ abstract class DIModule {
       retryInterceptor,
     ]);
     return dio;
+  }
+
+  @singleton
+  FlashEnvironment get flashEnvironment => FlashEnvironment.instance;
+
+  @singleton
+  AppConfig appConfig(FlashEnvironment env) {
+    AppConfig config;
+    switch (env.flavor) {
+      case Flavor.staging:
+        config = StagingConfig();
+        break;
+      case Flavor.production:
+        config = ProductionConfig();
+        break;
+      default:
+        throw UnimplementedError();
+    }
+    return config;
   }
 }

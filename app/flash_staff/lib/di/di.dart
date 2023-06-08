@@ -2,8 +2,6 @@ import 'di.config.dart';
 import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 
-import 'package:flash_staff/core/app_config/app_config.dart';
-
 // features
 import 'package:menu/menu.dart' as menu;
 import 'package:orders/orders.dart' as orders;
@@ -22,7 +20,6 @@ final getIt = GetIt.instance;
 
 @InjectableInit()
 Future<void> configureDependencies() async {
-  getIt.registerSingleton<AppConfig>(StaffAppConfig());
   await initCoreDependencies(mainGetIt: getIt);
   await initServiceDependencies();
   await initFeatureDependencies();
