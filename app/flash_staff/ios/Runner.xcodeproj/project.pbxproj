@@ -425,7 +425,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/FirebaseCrashlytics/upload-symbols\" --flutter-project \"$PROJECT_DIR/firebase_app_id_file.json\" ";
+			shellScript = "if [ \"$CONFIGURATION\" == \"Debug-production\" ] || [ \"$CONFIGURATION\" == \"Release-production\" ]; then\n  \"$PODS_ROOT/FirebaseCrashlytics/upload-symbols\" --flutter-project \"$PROJECT_DIR/Runner/production/firebase_app_id_file.json\"\nelif [ \"$CONFIGURATION\" == \"Debug-staging\" ] || [ \"$CONFIGURATION\" == \"Release-staging\" ]; then\n  \"$PODS_ROOT/FirebaseCrashlytics/upload-symbols\" --flutter-project \"$PROJECT_DIR/Runner/staging/firebase_app_id_file.json\"\nfi\n";
 		};
 		901E5218BAA0922C1AEE89A4 /* Firebase Setup */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -443,7 +443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" == \"Debug-production\" ] || [ \"$CONFIGURATION\" == \"Release-production\" ]; then\n  cp Runner/production/GoogleService-Info.plist Runner/GoogleService-Info.plist\nelif [ \"$CONFIGURATION\" == \"Debug-staging\" ] || [ \"$CONFIGURATION\" == \"Release-staging\" ]; then\n  cp Runner/staging/GoogleService-Info.plist Runner/GoogleService-Info.plist\nfi\n\n";
+			shellScript = "if [ \"$CONFIGURATION\" == \"Debug-production\" ] || [ \"$CONFIGURATION\" == \"Profile-production\" ] || [ \"$CONFIGURATION\" == \"Release-production\" ]; then\n  cp Runner/production/GoogleService-Info.plist Runner/GoogleService-Info.plist\nelif [ \"$CONFIGURATION\" == \"Debug-staging\" ] || [\"$CONFIGURATION\" == \"Profile-staging\"] || [\"$CONFIGURATION\" == \"Release-production\" ]; then\n  cp Runner/staging/GoogleService-Info.plist Runner/GoogleService-Info.plist\nfi\n\n";
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;

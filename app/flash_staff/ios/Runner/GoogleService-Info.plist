@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>144419899830-e49saifbrav7t637f9qmj9qil6j3e42j.apps.googleusercontent.com</string>
+	<string>144419899830-th970n0hu22hrfjfr8ii4hfeo65d5v6s.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.144419899830-e49saifbrav7t637f9qmj9qil6j3e42j</string>
+	<string>com.googleusercontent.apps.144419899830-th970n0hu22hrfjfr8ii4hfeo65d5v6s</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDYm2OoBkpNN0de517jy6C9ivHz6ToLURM</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.holland.flashStaff.staging</string>
+	<string>com.holland.flashStaff</string>
 	<key>PROJECT_ID</key>
 	<string>flashpos-cd12e</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:144419899830:ios:31ce726a014c0ac03e5917</string>
+	<string>1:144419899830:ios:1576ee18078c4f4e3e5917</string>
 </dict>
 </plist>
