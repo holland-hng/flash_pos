@@ -13,4 +13,8 @@ class FlashEnvironment {
   void enableProduction() {
     _flavor = Flavor.production;
   }
+
+  void enableStaging() {
+    _flavor = Flavor.staging;
+  }
 }

@@ -25,10 +25,10 @@ final getIt = GetIt.instance;
   CoreDataPackageModule,
   CoreRouterPackageModule,
   // SERVICES
+  FirebaseServicePackageModule,
   AuthServicePackageModule,
   CustomersServicePackageModule,
   SubscriptionServicePackageModule,
-  FirebaseServicePackageModule,
   // FEATURES
   AuthenticationPackageModule,
   MenuPackageModule,

@@ -20,7 +20,7 @@
                 "--flavor",
                 "staging",
                 "-t",
-                "lib/main_staging.dart"
+                "lib/main_staging.dart",
             ]
         },
         {

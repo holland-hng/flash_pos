@@ -59,10 +59,7 @@ dependencies:
 
   authentication:
     path: '../../features/authentication'
-
-  firebase_core: ^2.13.1
-  flutter_flavorizr: ^2.2.0
-  firebase_crashlytics: ^3.3.2
+  
   
 
 

@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "1cc318ddcb6e4f1a5edc7e184019032ed65d7cd99dab3a39bc72effb3a742a84"
+build_start_time: [1686286918, 246697902]
+build_end_time: [1686286918, 264236927]
+inputs:
+  "/Users/hacnguyen/Desktop/flash_pos/app/flash_staff/ios/Runner/AppDelegate.swift": !dirty [1686279189, 363636255]
