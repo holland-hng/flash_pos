@@ -1,6 +1,0 @@
-#include "Generated.xcconfig"
-
-FLUTTER_TARGET=lib/main_staging.dart
-ASSET_PREFIX=staging
-BUNDLE_NAME=Flash POS Staging
-BUNDLE_DISPLAY_NAME=Flash POS Staging
