@@ -1217,6 +1217,7 @@
 			baseConfigurationReference = EFE8763D8F277CEB72A530D4 /* Pods-Runner.debug-production.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5X5LJM3DC5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-production";
@@ -1225,6 +1226,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F522416E59D7D0BE78804776 /* Pods-Runner.profile-production.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5X5LJM3DC5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-production";
@@ -1233,6 +1235,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 55CF57BB0C23B686FC9BFD68 /* Pods-Runner.release-production.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5X5LJM3DC5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-production";
@@ -1242,6 +1245,7 @@
 			baseConfigurationReference = A3B8D7BB090891963ED9B23F /* Pods-Runner.debug-staging.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5X5LJM3DC5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-staging";
@@ -1250,6 +1254,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C7B78EB06964EB5996B5145 /* Pods-Runner.profile-staging.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5X5LJM3DC5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-staging";
@@ -1258,6 +1263,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EACB085E10D4C2D054C51D2D /* Pods-Runner.release-staging.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5X5LJM3DC5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-staging";
