@@ -104,9 +104,6 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        throw Exception("alo crash");
-      }),
     );
   }
 }

@@ -28,6 +28,21 @@
             "cwd": "app/flash_staff",
             "request": "launch",
             "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "run",
+                "--flavor",
+                "production",
+                "-t",
+                "lib/main_production.dart"
+            ]
+        },
+        {
+            "name": "Staff Prod (Release)",
+            "cwd": "app/flash_staff",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
             "args": [
                 "run",
                 "--flavor",
