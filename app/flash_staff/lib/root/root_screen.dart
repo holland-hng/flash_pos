@@ -37,6 +37,7 @@ class _RootScreenState extends State<RootScreen> {
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: child,
           bottomNavigationBar: FlashBottomNavigationBar(
             onTap: tabsRouter.setActiveIndex,

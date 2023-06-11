@@ -20,7 +20,7 @@ class _MenuScreenState extends State<MenuScreen> {
   final menuController = getIt<MenuFlashController>();
   final popupHandler = PopupHandler.instance;
   final ItemScrollController itemScrollController = ItemScrollController();
-  late final double productRatio;
+  late double productRatio;
 
   @override
   void didChangeDependencies() {
@@ -37,8 +37,8 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: context.color.background,
+      resizeToAvoidBottomInset: false,
       body: Obx(() {
         switch (menuController.rxState.value) {
           case BaseState.idle:
@@ -52,6 +52,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 Expanded(
                   flex: 3,
                   child: Scaffold(
+                    resizeToAvoidBottomInset: false,
                     backgroundColor: context.color.surface,
                     appBar: const FlashAppBar(title: 'Menu'),
                     body: ListView.separated(
@@ -93,6 +94,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 Expanded(
                   flex: 8,
                   child: Scaffold(
+                    resizeToAvoidBottomInset: false,
                     backgroundColor: context.color.background,
                     appBar: const FlashSearchBar(),
                     body: Obx(() {

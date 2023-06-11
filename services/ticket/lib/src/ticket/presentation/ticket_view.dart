@@ -1,7 +1,10 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:ticket_service/src/ticket/presentation/ticket_handler.dart';
 import 'package:ticket_service/ticket_service.dart';
+
+import '../domain/ticket.dart';
 
 class TicketView extends StatefulWidget {
   final TicketHandler ticketHandler;
@@ -127,7 +130,14 @@ class _TicketViewState extends State<TicketView> {
                                         icon: Icons.edit,
                                       ),
                                       SlidableAction(
-                                        onPressed: (context) {},
+                                        onPressed: (context) {
+                                          Future.delayed(const Duration(
+                                                  milliseconds: 300))
+                                              .then((_) {
+                                            ticketHandler
+                                                .removeItem(ticketItem);
+                                          });
+                                        },
                                         backgroundColor: Colors.redAccent,
                                         foregroundColor: Colors.white,
                                         icon: Icons.delete_outline,
@@ -216,7 +226,9 @@ class _TicketViewState extends State<TicketView> {
                                 );
                               },
                               separatorBuilder: (context, index) =>
-                                  const HorDivider(),
+                                  const HorDivider(
+                                horizontal: 18,
+                              ),
                             ),
                           ),
                         ],

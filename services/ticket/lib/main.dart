@@ -1,8 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:ticket_service/src/presentation/ticket_handler.dart';
-import 'package:ticket_service/src/presentation/ticket_view.dart';
 import 'di/di.dart';
+import 'ticket_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -12,7 +12,8 @@ import 'package:injectable/injectable.dart' as _i1;
 import 'package:ticket_service/core/database.dart' as _i5;
 import 'package:ticket_service/src/pick_product/pick_product_handler.dart'
     as _i3;
-import 'package:ticket_service/src/presentation/ticket_handler.dart' as _i7;
+import 'package:ticket_service/src/ticket/presentation/ticket_handler.dart'
+    as _i7;
 import 'package:ticket_service/ticket_service.dart' as _i4;
 
 class TicketServicePackageModule extends _i1.MicroPackageModule {

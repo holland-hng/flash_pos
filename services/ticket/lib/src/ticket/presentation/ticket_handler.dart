@@ -1,7 +1,7 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:flutter/foundation.dart';
-import 'package:ticket_service/src/domain/ticket.dart';
-import 'package:ticket_service/src/domain/ticket_section.dart';
+import '../domain/ticket.dart';
+import '../domain/ticket_section.dart';
 
 enum TicketMode {
   draft,
