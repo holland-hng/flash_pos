@@ -17,6 +17,7 @@ class _TicketViewState extends State<TicketView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: context.color.surface,
       appBar: const FlashAppBar(
         title: 'Ticket',
@@ -24,6 +25,7 @@ class _TicketViewState extends State<TicketView> {
       body: Obx(
         () {
           final mode = ticketHandler.rxMode.value;
+          debugPrint(mode.toString());
           return ListView(
             shrinkWrap: false,
             children: [
@@ -136,6 +138,8 @@ class _TicketViewState extends State<TicketView> {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 14, horizontal: 18),
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Row(
@@ -194,6 +198,18 @@ class _TicketViewState extends State<TicketView> {
                                             },
                                           ),
                                         ),
+                                        if (ticket.note.isNotEmpty)
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 6),
+                                            child: Text(
+                                              "Note: ${ticket.note}",
+                                              style: context.typo.body2.thin
+                                                  .mergeColor(
+                                                context.color.primary,
+                                              ),
+                                            ),
+                                          ),
                                       ],
                                     ),
                                   ),
@@ -202,7 +218,7 @@ class _TicketViewState extends State<TicketView> {
                               separatorBuilder: (context, index) =>
                                   const HorDivider(),
                             ),
-                          )
+                          ),
                         ],
                       );
                     }),

@@ -5,9 +5,11 @@ import 'package:ticket_service/src/pick_product/pick_product_handler.dart';
 
 class ConfirmPickProductButton extends StatelessWidget {
   final PickProductHandler pickProductHandler;
+  final Function()? addNote;
   const ConfirmPickProductButton({
     super.key,
     required this.pickProductHandler,
+    required this.addNote,
   });
 
   @override
@@ -22,25 +24,33 @@ class ConfirmPickProductButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                child: Container(
-                  constraints: const BoxConstraints(
-                    minHeight: 44,
-                  ),
-                  padding: const EdgeInsets.only(left: 12, bottom: 14, top: 10),
-                  decoration: BoxDecoration(
-                    color: context.color.surface,
-                    border: Border.all(
-                      width: 0.5,
-                      color: Colors.grey.shade300,
+                child: GestureDetector(
+                  onTap: addNote,
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      minHeight: 44,
                     ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Note",
-                      style: context.typo.body1.mergeColor(
-                        context.color.inactive,
+                    padding:
+                        const EdgeInsets.only(left: 12, bottom: 14, top: 10),
+                    decoration: BoxDecoration(
+                      color: context.color.surface,
+                      border: Border.all(
+                        width: 0.5,
+                        color: Colors.grey.shade300,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        pickProductHandler.note.isEmpty
+                            ? "Note"
+                            : pickProductHandler.note,
+                        style: context.typo.body1.mergeColor(
+                          pickProductHandler.note.isEmpty
+                              ? context.color.inactive
+                              : context.color.text,
+                        ),
                       ),
                     ),
                   ),

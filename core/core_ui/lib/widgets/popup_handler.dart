@@ -9,10 +9,8 @@ abstract class PopupHandler {
     bool canPop = true,
   });
   void hide();
-  static PopupHandler? _instance;
   static PopupHandler get instance {
-    _instance ??= PopupHandlerImpl();
-    return _instance!;
+    return PopupHandlerImpl();
   }
 }
 
@@ -56,8 +54,10 @@ class PopupHandlerImpl extends PopupHandler {
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
-                body: Center(
-                  child: builder(popupContext),
+                body: SafeArea(
+                  child: Center(
+                    child: builder(popupContext),
+                  ),
                 ),
               ),
             ),
@@ -83,5 +83,38 @@ class PopupHandlerImpl extends PopupHandler {
     isShowing = false;
     Navigator.of(popupContext!).pop();
     popupContext = null;
+  }
+}
+
+class ClosePopupButton extends StatelessWidget {
+  const ClosePopupButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 0,
+      right: 0,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(18),
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Ink(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+                color: context.color.secondary,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(width: 0.5, color: Colors.white)),
+            child: const Icon(
+              Icons.close,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

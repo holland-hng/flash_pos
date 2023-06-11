@@ -1,5 +1,6 @@
 library ticket_service;
 
+export 'src/pick_product/note_popup.dart';
 export 'src/presentation/ticket_view.dart';
 export 'package:ticket_service/src/presentation/ticket_handler.dart';
 export 'package:ticket_service/di/di.module.dart';

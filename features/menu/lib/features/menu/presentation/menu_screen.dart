@@ -37,8 +37,8 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.grey.shade200,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: context.color.background,
       body: Obx(() {
         switch (menuController.rxState.value) {
           case BaseState.idle:
