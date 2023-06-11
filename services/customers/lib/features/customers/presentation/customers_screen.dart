@@ -37,32 +37,6 @@ class _CustomersScreenState extends State<CustomersScreen> {
     return Scaffold(
       backgroundColor: context.color.background,
       appBar: const FlashAppBar(title: 'Customers'),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        showAnimatedDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (BuildContext context) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Center(
-                  child: Container(
-                    width: 400,
-                    height: 600,
-                    color: Colors.red,
-                  ),
-                ),
-              ),
-            );
-          },
-          animationType: DialogTransitionType.slideFromBottomFade,
-          curve: Curves.fastOutSlowIn,
-          duration: const Duration(milliseconds: 300),
-        );
-      }),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 18,

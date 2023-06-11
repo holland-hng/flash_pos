@@ -1,10 +1,7 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:ticket_service/src/ticket/presentation/ticket_handler.dart';
 import 'package:ticket_service/ticket_service.dart';
-
-import '../domain/ticket.dart';
 
 class TicketView extends StatefulWidget {
   final TicketHandler ticketHandler;
@@ -65,7 +62,7 @@ class _TicketViewState extends State<TicketView> {
                         Expanded(
                           child: Text(
                             "Michael Jason",
-                            style: context.typo.body1.medium
+                            style: context.typo.body1.semiBold
                                 .mergeStyle(fontSize: 13),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -286,7 +283,7 @@ class _TicketViewState extends State<TicketView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Total:",
+                        "Total (${ticketPrice.amount}):",
                         style: context.typo.body1.bold,
                       ),
                       Text(
