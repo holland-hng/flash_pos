@@ -63,9 +63,15 @@ class _SearchFieldState extends State<SearchField> {
         hintStyle: context.typo.body1.mergeColor(context.color.hint),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         contentPadding: const EdgeInsets.only(left: 12),
-        enabledBorder: enabledBorder,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(
+            width: 0.2,
+            color: Color.fromARGB(244, 210, 210, 210),
+          ),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             width: 0.2,
             color: context.color.primary,

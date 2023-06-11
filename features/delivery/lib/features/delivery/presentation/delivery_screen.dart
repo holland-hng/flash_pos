@@ -16,8 +16,6 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
     return Scaffold(
       backgroundColor: context.color.background,
       appBar: const FlashAppBar(title: 'Delivery'),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => throw Exception("Delivery exception")),
     );
   }
 }

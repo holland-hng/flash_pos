@@ -40,6 +40,9 @@ dependencies:
   firebase_service:
     path: '../../services/firebase'
 
+  ticket_service:
+    path: '../../services/ticket'
+
 # FEATURE
 
   delivery:

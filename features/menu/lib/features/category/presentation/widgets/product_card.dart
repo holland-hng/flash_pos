@@ -1,6 +1,6 @@
+import 'package:core_data/core_data.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:menu/features/category/domain/product.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({

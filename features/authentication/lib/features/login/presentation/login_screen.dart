@@ -103,7 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     }),
-                  )
+                  ),
+                  40.0.vertical,
                 ],
               ),
             ),
@@ -125,7 +126,7 @@ class _BottomNavigationBar extends StatelessWidget {
       children: [
         SafeArea(
           child: Container(
-            margin: const EdgeInsets.only(bottom: 10, top: 100),
+            margin: const EdgeInsets.only(bottom: 10, top: 10),
             width: 388,
             child: Center(
               child: Builder(builder: (context) {

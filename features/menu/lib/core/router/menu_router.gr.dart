@@ -15,61 +15,13 @@ abstract class _$MenuRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    PlaceOrderRoute.name: (routeData) {
-      final args = routeData.argsAs<PlaceOrderRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: PlaceOrderScreen(
-          key: args.key,
-          orderItems: args.orderItems,
-        ),
-      );
-    },
     MenuRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MenuScreen(),
       );
-    },
+    }
   };
-}
-
-/// generated route for
-/// [PlaceOrderScreen]
-class PlaceOrderRoute extends PageRouteInfo<PlaceOrderRouteArgs> {
-  PlaceOrderRoute({
-    Key? key,
-    required List<OrderItem> orderItems,
-    List<PageRouteInfo>? children,
-  }) : super(
-          PlaceOrderRoute.name,
-          args: PlaceOrderRouteArgs(
-            key: key,
-            orderItems: orderItems,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'PlaceOrderRoute';
-
-  static const PageInfo<PlaceOrderRouteArgs> page =
-      PageInfo<PlaceOrderRouteArgs>(name);
-}
-
-class PlaceOrderRouteArgs {
-  const PlaceOrderRouteArgs({
-    this.key,
-    required this.orderItems,
-  });
-
-  final Key? key;
-
-  final List<OrderItem> orderItems;
-
-  @override
-  String toString() {
-    return 'PlaceOrderRouteArgs{key: $key, orderItems: $orderItems}';
-  }
 }
 
 /// generated route for

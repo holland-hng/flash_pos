@@ -1,4 +1,4 @@
-import 'package:menu/features/category/domain/product.dart';
+import 'package:core_data/core_data.dart';
 
 abstract class CategoryRepository {
   Future<List<Product>> getProducts(String category);

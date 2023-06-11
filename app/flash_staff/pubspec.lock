@@ -1090,6 +1090,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  scrollable_positioned_list:
+    dependency: transitive
+    description:
+      name: scrollable_positioned_list
+      sha256: "1b54d5f1329a1e263269abc9e2543d90806131aa14fe7c6062a8054d57249287"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.8"
   setting:
     dependency: "direct main"
     description:
@@ -1302,6 +1310,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
+  ticket_service:
+    dependency: "direct main"
+    description:
+      path: "../../services/ticket"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   timing:
     dependency: transitive
     description:

@@ -1,5 +1,6 @@
 import 'package:core_router/core_router.dart';
 import 'package:firebase_service/firebase_service.dart';
+import 'package:ticket_service/ticket_service.dart';
 
 import 'di.config.dart';
 import 'package:core_data/core_data.dart';
@@ -29,6 +30,7 @@ final getIt = GetIt.instance;
   AuthServicePackageModule,
   CustomersServicePackageModule,
   SubscriptionServicePackageModule,
+  TicketServicePackageModule,
   // FEATURES
   AuthenticationPackageModule,
   MenuPackageModule,

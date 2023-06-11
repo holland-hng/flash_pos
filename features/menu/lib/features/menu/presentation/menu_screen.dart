@@ -2,9 +2,11 @@ import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:grouped_scroll_view/grouped_scroll_view.dart';
 import 'package:menu/di/di.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:ticket_service/ticket_service.dart';
 import 'menu_controller.dart';
+import 'search_bar.dart';
 
 @RoutePage()
 class MenuScreen extends StatefulWidget {
@@ -16,6 +18,16 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final menuController = getIt<MenuFlashController>();
+  final popupHandler = PopupHandler.instance;
+  final ItemScrollController itemScrollController = ItemScrollController();
+  late final double productRatio;
+
+  @override
+  void didChangeDependencies() {
+    productRatio = context.productRatio;
+    super.didChangeDependencies();
+  }
+
   @override
   void initState() {
     menuController.fetchData();
@@ -27,83 +39,220 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey.shade200,
-      body: Row(
-        children: [
-          Expanded(
-            flex: 7,
-            child: Scaffold(
-              backgroundColor: context.color.background,
-              body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                child: Obx(() {
-                  switch (menuController.rxState.value) {
-                    case BaseState.fetchError:
-                    case BaseState.idle:
-                    case BaseState.fetching:
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
-                    case BaseState.fetchSuccess:
-                      return GroupedScrollView(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 0,
-                          crossAxisSpacing: 18,
-                          crossAxisCount: 4,
-                          childAspectRatio: 2,
-                        ),
-                        data: menuController.rxCategories,
-                        itemBuilder: (BuildContext context, item) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
-                              borderRadius: BorderRadius.circular(
-                                4,
+      body: Obx(() {
+        switch (menuController.rxState.value) {
+          case BaseState.idle:
+          case BaseState.fetching:
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          case BaseState.fetchSuccess:
+            return Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Scaffold(
+                    backgroundColor: context.color.surface,
+                    appBar: const FlashAppBar(title: 'Menu'),
+                    body: ListView.separated(
+                      padding: const EdgeInsets.only(
+                        bottom: 36,
+                      ),
+                      itemCount: menuController.rxCategories.length,
+                      itemBuilder: (context, index) {
+                        final category = menuController.rxCategories[index];
+                        return InkWell(
+                          onTap: () {
+                            itemScrollController.scrollTo(
+                                index: index,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.linearToEaseOut);
+                          },
+                          child: Ink(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            height: 60,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: Text(
+                                  category.name,
+                                  style: context.typo.body1.medium,
+                                ),
                               ),
                             ),
-                            margin: const EdgeInsets.only(top: 18),
-                            //constraints: const BoxConstraints.tightFor(width: 100),
-
-                            child: Center(
-                              child: Text(
-                                item.name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    default:
-                      return const Center(
-                        child: Text("Error"),
-                      );
-                  }
-                }),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Scaffold(
-              backgroundColor: context.color.surface,
-              appBar: FlashAppBar(
-                title: 'Ticket',
-                centerTitle: false,
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 6),
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text('Customers: 2'),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) => const HorDivider(
+                        horizontal: 18,
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+                ),
+                Expanded(
+                  flex: 8,
+                  child: Scaffold(
+                    backgroundColor: context.color.background,
+                    appBar: const FlashSearchBar(),
+                    body: Obx(() {
+                      switch (menuController.rxState.value) {
+                        case BaseState.fetchError:
+                        case BaseState.idle:
+                        case BaseState.fetching:
+                          return const Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          );
+                        case BaseState.fetchSuccess:
+                          return ScrollablePositionedList.separated(
+                            itemScrollController: itemScrollController,
+                            padding: EdgeInsets.only(
+                              left: 18,
+                              right: 18,
+                              bottom: MediaQuery.of(context).size.height / 2,
+                            ),
+                            itemCount: menuController.rxCategories.length,
+                            itemBuilder: (context, index) {
+                              final category =
+                                  menuController.rxCategories[index];
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 21, bottom: 5),
+                                    child: SizedBox(
+                                      height: 34,
+                                      child: Text(
+                                        category.name,
+                                        style: context.typo.body1.bold
+                                            .mergeStyle(fontSize: 13),
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: GridView.builder(
+                                      padding: const EdgeInsets.all(0),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: category.products.length,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 4,
+                                        mainAxisSpacing: 18,
+                                        crossAxisSpacing: 18,
+                                        childAspectRatio: productRatio,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        final product =
+                                            category.products[index];
+                                        return InkWell(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          onTap: () async {
+                                            final result = await popupHandler
+                                                .showPopup<TicketItem>(
+                                              canPop: true,
+                                              context: context,
+                                              builder: (popupContext) {
+                                                return PickProductPopup(
+                                                  ticketItem:
+                                                      TicketItem.fromProduct(
+                                                          product),
+                                                );
+                                              },
+                                            );
+                                            if (result != null) {
+                                              menuController.ticketHandler
+                                                  .addTicketItem(
+                                                result,
+                                              );
+                                            }
+                                          },
+                                          child: Ink(
+                                            padding: const EdgeInsets.all(12),
+                                            decoration: BoxDecoration(
+                                              color: context.color.surface,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              border: Border.all(
+                                                  width: 0.5,
+                                                  color: Colors.grey.shade200),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  product.name,
+                                                  style: context
+                                                      .typo.body1.medium
+                                                      .mergeStyle(
+                                                    fontSize: 13,
+                                                  ),
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                4.0.vertical,
+                                                Text(
+                                                  "\$${product.price.toStringAsFixed(2)}",
+                                                  style: context.typo.body1.thin
+                                                      .mergeStyle(
+                                                    fontSize: 13,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return 20.0.vertical;
+                            },
+                          );
+                        default:
+                          return const Center(
+                            child: Text("Error"),
+                          );
+                      }
+                    }),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: TicketView(
+                    ticketHandler: menuController.ticketHandler,
+                  ),
+                ),
+              ],
+            );
+
+          default:
+            return const Center(child: Text("Error"));
+        }
+      }),
     );
+  }
+}
+
+extension ProductRatio on BuildContext {
+  double get productRatio {
+    const height = 82;
+    final widthScreen = MediaQuery.of(this).size.width;
+    final widthView = widthScreen * 8 / 14;
+    final widthProduct = (widthView - 18 * 5) / 4;
+    final ratio = widthProduct / height;
+    return ratio;
   }
 }

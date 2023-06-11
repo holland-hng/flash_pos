@@ -1,5 +1,4 @@
 import 'package:core_data/core_data.dart';
-import 'product.dart';
 
 part 'category_products.g.dart';
 

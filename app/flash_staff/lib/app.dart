@@ -1,7 +1,6 @@
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-
 import 'di/di.dart';
 
 class StaffApp extends StatefulWidget {

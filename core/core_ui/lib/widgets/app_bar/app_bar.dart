@@ -1,6 +1,5 @@
-import 'package:core_ui/theme/app_typo.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_design_system/flutter_design_system.dart';
 
 class FlashAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
@@ -10,38 +9,47 @@ class FlashAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool automaticallyImplyLeading;
   final double? elevation;
   final bool? centerTitle;
+  final Color? backgroundColor;
   const FlashAppBar({
     super.key,
     required this.title,
     this.leading,
     this.actions,
     this.elevation,
-    this.height = 34,
+    this.height = 36,
     this.automaticallyImplyLeading = true,
     this.centerTitle,
+    this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      centerTitle: centerTitle,
-      leading: leading,
-      actions: actions,
-      automaticallyImplyLeading: automaticallyImplyLeading,
-      backgroundColor: context.color.surface,
-      toolbarHeight: height,
-      elevation: elevation ?? 0.1,
-      title: Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: Text(
-          title,
-          style: context.typo.subtitle1.semiBold
-              .mergeStyle(color: context.color.text),
+    return Column(
+      children: [
+        AppBar(
+          centerTitle: centerTitle,
+          leading: leading,
+          actions: actions,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          backgroundColor: backgroundColor ?? context.color.surface,
+          toolbarHeight: height,
+          elevation: 0,
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 1),
+            child: Text(
+              title,
+              style: context.typo.subtitle2.semiBold
+                  .mergeStyle(color: context.color.text),
+            ),
+          ),
         ),
-      ),
+        const HorDivider(
+          height: 0.5,
+        ),
+      ],
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => Size.fromHeight(height + 0.5);
 }

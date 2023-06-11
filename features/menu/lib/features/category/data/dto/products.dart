@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
-import 'package:menu/features/category/data/dto/product.dart';
 
 part 'products.g.dart';
 

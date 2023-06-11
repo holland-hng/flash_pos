@@ -1,3 +1,4 @@
+import 'package:core_data/core_data.dart';
 import 'package:menu/features/category/data/dao/category.dart';
 import 'package:menu/features/category/data/dto/category.dart';
 
@@ -5,6 +6,8 @@ class Category {
   final String id;
   final String name;
   final String thumb;
+  List<Product> products = [];
+
   Category(this.id, this.name, this.thumb);
 
   factory Category.fromDto(CategoryDto dto) {

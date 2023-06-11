@@ -1,8 +1,8 @@
+import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:menu/features/category/data/dao/category_products.dart';
 import 'package:menu/features/category/data/repository/category_remote_data_source.dart';
 import 'package:menu/features/category/domain/category_repository.dart';
-import 'package:menu/features/category/domain/product.dart';
 import 'category_local_data_source.dart';
 
 @LazySingleton(as: CategoryRepository)

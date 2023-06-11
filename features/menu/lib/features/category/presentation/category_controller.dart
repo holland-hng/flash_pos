@@ -1,9 +1,9 @@
+import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:menu/features/category/domain/category.dart';
 import 'package:menu/features/category/domain/category_repository.dart';
-import 'package:menu/features/category/domain/product.dart';
 
 @injectable
 class CategoryController {

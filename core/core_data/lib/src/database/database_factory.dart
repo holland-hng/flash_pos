@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'database.dart';
 
@@ -10,8 +11,20 @@ abstract class DatabaseFactory {
 
   final String path;
 
-  void registerAdapter<T>(TypeAdapter<T> adapter) {
-    Hive.registerAdapter<T>(adapter);
+  void registerAdapter<T>(
+    TypeAdapter<T> adapter, {
+    bool internal = false,
+    bool override = false,
+  }) {
+    try {
+      Hive.registerAdapter<T>(
+        adapter,
+        internal: internal,
+        override: override,
+      );
+    } catch (e) {
+      debugPrint("Hive.registerAdapter ${T.runtimeType} fail: ${e.toString()}");
+    }
   }
 
   Future<Database<T>> open<T>({
