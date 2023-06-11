@@ -99,8 +99,8 @@ class _TicketViewState extends State<TicketView> {
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: section.tickets.length,
                               itemBuilder: (context, index) {
-                                final ticket = section.tickets[index];
-                                final product = ticket.product;
+                                final ticketItem = section.tickets[index];
+                                final product = ticketItem.product;
                                 return Slidable(
                                   endActionPane: ActionPane(
                                     motion: const ScrollMotion(),
@@ -113,7 +113,7 @@ class _TicketViewState extends State<TicketView> {
                                             context: context,
                                             builder: (popupContext) {
                                               return PickProductPopup(
-                                                ticketItem: ticket,
+                                                ticketItem: ticketItem,
                                               );
                                             },
                                           );
@@ -148,7 +148,7 @@ class _TicketViewState extends State<TicketView> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                "${ticket.quantity}x ${product.name}",
+                                                "${ticketItem.quantity}x ${product.name}",
                                                 style: context.typo.body1.medium
                                                     .mergeStyle(
                                                   fontSize: 13,
@@ -156,7 +156,7 @@ class _TicketViewState extends State<TicketView> {
                                               ),
                                             ),
                                             Text(
-                                              "\$${product.price.toStringAsFixed(2)}",
+                                              "\$${ticketItem.price.toStringAsFixed(2)}",
                                               style:
                                                   context.typo.body1.mergeStyle(
                                                 fontSize: 13,
@@ -170,10 +170,10 @@ class _TicketViewState extends State<TicketView> {
                                                 const NeverScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             itemCount:
-                                                ticket.pickedDetails.length,
+                                                ticketItem.pickedDetails.length,
                                             itemBuilder: (context, index) {
-                                              final optionDetail =
-                                                  ticket.pickedDetails[index];
+                                              final optionDetail = ticketItem
+                                                  .pickedDetails[index];
                                               return Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 6),
@@ -198,12 +198,12 @@ class _TicketViewState extends State<TicketView> {
                                             },
                                           ),
                                         ),
-                                        if (ticket.note.isNotEmpty)
+                                        if (ticketItem.note.isNotEmpty)
                                           Padding(
                                             padding:
                                                 const EdgeInsets.only(top: 6),
                                             child: Text(
-                                              "Note: ${ticket.note}",
+                                              "Note: ${ticketItem.note}",
                                               style: context.typo.body2.thin
                                                   .mergeColor(
                                                 context.color.primary,
@@ -236,79 +236,110 @@ class _TicketViewState extends State<TicketView> {
           const HorDivider(),
           Padding(
             padding: const EdgeInsets.all(18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Sub total: \$10.00",
-                  style: context.typo.body2,
-                ),
-                4.0.vertical,
-                Text(
-                  "Tax: \$1.00",
-                  style: context.typo.body2,
-                ),
-                4.0.vertical,
-                Text(
-                  "Total: \$11.00",
-                  style: context.typo.body1.bold,
-                ),
-                18.0.vertical,
-                SizedBox(
-                  height: 34,
-                  child: Row(
+            child: Obx(() {
+              final ticketPrice = ticketHandler.ticketPrice;
+              debugPrint(ticketHandler.rxSections.toString());
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(8),
-                          onTap: () {
-                            debugPrint("Save");
-                          },
-                          child: Ink(
-                            padding: const EdgeInsets.only(bottom: 2),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: context.color.tertiary,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Save draft",
-                                style: context.typo.body1.bold
-                                    .mergeColor(Colors.black54),
-                              ),
-                            ),
-                          ),
-                        ),
+                      Text(
+                        "Sub total",
+                        style: context.typo.body2,
                       ),
-                      12.0.horizontal,
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            debugPrint("Process");
-                          },
-                          borderRadius: BorderRadius.circular(8),
-                          child: Ink(
-                            padding: const EdgeInsets.only(bottom: 2),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: context.color.primary,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Checkout",
-                                style: context.typo.body1.bold.mergeColor(
-                                  context.color.surface,
+                      Text(
+                        "\$${ticketPrice.subTotal.toStringAsFixed(2)}",
+                        style: context.typo.body2,
+                      ),
+                    ],
+                  ),
+                  4.0.vertical,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Tax:",
+                        style: context.typo.body2,
+                      ),
+                      Text(
+                        "\$${ticketPrice.tax.toStringAsFixed(2)}",
+                        style: context.typo.body2,
+                      ),
+                    ],
+                  ),
+                  4.0.vertical,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Total:",
+                        style: context.typo.body1.bold,
+                      ),
+                      Text(
+                        "\$${ticketPrice.total.toStringAsFixed(2)}",
+                        style: context.typo.body1.bold,
+                      ),
+                    ],
+                  ),
+                  18.0.vertical,
+                  SizedBox(
+                    height: 34,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: () {
+                              debugPrint("Save");
+                            },
+                            child: Ink(
+                              padding: const EdgeInsets.only(bottom: 2),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: context.color.tertiary,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Save draft",
+                                  style: context.typo.body1.bold
+                                      .mergeColor(Colors.black54),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                        12.0.horizontal,
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              debugPrint("Process");
+                            },
+                            borderRadius: BorderRadius.circular(8),
+                            child: Ink(
+                              padding: const EdgeInsets.only(bottom: 2),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: context.color.primary,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Checkout",
+                                  style: context.typo.body1.bold.mergeColor(
+                                    context.color.surface,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              );
+            }),
           ),
         ],
       ),

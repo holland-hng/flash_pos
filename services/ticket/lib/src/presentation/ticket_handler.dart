@@ -15,12 +15,39 @@ extension TicketModeExtension on TicketMode {
   }
 }
 
+class TicketPrice {
+  final double subTotal;
+  final double tax;
+  final int amount;
+  final double total;
+
+  TicketPrice(this.subTotal, this.tax, this.amount, this.total);
+}
+
 @injectable
 class TicketHandler {
   final Rx<TicketMode> rxMode = Rx<TicketMode>(TicketMode.draft);
   final RxList<TicketSection> rxSections = RxList<TicketSection>([
     TicketSection.empty(),
   ]);
+
+  TicketPrice get ticketPrice {
+    int amount = 0;
+    double subTotal = 0;
+    final sections = rxSections;
+    for (var section in sections) {
+      for (var ticketItem in section.tickets) {
+        amount += ticketItem.quantity;
+        subTotal += ticketItem.price;
+      }
+    }
+    return TicketPrice(
+      subTotal,
+      subTotal * 0.1,
+      amount,
+      subTotal * 1.1,
+    );
+  }
 
   void initialize({
     required TicketMode mode,
@@ -39,7 +66,6 @@ class TicketHandler {
       );
     } catch (e) {
       rxSections.first.tickets.value = [item] + rxSections.first.tickets;
-      debugPrint(e.toString());
     }
   }
 
