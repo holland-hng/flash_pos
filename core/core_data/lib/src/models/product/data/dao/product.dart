@@ -1,5 +1,5 @@
 import 'package:core_data/src/database/hive_identify.dart';
-import 'package:core_data/src/product/data/dao/product_option.dart';
+import 'package:core_data/src/models/product/data/dao/product_option.dart';
 import 'package:hive_flutter/adapters.dart';
 
 part 'product.g.dart';

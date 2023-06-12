@@ -12,7 +12,7 @@ import 'package:injectable/injectable.dart' as _i1;
 import 'package:ticket_service/core/database.dart' as _i5;
 import 'package:ticket_service/src/pick_product/pick_product_handler.dart'
     as _i3;
-import 'package:ticket_service/src/ticket/presentation/ticket_handler.dart'
+import 'package:ticket_service/src/ticket/presentation/ticket_service.dart'
     as _i7;
 import 'package:ticket_service/ticket_service.dart' as _i4;
 
@@ -20,13 +20,17 @@ class TicketServicePackageModule extends _i1.MicroPackageModule {
   // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i2.FutureOr<void> init(_i1.GetItHelper gh) {
-    gh.factoryParam<_i3.PickProductHandler, _i4.TicketItem, dynamic>((
+    gh.factoryParam<_i3.PickProductHandler, _i4.TicketItem,
+        _i4.PickProductMode>((
       ticketItem,
-      _,
+      mode,
     ) =>
-        _i3.PickProductHandler(ticketItem));
+        _i3.PickProductHandler(
+          ticketItem,
+          mode,
+        ));
     gh.lazySingleton<_i5.TicketDatabaseFactory>(
         () => _i5.TicketDatabaseFactory(gh<_i6.AppDirectory>()));
-    gh.factory<_i7.TicketHandler>(() => _i7.TicketHandler());
+    gh.factory<_i7.TicketService>(() => _i7.TicketService(gh<_i6.EventBus>()));
   }
 }

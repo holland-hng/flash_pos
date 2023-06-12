@@ -2,6 +2,7 @@ import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_service/src/pick_product/pick_product_handler.dart';
+import 'package:ticket_service/ticket_service.dart';
 
 class ConfirmPickProductButton extends StatelessWidget {
   final PickProductHandler pickProductHandler;
@@ -84,40 +85,75 @@ class ConfirmPickProductButton extends StatelessWidget {
         18.0.vertical,
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Material(
-            child: InkWell(
-              borderRadius: BorderRadius.circular(8),
-              onTap: () {
-                Navigator.of(context).pop(pickProductHandler.result);
-              },
-              child: Ink(
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: context.color.primary,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Add to ticket",
-                      style: context.typo.subtitle2.bold.mergeStyle(
-                        color: context.color.surface,
+          child: Row(
+            children: [
+              if (pickProductHandler.mode.isEdit)
+                Expanded(
+                  child: Material(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: () {
+                        Navigator.of(context)
+                            .pop(pickProductHandler.removeItem);
+                      },
+                      child: Ink(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Remove",
+                            style: context.typo.subtitle2.bold.mergeStyle(
+                              color: context.color.surface,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    Obx(() {
-                      return Text(
-                        " (\$${pickProductHandler.rxPrice.value?.toStringAsFixed(2)})",
-                        style: context.typo.subtitle2.bold
-                            .mergeStyle(color: context.color.surface),
-                        overflow: TextOverflow.ellipsis,
-                      );
-                    }),
-                  ],
+                  ),
+                ),
+              if (pickProductHandler.mode.isEdit) 18.0.horizontal,
+              Expanded(
+                child: Material(
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(8),
+                    onTap: () {
+                      Navigator.of(context).pop(pickProductHandler.result);
+                    },
+                    child: Ink(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: context.color.primary,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            pickProductHandler.mode.isEdit
+                                ? "Update"
+                                : "Add to ticket",
+                            style: context.typo.subtitle2.bold.mergeStyle(
+                              color: context.color.surface,
+                            ),
+                          ),
+                          Obx(() {
+                            return Text(
+                              " (\$${pickProductHandler.rxPrice.value?.toStringAsFixed(2)})",
+                              style: context.typo.subtitle2.bold
+                                  .mergeStyle(color: context.color.surface),
+                              overflow: TextOverflow.ellipsis,
+                            );
+                          }),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ],

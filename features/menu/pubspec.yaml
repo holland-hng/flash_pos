@@ -19,6 +19,9 @@ dependencies:
 
   ticket_service:
     path: ../../services/ticket
+  
+  customers_service:
+    path: ../../services/customers
 
   extended_nested_scroll_view: ^6.1.0
   blur: ^3.1.0

@@ -14,11 +14,15 @@ export 'package:hive/hive.dart';
 
 // control modular
 export 'package:event_bus/event_bus.dart';
+export 'src/event_bus/events.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 
 // model ------------
 // product
-export 'package:core_data/src/product/data/dto/product.dart';
-export 'package:core_data/src/product/data/dao/product.dart';
-export 'package:core_data/src/product/domain/product.dart';
-export 'package:core_data/src/product/data/dao/product_option.dart';
+export 'package:core_data/src/models/product/data/dto/product.dart';
+export 'package:core_data/src/models/product/data/dao/product.dart';
+export 'package:core_data/src/models/product/domain/product.dart';
+export 'package:core_data/src/models/product/data/dao/product_option.dart';
+// customer
+export 'package:core_data/src/models/customer/data/dao/customer_dto.dart';
+export 'package:core_data/src/models/customer/domain/customer.dart';

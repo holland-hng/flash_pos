@@ -1,6 +1,16 @@
 import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 
+class RemoveTicketItem extends TicketItem {
+  const RemoveTicketItem({
+    required super.id,
+    required super.product,
+    required super.quantity,
+    required super.note,
+    required super.pickedDetailsMap,
+  });
+}
+
 class TicketItem extends Equatable {
   final String id;
   final Product product;

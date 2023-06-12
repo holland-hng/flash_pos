@@ -5,10 +5,12 @@ import 'package:ticket_service/ticket_service.dart';
 @injectable
 class PickProductHandler {
   final TicketItem ticketItem;
+  final PickProductMode mode;
 
   @factoryMethod
   PickProductHandler(
     @factoryParam this.ticketItem,
+    @factoryParam this.mode,
   ) {
     ticketItem.pickedDetailsMap.forEach((key, option) {
       pickOptionDetailsHandlerMap[option.id] = PickOptionDetailsHandler(
@@ -74,6 +76,16 @@ class PickProductHandler {
       quantity: rxQuantity.value,
       pickedDetailsMap: rxPickedDetails,
       note: note,
+    );
+  }
+
+  RemoveTicketItem get removeItem {
+    return RemoveTicketItem(
+      id: ticketItem.id,
+      note: ticketItem.note,
+      pickedDetailsMap: ticketItem.pickedDetailsMap,
+      product: ticketItem.product,
+      quantity: ticketItem.quantity,
     );
   }
 }

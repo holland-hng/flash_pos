@@ -1,5 +1,5 @@
 import 'package:core_dependency/core_dependency.dart';
-import 'package:customers_service/features/customers/data/dto/customer_dto.dart';
+import '../data/dao/customer_dto.dart';
 
 class Customer extends Equatable {
   final String name;

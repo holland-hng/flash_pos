@@ -1,6 +1,6 @@
+import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:customers_service/features/customers/data/data_source/customers_remote_data_source.dart';
-import 'package:customers_service/features/customers/domain/customer.dart';
 import 'package:customers_service/features/customers/domain/customers_repository.dart';
 
 @LazySingleton(as: CustomerRepository)

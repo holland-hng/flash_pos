@@ -62,8 +62,9 @@ class MenuPackageModule extends _i1.MicroPackageModule {
         ));
     gh.factory<_i15.MenuFlashController>(() => _i15.MenuFlashController(
           gh<_i9.MenuRepository>(),
-          gh<_i16.TicketHandler>(),
-        ));
+          gh<_i16.TicketService>(),
+          gh<_i6.EventBus>(),
+        )..initialize());
     gh.factoryParam<_i17.CategoryController, _i18.Category, dynamic>((
       category,
       _,

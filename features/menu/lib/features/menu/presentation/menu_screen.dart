@@ -163,11 +163,12 @@ class _MenuScreenState extends State<MenuScreen> {
                                                   ticketItem:
                                                       TicketItem.fromProduct(
                                                           product),
+                                                  mode: PickProductMode.add,
                                                 );
                                               },
                                             );
                                             if (result != null) {
-                                              menuController.ticketHandler
+                                              menuController.ticketService
                                                   .addTicketItem(
                                                 result,
                                               );
@@ -234,7 +235,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 Expanded(
                   flex: 3,
                   child: TicketView(
-                    ticketHandler: menuController.ticketHandler,
+                    ticketService: menuController.ticketService,
                   ),
                 ),
               ],

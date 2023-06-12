@@ -4,27 +4,40 @@ import 'package:flutter/material.dart';
 import 'package:ticket_service/ticket_service.dart';
 
 class TicketView extends StatefulWidget {
-  final TicketHandler ticketHandler;
-  const TicketView({super.key, required this.ticketHandler});
+  final TicketService ticketService;
+  const TicketView({super.key, required this.ticketService});
 
   @override
   State<TicketView> createState() => _TicketViewState();
 }
 
 class _TicketViewState extends State<TicketView> {
-  late final ticketHandler = widget.ticketHandler;
+  late final ticketService = widget.ticketService;
   final popupHandler = PopupHandler.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: context.color.surface,
-      appBar: const FlashAppBar(
+      appBar: FlashAppBar(
+        centerTitle: false,
         title: 'Ticket',
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 2),
+            child: TextButton(
+              onPressed: () {},
+              child: const Text(
+                "Clear",
+                style: TextStyle(color: Color.fromARGB(255, 254, 152, 152)),
+              ),
+            ),
+          )
+        ],
       ),
       body: Obx(
         () {
-          final mode = ticketHandler.rxMode.value;
+          final mode = ticketService.rxMode.value;
           debugPrint(mode.toString());
           return ListView(
             shrinkWrap: false,
@@ -40,53 +53,58 @@ class _TicketViewState extends State<TicketView> {
                   ),
                 ),
                 height: 60,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: Row(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left: 10),
-                        //   child: TextButton(
-                        //       onPressed: () {
-                        //         print("alo");
-                        //       },
-                        //       child: Text(
-                        //         "Add customer",
-                        //         style: context.typo.body1.medium
-                        //             .mergeColor(context.color.primary),
-                        //       )),
-                        // )
-                        Expanded(
-                          child: Text(
-                            "Michael Jason",
-                            style: context.typo.body1.semiBold
-                                .mergeStyle(fontSize: 13),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        10.0.horizontal,
-                        Text(
-                          "+84386412929",
-                          style: context.typo.body2,
-                        ),
-                      ],
-                    ),
-                  ),
+                child: Material(
+                  color: context.color.surface,
+                  child: Obx(() {
+                    return InkWell(
+                      onTap: () {
+                        ticketService.openPickCustomer();
+                      },
+                      child: Ink(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: ticketService.rxCustomer.value == null
+                            ? Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Add customer",
+                                  style: context.typo.body1.medium
+                                      .mergeColor(context.color.primary),
+                                ),
+                              )
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Michael Jason",
+                                      style: context.typo.body1.semiBold
+                                          .mergeStyle(fontSize: 13),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  10.0.horizontal,
+                                  Text(
+                                    "+84386412929",
+                                    style: context.typo.body2,
+                                  ),
+                                ],
+                              ),
+                      ),
+                    );
+                  }),
                 ),
               ),
               ListView.builder(
                 padding: const EdgeInsets.only(bottom: 36),
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: ticketHandler.rxSections.length,
+                itemCount: ticketService.rxSections.length,
                 itemBuilder: (context, index) {
                   return ClipRRect(
                     child: Obx(() {
-                      final section = ticketHandler.rxSections[index];
+                      final section = ticketService.rxSections[index];
                       return Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -101,47 +119,28 @@ class _TicketViewState extends State<TicketView> {
                               itemBuilder: (context, index) {
                                 final ticketItem = section.tickets[index];
                                 final product = ticketItem.product;
-                                return Slidable(
-                                  endActionPane: ActionPane(
-                                    motion: const ScrollMotion(),
-                                    children: [
-                                      SlidableAction(
-                                        onPressed: (context) async {
-                                          final result = await popupHandler
-                                              .showPopup<TicketItem>(
-                                            canPop: true,
-                                            context: context,
-                                            builder: (popupContext) {
-                                              return PickProductPopup(
-                                                ticketItem: ticketItem,
-                                              );
-                                            },
-                                          );
-                                          if (result != null) {
-                                            ticketHandler.updateItem(result);
-                                          }
-                                        },
-                                        backgroundColor:
-                                            const Color(0xFF7BC043),
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.edit,
-                                      ),
-                                      SlidableAction(
-                                        onPressed: (context) {
-                                          Future.delayed(const Duration(
-                                                  milliseconds: 300))
-                                              .then((_) {
-                                            ticketHandler
-                                                .removeItem(ticketItem);
-                                          });
-                                        },
-                                        backgroundColor: Colors.redAccent,
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.delete_outline,
-                                      ),
-                                    ],
-                                  ),
-                                  child: Padding(
+                                return InkWell(
+                                  onTap: () async {
+                                    final result = await popupHandler
+                                        .showPopup<TicketItem>(
+                                      canPop: true,
+                                      context: context,
+                                      builder: (popupContext) {
+                                        return PickProductPopup(
+                                          ticketItem: ticketItem,
+                                          mode: PickProductMode.edit,
+                                        );
+                                      },
+                                    );
+                                    if (result != null) {
+                                      if (result is RemoveTicketItem) {
+                                        ticketService.removeItem(ticketItem);
+                                      } else {
+                                        ticketService.updateItem(result);
+                                      }
+                                    }
+                                  },
+                                  child: Ink(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 14, horizontal: 18),
                                     child: Column(
@@ -246,8 +245,8 @@ class _TicketViewState extends State<TicketView> {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: Obx(() {
-              final ticketPrice = ticketHandler.ticketPrice;
-              debugPrint(ticketHandler.rxSections.toString());
+              final ticketPrice = ticketService.ticketPrice;
+              debugPrint(ticketService.rxSections.toString());
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

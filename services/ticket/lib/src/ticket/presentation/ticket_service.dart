@@ -1,53 +1,21 @@
+import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ticket_service/src/ticket/domain/ticket_mode.dart';
+import 'package:ticket_service/src/ticket/domain/ticket_price.dart';
 import '../domain/ticket.dart';
 import '../domain/ticket_section.dart';
 
-enum TicketMode {
-  draft,
-  view,
-  completed,
-}
-
-extension TicketModeExtension on TicketMode {
-  bool get isCompleted {
-    return this == TicketMode.completed;
-  }
-}
-
-class TicketPrice {
-  final double subTotal;
-  final double tax;
-  final int amount;
-  final double total;
-
-  TicketPrice(this.subTotal, this.tax, this.amount, this.total);
-}
-
 @injectable
-class TicketHandler {
+class TicketService {
+  final EventBus eventBus;
   final Rx<TicketMode> rxMode = Rx<TicketMode>(TicketMode.draft);
+  final Rxn<Customer> rxCustomer = Rxn<Customer>();
   final RxList<TicketSection> rxSections = RxList<TicketSection>([
     TicketSection.empty(),
   ]);
 
-  TicketPrice get ticketPrice {
-    int amount = 0;
-    double subTotal = 0;
-    final sections = rxSections;
-    for (var section in sections) {
-      for (var ticketItem in section.tickets) {
-        amount += ticketItem.quantity;
-        subTotal += ticketItem.price;
-      }
-    }
-    return TicketPrice(
-      subTotal,
-      subTotal * 0.1,
-      amount,
-      subTotal * 1.1,
-    );
-  }
+  TicketService(this.eventBus);
 
   void initialize({
     required TicketMode mode,
@@ -55,6 +23,14 @@ class TicketHandler {
   }) {
     rxMode.value = mode;
     rxSections.value = sections;
+  }
+
+  void setCustomer(Customer customer) {
+    rxCustomer.value = customer;
+  }
+
+  void openPickCustomer() {
+    eventBus.fire(PickCustomerEvent());
   }
 
   void addTicketItem(TicketItem item) {
@@ -86,5 +62,28 @@ class TicketHandler {
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  TicketPrice get ticketPrice {
+    int amount = 0;
+    double subTotal = 0;
+    final sections = rxSections;
+    for (var section in sections) {
+      for (var ticketItem in section.tickets) {
+        amount += ticketItem.quantity;
+        subTotal += ticketItem.price;
+      }
+    }
+    return TicketPrice(
+      subTotal,
+      subTotal * 0.1,
+      amount,
+      subTotal * 1.1,
+    );
+  }
+
+  void clearAllData() {
+    rxCustomer.value = null;
+    rxSections.first.tickets.clear();
   }
 }

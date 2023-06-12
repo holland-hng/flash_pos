@@ -1,3 +1,4 @@
+import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -10,15 +11,20 @@ import 'package:ticket_service/ticket_service.dart';
 @injectable
 class MenuFlashController {
   final MenuRepository menuRepository;
-  final TicketHandler ticketHandler;
+  final TicketService ticketService;
+
+  final EventBus eventBus;
   final RxList<Category> rxCategories = <Category>[].obs;
   final Rx<BaseState> rxState = BaseState.idle.obs;
 
-  List<String> get categoryTitles {
-    return rxCategories.map((category) => category.name).toList();
-  }
+  MenuFlashController(this.menuRepository, this.ticketService, this.eventBus);
 
-  MenuFlashController(this.menuRepository, this.ticketHandler);
+  @postConstruct
+  void initialize() {
+    eventBus.on<PickCustomerEvent>().listen((event) {
+      print("heheh ");
+    });
+  }
 
   Future<void> fetchData() async {
     rxState.value = BaseState.fetching;

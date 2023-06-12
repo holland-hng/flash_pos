@@ -77,8 +77,9 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i17.MenuFlashController>(() => _i17.MenuFlashController(
           gh<_i11.MenuRepository>(),
-          gh<_i18.TicketHandler>(),
-        ));
+          gh<_i18.TicketService>(),
+          gh<_i3.EventBus>(),
+        )..initialize());
     gh.factoryParam<_i19.CategoryController, _i20.Category, dynamic>((
       category,
       _,

@@ -15,7 +15,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:ticket_service/core/database.dart' as _i6;
 import 'package:ticket_service/src/pick_product/pick_product_handler.dart'
     as _i4;
-import 'package:ticket_service/src/ticket/presentation/ticket_handler.dart'
+import 'package:ticket_service/src/ticket/presentation/ticket_service.dart'
     as _i7;
 import 'package:ticket_service/ticket_service.dart' as _i5;
 
@@ -31,14 +31,18 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     await _i3.CoreDataPackageModule().init(gh);
-    gh.factoryParam<_i4.PickProductHandler, _i5.TicketItem, dynamic>((
+    gh.factoryParam<_i4.PickProductHandler, _i5.TicketItem,
+        _i5.PickProductMode>((
       ticketItem,
-      _,
+      mode,
     ) =>
-        _i4.PickProductHandler(ticketItem));
+        _i4.PickProductHandler(
+          ticketItem,
+          mode,
+        ));
     gh.lazySingleton<_i6.TicketDatabaseFactory>(
         () => _i6.TicketDatabaseFactory(gh<_i3.AppDirectory>()));
-    gh.factory<_i7.TicketHandler>(() => _i7.TicketHandler());
+    gh.factory<_i7.TicketService>(() => _i7.TicketService(gh<_i3.EventBus>()));
     return this;
   }
 }

@@ -9,12 +9,25 @@ import 'widgets/confirm_pick_product_button.dart';
 import 'widgets/header_product_preview.dart';
 import 'widgets/product_option_view.dart';
 
+enum PickProductMode {
+  add,
+  edit,
+}
+
+extension PickProductModeExtension on PickProductMode {
+  bool get isEdit {
+    return this == PickProductMode.edit;
+  }
+}
+
 class PickProductPopup extends StatefulWidget {
   final TicketItem ticketItem;
+  final PickProductMode mode;
 
   const PickProductPopup({
     super.key,
     required this.ticketItem,
+    required this.mode,
   });
 
   @override
@@ -25,6 +38,7 @@ class _PickProductPopupState extends State<PickProductPopup> {
   final notePopupHandler = PopupHandler.instance;
   late PickProductHandler pickProductHandler = getIt<PickProductHandler>(
     param1: widget.ticketItem,
+    param2: widget.mode,
   );
   late Product product = widget.ticketItem.product;
   late double opacity = 1;

@@ -277,6 +277,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  customers_service:
+    dependency: "direct main"
+    description:
+      path: "../../services/customers"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   dart_style:
     dependency: transitive
     description:

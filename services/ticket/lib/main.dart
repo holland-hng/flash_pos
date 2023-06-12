@@ -28,7 +28,7 @@ class _TicketAppState extends State<TicketApp> {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Customers App',
-        home: TicketView(ticketHandler: getIt<TicketHandler>()),
+        home: TicketView(ticketService: getIt<TicketService>()),
       );
     });
   }
