@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:ticket_service/di/di.dart';
 import 'package:ticket_service/src/pick_product/pick_product_handler.dart';
 import 'package:ticket_service/ticket_service.dart';
-
 import 'widgets/confirm_pick_product_button.dart';
 import 'widgets/header_product_preview.dart';
 import 'widgets/product_option_view.dart';
@@ -65,7 +64,7 @@ class _PickProductPopupState extends State<PickProductPopup> {
                   product: product,
                   pickProductHandler: pickProductHandler,
                 ),
-                const SizedBox(height: 20),
+                18.0.vertical,
                 const HorDivider(),
                 if (product.options.isNotEmpty)
                   Flexible(
@@ -93,7 +92,6 @@ class _PickProductPopupState extends State<PickProductPopup> {
                     Future.delayed(const Duration(milliseconds: 100)).then(
                       (_) async {
                         final result = await notePopupHandler.showPopup<String>(
-                          canPop: true,
                           context: context,
                           builder: (popupContext) {
                             return NotePopup(

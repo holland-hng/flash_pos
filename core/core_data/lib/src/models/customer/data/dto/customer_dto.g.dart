@@ -7,18 +7,18 @@ part of 'customer_dto.dart';
 // **************************************************************************
 
 CustomerDto _$CustomerDtoFromJson(Map<String, dynamic> json) => CustomerDto(
-      json['strMeal'] as String,
-      json['strMealThumb'] as String,
-      json['idMeal'] as String,
-      json['address'] as String? ?? 'None',
-      json['loyaltyPoint'] as int? ?? 0,
+      json['firstName'] as String,
+      json['email'] as String,
+      json['phone'] as String,
+      json['eyeColor'] as String? ?? 'None',
+      (json['height'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$CustomerDtoToJson(CustomerDto instance) =>
     <String, dynamic>{
-      'strMeal': instance.name,
-      'strMealThumb': instance.email,
-      'idMeal': instance.phoneNumber,
-      'address': instance.address,
-      'loyaltyPoint': instance.loyaltyPoint,
+      'firstName': instance.name,
+      'email': instance.email,
+      'phone': instance.phoneNumber,
+      'eyeColor': instance.address,
+      'height': instance.loyaltyPoint,
     };

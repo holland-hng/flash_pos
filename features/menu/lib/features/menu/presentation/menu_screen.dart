@@ -23,19 +23,21 @@ class _MenuScreenState extends State<MenuScreen> {
   late double productRatio;
 
   @override
-  void didChangeDependencies() {
-    productRatio = context.productRatio;
-    super.didChangeDependencies();
-  }
-
-  @override
   void initState() {
     menuController.fetchData();
     super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    productRatio = context.productRatio;
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("DEBUGGG oh my god menu screen");
+
     return Scaffold(
       backgroundColor: context.color.background,
       resizeToAvoidBottomInset: false,
@@ -96,10 +98,13 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: Scaffold(
                     resizeToAvoidBottomInset: false,
                     backgroundColor: context.color.background,
-                    appBar: const FlashSearchBar(),
+                    appBar: FlashSearchBar(
+                      onChanged: (value) {
+                        debugPrint("Menu search: $value");
+                      },
+                    ),
                     body: Obx(() {
                       switch (menuController.rxState.value) {
-                        case BaseState.fetchError:
                         case BaseState.idle:
                         case BaseState.fetching:
                           return const Center(
@@ -108,10 +113,10 @@ class _MenuScreenState extends State<MenuScreen> {
                         case BaseState.fetchSuccess:
                           return ScrollablePositionedList.separated(
                             itemScrollController: itemScrollController,
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                               left: 18,
                               right: 18,
-                              bottom: MediaQuery.of(context).size.height / 2,
+                              bottom: 500,
                             ),
                             itemCount: menuController.rxCategories.length,
                             itemBuilder: (context, index) {
@@ -156,7 +161,6 @@ class _MenuScreenState extends State<MenuScreen> {
                                           onTap: () async {
                                             final result = await popupHandler
                                                 .showPopup<TicketItem>(
-                                              canPop: true,
                                               context: context,
                                               builder: (popupContext) {
                                                 return PickProductPopup(
@@ -252,7 +256,7 @@ class _MenuScreenState extends State<MenuScreen> {
 extension ProductRatio on BuildContext {
   double get productRatio {
     const height = 82;
-    final widthScreen = MediaQuery.of(this).size.width;
+    final widthScreen = Get.width;
     final widthView = widthScreen * 8 / 14;
     final widthProduct = (widthView - 18 * 5) / 4;
     final ratio = widthProduct / height;

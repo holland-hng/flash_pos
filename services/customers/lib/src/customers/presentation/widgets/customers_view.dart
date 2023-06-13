@@ -1,7 +1,7 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:customers_service/di/di.dart';
-import 'package:customers_service/features/customers/presentation/customers_controller.dart';
+import 'package:customers_service/src/customers/presentation/customers_controller.dart';
 import 'package:flutter/material.dart';
 import 'customer_summary_view.dart';
 
@@ -85,7 +85,7 @@ class _CustomersViewState extends State<CustomersView> {
             child: const CustomerSummaryView(),
           ),
         ),
-        Expanded(
+        Flexible(
           child: Obx(() {
             if (controller.rxState.value.isFetching) {
               return Center(

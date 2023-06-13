@@ -5,7 +5,7 @@ part 'customers_dto.g.dart';
 
 @JsonSerializable()
 class CustomersDto {
-  @JsonKey(name: 'meals')
+  @JsonKey(name: 'users')
   final List<CustomerDto> data;
 
   CustomersDto(this.data);

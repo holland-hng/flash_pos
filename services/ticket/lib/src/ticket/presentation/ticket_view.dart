@@ -16,6 +16,7 @@ class _TicketViewState extends State<TicketView> {
   final popupHandler = PopupHandler.instance;
   @override
   Widget build(BuildContext context) {
+    //print("DEBUGGG oh my god");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: context.color.surface,
@@ -123,7 +124,6 @@ class _TicketViewState extends State<TicketView> {
                                   onTap: () async {
                                     final result = await popupHandler
                                         .showPopup<TicketItem>(
-                                      canPop: true,
                                       context: context,
                                       builder: (popupContext) {
                                         return PickProductPopup(

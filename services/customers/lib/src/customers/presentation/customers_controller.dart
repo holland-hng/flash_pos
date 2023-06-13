@@ -1,7 +1,7 @@
 import 'package:core_data/core_data.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:core_dependency/core_dependency.dart';
-import 'package:customers_service/features/customers/domain/customers_repository.dart';
+import 'package:customers_service/src/customers/domain/customers_repository.dart';
 import 'package:flutter/material.dart';
 
 @injectable
@@ -26,7 +26,7 @@ class CustomersController {
   Future<void> fetchCustomers() async {
     rxState.value = BaseState.fetching;
     try {
-      final result = await repository.getCustomers('Beef');
+      final result = await repository.getCustomers();
       storageCustomers.addAll(result);
       rxCustomers.addAll(result);
       rxState.value = BaseState.fetchSuccess;

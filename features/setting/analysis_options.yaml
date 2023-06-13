@@ -31,3 +31,4 @@ analyzer:
     exclude:
     - '**.config.dart'
     - '**.g.dart'
+    - '**.module.dart'

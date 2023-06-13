@@ -1,8 +1,8 @@
 import 'package:core_router/core_router.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:customers_service/di/di.dart';
-import 'package:customers_service/features/customers/presentation/widgets/customer_info_view.dart';
-import 'package:customers_service/features/customers/presentation/widgets/customers_view.dart';
+import 'package:customers_service/src/customers/presentation/widgets/customer_info_view.dart';
+import 'package:customers_service/src/customers/presentation/widgets/customers_view.dart';
 import 'package:flutter/material.dart';
 import 'customers_controller.dart';
 
@@ -35,6 +35,7 @@ class _CustomersScreenState extends State<CustomersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: context.color.background,
       appBar: const FlashAppBar(title: 'Customers'),
       body: Padding(

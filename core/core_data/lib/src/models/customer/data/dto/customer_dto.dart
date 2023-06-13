@@ -3,16 +3,16 @@ part 'customer_dto.g.dart';
 
 @JsonSerializable()
 class CustomerDto {
-  @JsonKey(name: 'strMeal')
+  @JsonKey(name: 'firstName')
   final String name;
-  @JsonKey(name: 'strMealThumb')
+  @JsonKey(name: 'email')
   final String email;
-  @JsonKey(name: 'idMeal')
+  @JsonKey(name: 'phone')
   final String phoneNumber;
-  @JsonKey(defaultValue: 'None')
+  @JsonKey(name: 'eyeColor', defaultValue: 'None')
   final String address;
-  @JsonKey(defaultValue: 0)
-  final int loyaltyPoint;
+  @JsonKey(name: 'height', defaultValue: 0)
+  final double loyaltyPoint;
 
   CustomerDto(
     this.name,

@@ -12,16 +12,17 @@
 import 'package:core_data/core_data.dart' as _i3;
 import 'package:core_dependency/core_dependency.dart' as _i6;
 import 'package:core_router/core_router.dart' as _i4;
-import 'package:customers_service/core/database/database.dart' as _i10;
-import 'package:customers_service/core/router/customers_router.dart' as _i11;
-import 'package:customers_service/features/customers/data/data_source/customers_remote_data_source.dart'
+import 'package:customers_service/core/database/database.dart' as _i11;
+import 'package:customers_service/core/router/customers_router.dart' as _i12;
+import 'package:customers_service/src/customers/data/data_source/customers_remote_data_source.dart'
     as _i5;
-import 'package:customers_service/features/customers/data/repository/customers_repository_impl.dart'
+import 'package:customers_service/src/customers/data/repository/customers_repository_impl.dart'
     as _i8;
-import 'package:customers_service/features/customers/domain/customers_repository.dart'
+import 'package:customers_service/src/customers/domain/customers_repository.dart'
     as _i7;
-import 'package:customers_service/features/customers/presentation/customers_controller.dart'
-    as _i9;
+import 'package:customers_service/src/customers/presentation/customers_controller.dart'
+    as _i10;
+import 'package:customers_service/src/customers_service.dart' as _i9;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -42,11 +43,13 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i5.CustomerRemoteDataSource(gh<_i6.Dio>()));
     gh.lazySingleton<_i7.CustomerRepository>(
         () => _i8.CustomerRepositoryImpl(gh<_i5.CustomerRemoteDataSource>()));
-    gh.factory<_i9.CustomersController>(
-        () => _i9.CustomersController(gh<_i7.CustomerRepository>()));
-    gh.lazySingleton<_i10.CustomersDatabaseFactory>(
-        () => _i10.CustomersDatabaseFactory(gh<_i3.AppDirectory>()));
-    gh.singleton<_i11.CustomersRouter>(_i11.CustomersRouter());
+    gh.factory<_i9.CustomerService>(
+        () => _i9.CustomerService(gh<_i4.AppRouter>()));
+    gh.factory<_i10.CustomersController>(
+        () => _i10.CustomersController(gh<_i7.CustomerRepository>()));
+    gh.lazySingleton<_i11.CustomersDatabaseFactory>(
+        () => _i11.CustomersDatabaseFactory(gh<_i3.AppDirectory>()));
+    gh.singleton<_i12.CustomersRouter>(_i12.CustomersRouter());
     return this;
   }
 }

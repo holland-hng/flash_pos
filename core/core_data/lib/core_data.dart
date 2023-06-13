@@ -24,5 +24,5 @@ export 'package:core_data/src/models/product/data/dao/product.dart';
 export 'package:core_data/src/models/product/domain/product.dart';
 export 'package:core_data/src/models/product/data/dao/product_option.dart';
 // customer
-export 'package:core_data/src/models/customer/data/dao/customer_dto.dart';
+export 'package:core_data/src/models/customer/data/dto/customer_dto.dart';
 export 'package:core_data/src/models/customer/domain/customer.dart';

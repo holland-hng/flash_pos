@@ -1,6 +1,7 @@
 import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:customers_service/customers_service.dart';
 import 'package:flutter/material.dart';
 import 'package:menu/di/di.dart';
 import 'package:menu/features/category/domain/category.dart';
@@ -12,17 +13,28 @@ import 'package:ticket_service/ticket_service.dart';
 class MenuFlashController {
   final MenuRepository menuRepository;
   final TicketService ticketService;
+  final CustomerService customerService;
 
   final EventBus eventBus;
   final RxList<Category> rxCategories = <Category>[].obs;
   final Rx<BaseState> rxState = BaseState.idle.obs;
 
-  MenuFlashController(this.menuRepository, this.ticketService, this.eventBus);
+  MenuFlashController(
+    this.menuRepository,
+    this.ticketService,
+    this.eventBus,
+    this.customerService,
+  );
 
   @postConstruct
   void initialize() {
-    eventBus.on<PickCustomerEvent>().listen((event) {
-      print("heheh ");
+    eventBus.on<PickCustomerEvent>().listen((event) async {
+      final result = await customerService.openCustomersList();
+      if (result == null) {
+        //do nothing
+      } else {
+        ticketService.setCustomer(result);
+      }
     });
   }
 

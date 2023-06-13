@@ -9,6 +9,7 @@ import 'dart:async' as _i2;
 
 import 'package:core_data/core_data.dart' as _i6;
 import 'package:core_dependency/core_dependency.dart' as _i4;
+import 'package:customers_service/customers_service.dart' as _i17;
 import 'package:injectable/injectable.dart' as _i1;
 import 'package:menu/core/database/database.dart' as _i5;
 import 'package:menu/core/router/menu_router.dart' as _i11;
@@ -18,10 +19,10 @@ import 'package:menu/features/category/data/repository/category_remote_data_sour
     as _i3;
 import 'package:menu/features/category/data/repository/category_repository_impl.dart'
     as _i14;
-import 'package:menu/features/category/domain/category.dart' as _i18;
+import 'package:menu/features/category/domain/category.dart' as _i19;
 import 'package:menu/features/category/domain/category_repository.dart' as _i13;
 import 'package:menu/features/category/presentation/category_controller.dart'
-    as _i17;
+    as _i18;
 import 'package:menu/features/menu/data/repository/menu_local_data_source.dart'
     as _i7;
 import 'package:menu/features/menu/data/repository/menu_remote_data_source.dart'
@@ -64,12 +65,13 @@ class MenuPackageModule extends _i1.MicroPackageModule {
           gh<_i9.MenuRepository>(),
           gh<_i16.TicketService>(),
           gh<_i6.EventBus>(),
+          gh<_i17.CustomerService>(),
         )..initialize());
-    gh.factoryParam<_i17.CategoryController, _i18.Category, dynamic>((
+    gh.factoryParam<_i18.CategoryController, _i19.Category, dynamic>((
       category,
       _,
     ) =>
-        _i17.CategoryController(
+        _i18.CategoryController(
           category,
           gh<_i13.CategoryRepository>(),
         ));

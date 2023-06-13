@@ -1,5 +1,5 @@
 import 'package:core_dependency/core_dependency.dart';
-import '../data/dao/customer_dto.dart';
+import '../data/dto/customer_dto.dart';
 
 class Customer extends Equatable {
   final String name;
@@ -17,12 +17,15 @@ class Customer extends Equatable {
   );
 
   factory Customer.fromDto(CustomerDto dto) {
+    final cells = dto.phoneNumber.split(' ');
+    cells.removeAt(0);
+    final phone = '0${cells.join()}';
     return Customer(
       dto.name,
       dto.email,
-      dto.phoneNumber,
+      phone,
       dto.address,
-      dto.loyaltyPoint,
+      dto.loyaltyPoint.toInt(),
     );
   }
 

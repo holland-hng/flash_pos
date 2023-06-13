@@ -1,6 +1,6 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_router/core_router.dart';
-import 'package:customers_service/features/customers/presentation/customers_screen.dart';
+import 'package:customers_service/src/customers/presentation/customers_screen.dart';
 
 part 'customers_router.gr.dart';
 

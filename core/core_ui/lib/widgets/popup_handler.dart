@@ -36,7 +36,7 @@ class PopupHandlerImpl extends PopupHandler {
       curve: Curves.fastOutSlowIn,
       duration: const Duration(milliseconds: 300),
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: canPop,
       barrierColor: Colors.black12,
       builder: (popupContext) {
         this.popupContext = popupContext;
@@ -55,8 +55,13 @@ class PopupHandlerImpl extends PopupHandler {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 body: SafeArea(
-                  child: Center(
-                    child: builder(popupContext),
+                  child: GestureDetector(
+                    onTap: () {
+                      //do nothing
+                    },
+                    child: Center(
+                      child: builder(popupContext),
+                    ),
                   ),
                 ),
               ),
@@ -106,7 +111,7 @@ class ClosePopupButton extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
                 color: context.color.secondary,
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(20),
                 border: Border.all(width: 0.5, color: Colors.white)),
             child: const Icon(
               Icons.close,

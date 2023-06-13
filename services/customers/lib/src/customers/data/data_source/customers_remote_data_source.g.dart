@@ -12,16 +12,18 @@ class _CustomerRemoteDataSource implements CustomerRemoteDataSource {
   _CustomerRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'https://dummyjson.com';
+  }
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<CustomersDto> getCustomers(String query) async {
+  Future<CustomersDto> getCustomers() async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'c': query};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -32,7 +34,7 @@ class _CustomerRemoteDataSource implements CustomerRemoteDataSource {
     )
             .compose(
               _dio.options,
-              '/filter.php',
+              '/users',
               queryParameters: queryParameters,
               data: _data,
             )
