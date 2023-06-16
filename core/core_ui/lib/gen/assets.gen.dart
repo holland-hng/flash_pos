@@ -81,8 +81,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/app_logo.svg
   SvgGenImage get appLogo => const SvgGenImage('assets/images/app_logo.svg');
 
+  /// File path: assets/images/img_empty_ticket.svg
+  SvgGenImage get imgEmptyTicket =>
+      const SvgGenImage('assets/images/img_empty_ticket.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [appLogo];
+  List<SvgGenImage> get values => [appLogo, imgEmptyTicket];
 }
 
 class Assets {

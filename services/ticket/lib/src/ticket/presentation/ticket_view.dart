@@ -1,5 +1,6 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_service/src/ticket/domain/customer_action.dart';
 import 'package:ticket_service/ticket_service.dart';
@@ -153,142 +154,172 @@ class _TicketViewState extends State<TicketView> {
                   }),
                 ),
               ),
-              ListView.builder(
-                padding: const EdgeInsets.only(bottom: 36),
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: ticketService.rxSections.length,
-                itemBuilder: (context, index) {
-                  return ClipRRect(
-                    child: Obx(() {
-                      final section = ticketService.rxSections[index];
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
+              ticketService.rxSections.first.tickets.isEmpty
+                  ? SizedBox(
+                      height: 500,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          if (section.name.isNotEmpty) Text(section.name),
-                          Flexible(
-                            child: ListView.separated(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 0),
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: section.tickets.length,
-                              itemBuilder: (context, index) {
-                                final ticketItem = section.tickets[index];
-                                final product = ticketItem.product;
-                                return InkWell(
-                                  onTap: () async {
-                                    final result = await popupHandler
-                                        .showPopup<TicketItem>(
-                                      context: context,
-                                      builder: (popupContext) {
-                                        return PickProductPopup(
-                                          ticketItem: ticketItem,
-                                          mode: PickProductMode.edit,
-                                        );
-                                      },
-                                    );
-                                    if (result != null) {
-                                      if (result is RemoveTicketItem) {
-                                        ticketService.removeItem(ticketItem);
-                                      } else {
-                                        ticketService.updateItem(result);
-                                      }
-                                    }
-                                  },
-                                  child: Ink(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 14, horizontal: 18),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                "${ticketItem.quantity}x ${product.name}",
-                                                style: context.typo.body1.medium
-                                                    .mergeStyle(
-                                                  fontSize: 13,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              "\$${ticketItem.price.toStringAsFixed(2)}",
-                                              style:
-                                                  context.typo.body1.mergeStyle(
-                                                fontSize: 13,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Flexible(
-                                          child: ListView.builder(
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount:
-                                                ticketItem.pickedDetails.length,
-                                            itemBuilder: (context, index) {
-                                              final optionDetail = ticketItem
-                                                  .pickedDetails[index];
-                                              return Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 6),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                          optionDetail.name,
-                                                          style: context
-                                                              .typo.body2.thin),
-                                                    ),
-                                                    Text(
-                                                      "\$${optionDetail.price.toStringAsFixed(2)}",
-                                                      style: context
-                                                          .typo.body2.thin,
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                        if (ticketItem.note.isNotEmpty)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 6),
-                                            child: Text(
-                                              "Note: ${ticketItem.note}",
-                                              style: context.typo.body2.thin
-                                                  .mergeColor(
-                                                context.color.primary,
-                                              ),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                              separatorBuilder: (context, index) =>
-                                  const HorDivider(
-                                horizontal: 18,
-                              ),
+                          Assets.images.imgEmptyTicket.svg(height: 200),
+                          12.0.vertical,
+                          Text(
+                            "Ticket is empty",
+                            style: context.typo.body1.mergeStyle(
+                              fontStyle: FontStyle.italic,
                             ),
                           ),
                         ],
-                      );
-                    }),
-                  );
-                },
-              ),
+                      ),
+                    )
+                  : ListView.builder(
+                      padding: const EdgeInsets.only(bottom: 36),
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: ticketService.rxSections.length,
+                      itemBuilder: (context, index) {
+                        return ClipRRect(
+                          child: Obx(() {
+                            final section = ticketService.rxSections[index];
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (section.name.isNotEmpty) Text(section.name),
+                                Flexible(
+                                  child: ListView.separated(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 0),
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: section.tickets.length,
+                                    itemBuilder: (context, index) {
+                                      final ticketItem = section.tickets[index];
+                                      final product = ticketItem.product;
+                                      return InkWell(
+                                        onTap: () async {
+                                          final result = await popupHandler
+                                              .showPopup<TicketItem>(
+                                            context: context,
+                                            builder: (popupContext) {
+                                              return PickProductPopup(
+                                                ticketItem: ticketItem,
+                                                mode: PickProductMode.edit,
+                                              );
+                                            },
+                                          );
+                                          if (result != null) {
+                                            if (result is RemoveTicketItem) {
+                                              ticketService
+                                                  .removeItem(ticketItem);
+                                            } else {
+                                              ticketService.updateItem(result);
+                                            }
+                                          }
+                                        },
+                                        child: Ink(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 14, horizontal: 18),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      "${ticketItem.quantity}x ${product.name}",
+                                                      style: context
+                                                          .typo.body1.medium
+                                                          .mergeStyle(
+                                                        fontSize: 13,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "\$${ticketItem.price.toStringAsFixed(2)}",
+                                                    style: context.typo.body1
+                                                        .mergeStyle(
+                                                      fontSize: 13,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Flexible(
+                                                child: ListView.builder(
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  itemCount: ticketItem
+                                                      .pickedDetails.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    final optionDetail =
+                                                        ticketItem
+                                                                .pickedDetails[
+                                                            index];
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 6),
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Text(
+                                                                optionDetail
+                                                                    .name,
+                                                                style: context
+                                                                    .typo
+                                                                    .body2
+                                                                    .thin),
+                                                          ),
+                                                          Text(
+                                                            "\$${optionDetail.price.toStringAsFixed(2)}",
+                                                            style: context.typo
+                                                                .body2.thin,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                              if (ticketItem.note.isNotEmpty)
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 6),
+                                                  child: Text(
+                                                    "Note: ${ticketItem.note}",
+                                                    style: context
+                                                        .typo.body2.thin
+                                                        .mergeColor(
+                                                      context.color.primary,
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) =>
+                                        const HorDivider(
+                                      horizontal: 18,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }),
+                        );
+                      },
+                    ),
             ],
           );
         },
