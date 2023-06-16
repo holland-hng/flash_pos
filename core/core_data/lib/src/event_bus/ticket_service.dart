@@ -1,6 +1,15 @@
 part of 'events.dart';
 
-class PickCustomerEvent extends FlashEvent {
+class PickCustomerEvent extends FlashEvent<Customer?> {
   @override
-  get data => null;
+  final Customer? data;
+
+  PickCustomerEvent({this.data});
+}
+
+class OpenCustomerPopupEvent extends FlashEvent<Customer> {
+  @override
+  final Customer data;
+
+  OpenCustomerPopupEvent(this.data);
 }

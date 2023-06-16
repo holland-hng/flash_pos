@@ -1,14 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-// TODO: GOOD IDEA
-// extension BuildContextTextStyle on BuildContext{
-//   TextStyle style(){
-//     this.typo.headline1
-
-//   }
-// }
-
 extension TextStyleExtension on TextStyle {
   TextStyle get ultraBold {
     return merge(

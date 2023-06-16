@@ -6,4 +6,6 @@ class HiveIdentify {
   static const int productOptionDetailId = 4;
   static const int authId = 5;
   static const int subscriptionId = 6;
+  static const int customerId = 7;
+  static const int customersId = 8;
 }

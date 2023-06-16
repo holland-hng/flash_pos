@@ -16,6 +16,21 @@ class Customer extends Equatable {
     this.loyaltyPoint,
   );
 
+  Customer copyWith({
+    String? name,
+    String? email,
+    String? phoneNumber,
+    String? address,
+  }) {
+    return Customer(
+      name ?? this.name,
+      email ?? this.email,
+      phoneNumber ?? this.phoneNumber,
+      address ?? this.address,
+      loyaltyPoint,
+    );
+  }
+
   factory Customer.fromDto(CustomerDto dto) {
     final cells = dto.phoneNumber.split(' ');
     cells.removeAt(0);

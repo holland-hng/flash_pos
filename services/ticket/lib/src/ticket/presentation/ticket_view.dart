@@ -1,7 +1,11 @@
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:ticket_service/src/ticket/domain/customer_action.dart';
 import 'package:ticket_service/ticket_service.dart';
+
+import 'mirai_dropdown_item_widget.dart';
+import 'mirai_dropdown_widget.dart';
 
 class TicketView extends StatefulWidget {
   final TicketService ticketService;
@@ -16,7 +20,6 @@ class _TicketViewState extends State<TicketView> {
   final popupHandler = PopupHandler.instance;
   @override
   Widget build(BuildContext context) {
-    //print("DEBUGGG oh my god");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: context.color.surface,
@@ -26,13 +29,23 @@ class _TicketViewState extends State<TicketView> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 2),
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Clear",
-                style: TextStyle(color: Color.fromARGB(255, 254, 152, 152)),
-              ),
-            ),
+            child: Obx(() {
+              bool isHasData = ticketService.rxHasData.value ?? false;
+              return TextButton(
+                onPressed: isHasData
+                    ? () {
+                        ticketService.clearAllData();
+                      }
+                    : null,
+                child: Text(
+                  "Clear",
+                  style: TextStyle(
+                      color: isHasData
+                          ? Colors.red
+                          : const Color.fromARGB(255, 254, 152, 152)),
+                ),
+              );
+            }),
           )
         ],
       ),
@@ -57,28 +70,64 @@ class _TicketViewState extends State<TicketView> {
                 child: Material(
                   color: context.color.surface,
                   child: Obx(() {
-                    return InkWell(
-                      onTap: () {
-                        ticketService.openPickCustomer();
-                      },
-                      child: Ink(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        child: ticketService.rxCustomer.value == null
-                            ? Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Add customer",
-                                  style: context.typo.body1.medium
-                                      .mergeColor(context.color.primary),
+                    return ticketService.rxCustomer.value == null
+                        ? InkWell(
+                            onTap: () {
+                              ticketService.pickCustomer();
+                            },
+                            child: Ink(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 18),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    "Add customer",
+                                    style: context.typo.body1.medium
+                                        .mergeColor(context.color.primary),
+                                  ),
+                                )),
+                          )
+                        : MiraiDropdownWidget<CustomerAction>(
+                            onChanged: (value) {
+                              switch (value) {
+                                case CustomerAction.edit:
+                                  ticketService.editCustomerInfo();
+                                  break;
+                                case CustomerAction.replace:
+                                  ticketService.replaceCustomer();
+                                  break;
+                                case CustomerAction.remove:
+                                  ticketService.removeCustomer();
+                                  break;
+                                default:
+                              }
+                            },
+                            children: const [
+                              CustomerAction.edit,
+                              CustomerAction.replace,
+                              CustomerAction.remove,
+                              CustomerAction.close,
+                            ],
+                            itemWidgetBuilder: (index, item) {
+                              return MiraiDropDownItemWidget(
+                                item: (
+                                  item.iconData,
+                                  item.title(context),
                                 ),
-                              )
-                            : Row(
+                              );
+                            },
+                            child: Container(
+                              color: context.color.surface,
+                              padding:
+                                  const EdgeInsets.only(left: 18, right: 11),
+                              child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      "Michael Jason",
+                                      ticketService.rxCustomer.value?.name ??
+                                          "",
                                       style: context.typo.body1.semiBold
                                           .mergeStyle(fontSize: 13),
                                       maxLines: 2,
@@ -87,13 +136,20 @@ class _TicketViewState extends State<TicketView> {
                                   ),
                                   10.0.horizontal,
                                   Text(
-                                    "+84386412929",
+                                    ticketService
+                                            .rxCustomer.value?.phoneNumber ??
+                                        "",
                                     style: context.typo.body2,
                                   ),
+                                  4.0.horizontal,
+                                  const Icon(
+                                    Icons.keyboard_arrow_down_outlined,
+                                    size: 20,
+                                  )
                                 ],
                               ),
-                      ),
-                    );
+                            ),
+                          );
                   }),
                 ),
               ),

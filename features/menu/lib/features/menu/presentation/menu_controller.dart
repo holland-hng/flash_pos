@@ -36,6 +36,14 @@ class MenuFlashController {
         ticketService.setCustomer(result);
       }
     });
+    eventBus.on<OpenCustomerPopupEvent>().listen((event) async {
+      final result = await customerService.openCustomerInfo(event.data);
+      if (result == null) {
+        //do nothing
+      } else {
+        ticketService.setCustomer(result);
+      }
+    });
   }
 
   Future<void> fetchData() async {

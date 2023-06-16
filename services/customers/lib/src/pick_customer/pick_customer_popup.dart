@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:core_data/core_data.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:customers_service/di/di.dart';
+import 'package:customers_service/src/customer_info/customer_info_popup.dart';
 import 'package:customers_service/src/customers/presentation/customers_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -20,140 +22,213 @@ class PickCustomerPopup extends StatefulWidget {
 class _PickCustomerPopupState extends State<PickCustomerPopup> {
   final customersController = getIt<CustomersController>();
   final textEditingController = TextEditingController();
+  final popupHandler = PopupHandler.instance;
+  double opacity = 1;
+
   @override
   void initState() {
     customersController.fetchCustomers();
     super.initState();
   }
 
+  void show() {
+    setState(() {
+      opacity = 1;
+    });
+  }
+
+  void hide() {
+    setState(() {
+      opacity = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Expanded(child: SizedBox()),
-        Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(18),
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              width: 500,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: Text(
-                      "Search customer",
-                      style: context.typo.subtitle2.bold,
+    return AnimatedOpacity(
+      opacity: opacity,
+      duration: const Duration(milliseconds: 300),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Expanded(child: SizedBox()),
+          Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(18),
+                padding: const EdgeInsets.symmetric(vertical: 18),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                width: 500,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Text(
+                        "Search customer",
+                        style: context.typo.subtitle2.bold,
+                      ),
                     ),
-                  ),
-                  18.0.vertical,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: SearchField(
-                      triggerInternalListener: true,
-                      autofocus: true,
-                      dismissOnTapOutside: false,
-                      textEditingController: textEditingController,
-                      keyboardType: TextInputType.none,
-                      hintText: 'Phone number...',
-                      onChanged: (text) {
-                        print(text);
-                      },
+                    18.0.vertical,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: SearchField(
+                        triggerInternalListener: true,
+                        autofocus: true,
+                        dismissOnTapOutside: false,
+                        textEditingController: textEditingController,
+                        keyboardType: TextInputType.none,
+                        hintText: 'Phone number...',
+                        onChanged: (text) {
+                          customersController.searchPhone(text);
+                        },
+                      ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18),
-                    child: CustomerSummaryView(),
-                  ),
-                  const HorDivider(),
-                  Flexible(
-                    child: Obx(() {
-                      switch (customersController.rxState.value) {
-                        case BaseState.idle:
-                        case BaseState.fetching:
-                          return const Center(
-                              child: CircularProgressIndicator.adaptive());
+                    12.0.vertical,
+                    const CustomerSummaryView(),
+                    const HorDivider(),
+                    Flexible(
+                      child: Obx(() {
+                        switch (customersController.rxState.value) {
+                          case BaseState.idle:
+                          case BaseState.fetching:
+                            return const Center(
+                                child: CircularProgressIndicator.adaptive());
 
-                        case BaseState.fetchSuccess:
-                          return ListView.separated(
-                            padding: const EdgeInsets.only(
-                                left: 18, right: 18, bottom: 36),
-                            itemBuilder: (context, index) {
-                              final customer =
-                                  customersController.rxCustomers[index];
-                              return CustomerSummaryView(
-                                name: customer.name,
-                                phone: customer.phoneNumber,
-                                loyaltyPoint: customer.loyaltyPoint.toString(),
+                          case BaseState.fetchSuccess:
+                            if (customersController.rxCustomers.isEmpty) {
+                              return const Center(
+                                child: Text("Empty list"),
                               );
-                            },
-                            separatorBuilder: (_, __) => const HorDivider(),
-                            itemCount: customersController.rxCustomers.length,
-                          );
-                        default:
-                          return const Center(child: Text("Error"));
-                      }
-                    }),
-                  ),
-                  const HorDivider(),
-                  18.0.vertical,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Material(
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(8),
-                              onTap: () {},
-                              child: Ink(
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: context.color.primary,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Add to ticket",
-                                      style: context.typo.subtitle2.bold
-                                          .mergeStyle(
-                                        color: context.color.surface,
-                                      ),
+                            }
+                            return ListView.separated(
+                              padding: const EdgeInsets.only(bottom: 36),
+                              itemBuilder: (context, index) {
+                                final customer =
+                                    customersController.rxCustomers[index];
+                                return Obx(() {
+                                  return CustomerSummaryView(
+                                    onTap: () {
+                                      customersController
+                                          .selectCustomer(customer);
+                                    },
+                                    name: customer.name,
+                                    phone: customer.phoneNumber,
+                                    loyaltyPoint:
+                                        customer.loyaltyPoint.toString(),
+                                    backgroundColor: customer.backgroundColor(
+                                      context,
+                                      customersController
+                                          .rxCustomerSelected.value,
                                     ),
-                                  ],
-                                ),
-                              ),
+                                    isSelected: customersController.isSelected(
+                                      customer,
+                                    ),
+                                    onTapUpdate: () async {
+                                      hide();
+                                      final result = await popupHandler
+                                          .showPopup<Customer>(
+                                        isRoot: false,
+                                        context: context,
+                                        builder: (popupContext) {
+                                          return CustomerInfoPopup(
+                                            customer: customer,
+                                            state: CustomerInfoState.edit,
+                                          );
+                                        },
+                                      );
+                                      if (result != null) {
+                                        customersController
+                                            .updateSelectedCustomer(
+                                          result,
+                                        );
+                                      }
+                                      show();
+                                    },
+                                  );
+                                });
+                              },
+                              separatorBuilder: (_, __) =>
+                                  const HorDivider(horizontal: 18),
+                              itemCount: customersController.rxCustomers.length,
+                            );
+                          default:
+                            return const Center(child: Text("Error"));
+                        }
+                      }),
+                    ),
+                    const HorDivider(),
+                    18.0.vertical,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Material(
+                              child: Obx(() {
+                                final customer = customersController
+                                    .rxCustomerSelected.value;
+                                return InkWell(
+                                  borderRadius: BorderRadius.circular(8),
+                                  onTap: () {
+                                    if (customer == null) {
+                                      //do nothing
+                                    } else {
+                                      Navigator.of(context).pop(customer);
+                                    }
+                                  },
+                                  child: Ink(
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: customer == null
+                                          ? context.color.tertiary
+                                          : context.color.primary,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Add customer ${customer == null ? '' : '(${customer.name})'}",
+                                          style: context.typo.subtitle2.bold
+                                              .mergeStyle(
+                                            color: customer == null
+                                                ? Colors.black54
+                                                : context.color.surface,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+              ),
+              const ClosePopupButton(),
+            ],
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 18, top: 74),
+              child: NumericKeyboard(
+                controller: textEditingController,
               ),
             ),
-            const ClosePopupButton(),
-          ],
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(right: 18, top: 74),
-            child: NumericKeyboard(
-              controller: textEditingController,
-            ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }
@@ -223,9 +298,11 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
               },
               child: InkWell(
                 borderRadius: BorderRadius.circular(8),
-                onTap: () {
-                  onTap(char);
-                },
+                onTap: char.isNotEmpty
+                    ? () {
+                        onTap(char);
+                      }
+                    : null,
                 child: Ink(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),

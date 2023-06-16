@@ -69,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return IgnorePointer(
                         ignoring: authController.isLoading.value,
                         child: InkWell(
+                          borderRadius: BorderRadius.circular(8),
                           onTap: () {
                             final isValid =
                                 formKey.currentState?.validate() ?? false;
@@ -79,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Ink(
                             height: 50,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
+                              borderRadius: BorderRadius.circular(8),
                               color: context.color.primary,
                             ),
                             child: Center(

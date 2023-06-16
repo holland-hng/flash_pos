@@ -45,13 +45,18 @@ class _SearchFieldState extends State<SearchField> {
   @override
   void initState() {
     if (widget.triggerInternalListener) {
-      textEditingController.addListener(internalHandler);
+      textEditingController.addListener(handleOnChanged);
     }
 
     super.initState();
   }
 
-  void internalHandler({String? text}) {
+  void handleOnChanged({String? text}) {
+    if (widget.triggerInternalListener) {
+      if (focusNode.hasFocus == false) {
+        focusNode.requestFocus();
+      }
+    }
     final value = text ?? textEditingController.text;
     if (isSearching == false && value.isNotEmpty) {
       setState(() {
@@ -69,7 +74,7 @@ class _SearchFieldState extends State<SearchField> {
   void dispose() {
     debounceHandler.dispose();
     if (widget.triggerInternalListener) {
-      textEditingController.removeListener(internalHandler);
+      textEditingController.removeListener(handleOnChanged);
     }
     super.dispose();
   }
@@ -85,7 +90,7 @@ class _SearchFieldState extends State<SearchField> {
       onChanged: widget.triggerInternalListener
           ? null
           : (text) {
-              internalHandler(text: text);
+              handleOnChanged(text: text);
             },
       onTapOutside: (_) {
         if (focusNode.hasFocus) {

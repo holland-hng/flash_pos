@@ -7,6 +7,7 @@ abstract class PopupHandler {
     required Widget Function(BuildContext popupContext) builder,
     required BuildContext context,
     bool canPop = true,
+    bool isRoot = true,
   });
   void hide();
   static PopupHandler get instance {
@@ -22,8 +23,8 @@ class PopupHandlerImpl extends PopupHandler {
   Future<T?> showPopup<T>({
     required BuildContext context,
     required Widget Function(BuildContext popupContext) builder,
-    bool useRootNavigator = true,
     bool canPop = true,
+    bool isRoot = true,
   }) async {
     if (isShowing == true) {
       debugPrint("PopupHandler isShowing: $isShowing");
@@ -37,7 +38,7 @@ class PopupHandlerImpl extends PopupHandler {
       duration: const Duration(milliseconds: 300),
       context: context,
       barrierDismissible: canPop,
-      barrierColor: Colors.black12,
+      barrierColor: isRoot ? Colors.black12 : Colors.transparent,
       builder: (popupContext) {
         this.popupContext = popupContext;
         return WillPopScope(

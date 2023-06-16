@@ -92,6 +92,7 @@ class _PickProductPopupState extends State<PickProductPopup> {
                     Future.delayed(const Duration(milliseconds: 100)).then(
                       (_) async {
                         final result = await notePopupHandler.showPopup<String>(
+                          isRoot: false,
                           context: context,
                           builder: (popupContext) {
                             return NotePopup(

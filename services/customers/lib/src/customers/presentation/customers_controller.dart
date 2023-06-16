@@ -21,7 +21,33 @@ class CustomersController {
     return customer == rxCustomerSelected.value;
   }
 
+  void selectCustomer(Customer? customer) {
+    if (rxCustomerSelected.value == customer) {
+      rxCustomerSelected.value = null;
+    } else {
+      rxCustomerSelected.value = customer;
+    }
+  }
+
+  void updateSelectedCustomer(Customer customer) {
+    assert(rxCustomerSelected.value != null);
+
+    final index = rxCustomers.indexOf(rxCustomerSelected.value);
+    rxCustomers[index] = customer;
+    rxCustomerSelected.value = customer;
+  }
+
   CustomersController(this.repository);
+
+  void searchPhone(String text) {
+    if (text.isEmpty) {
+      rxCustomers.value = List.from(storageCustomers);
+    } else {
+      rxCustomers.value = storageCustomers
+          .where((element) => element.phoneNumber.contains(text))
+          .toList();
+    }
+  }
 
   Future<void> fetchCustomers() async {
     rxState.value = BaseState.fetching;
@@ -47,14 +73,12 @@ class CustomersController {
       rxCustomerSelected.value = customer;
     }
   }
-
-  void search(String query) {
-    //do something
-  }
 }
 
 extension CustomerExtension on Customer {
   Color backgroundColor(BuildContext context, Customer? selected) {
-    return this == selected ? context.color.tertiary : context.color.surface;
+    return this == selected
+        ? context.color.tertiary.withOpacity(0.2)
+        : context.color.surface;
   }
 }

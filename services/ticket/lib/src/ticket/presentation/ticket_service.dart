@@ -29,8 +29,23 @@ class TicketService {
     rxCustomer.value = customer;
   }
 
-  void openPickCustomer() {
+  void removeCustomer() {
+    rxCustomer.value = null;
+  }
+
+  void pickCustomer() {
+    assert(rxCustomer.value == null);
     eventBus.fire(PickCustomerEvent());
+  }
+
+  void replaceCustomer() {
+    assert(rxCustomer.value != null);
+    eventBus.fire(PickCustomerEvent());
+  }
+
+  void editCustomerInfo() {
+    assert(rxCustomer.value != null);
+    eventBus.fire(OpenCustomerPopupEvent(rxCustomer.value!));
   }
 
   void addTicketItem(TicketItem item) {
@@ -81,6 +96,15 @@ class TicketService {
       subTotal * 1.1,
     );
   }
+
+  late final RxCombine<bool> rxHasData = RxCombine<bool>(
+    rxs: [rxCustomer, rxSections.first.tickets],
+    combiner: (rxs) {
+      final customer = rxs[0] as Rxn<Customer>;
+      final ticketItems = rxs[1] as RxList<TicketItem>;
+      return customer.value != null || ticketItems.isNotEmpty;
+    },
+  );
 
   void clearAllData() {
     rxCustomer.value = null;
