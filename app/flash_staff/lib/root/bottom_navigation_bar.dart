@@ -45,7 +45,7 @@ class _NavButtonState extends State<NavButton> {
                 8.0.horizontal,
                 Text(
                   widget.label.toUpperCase(),
-                  style: context.typo.body1.bold.mergeStyle(color: color),
+                  style: context.typo.subtitle2.bold.mergeStyle(color: color),
                 ),
               ],
             ),

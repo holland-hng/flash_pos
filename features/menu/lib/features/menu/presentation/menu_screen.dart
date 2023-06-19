@@ -102,11 +102,8 @@ class _MenuScreenState extends State<MenuScreen> {
                                         top: 21, bottom: 5),
                                     child: SizedBox(
                                       height: 34,
-                                      child: Text(
-                                        category.name,
-                                        style: context.typo.body1.bold
-                                            .mergeStyle(fontSize: 13),
-                                      ),
+                                      child: Text(category.name,
+                                          style: context.typo.body1.bold),
                                     ),
                                   ),
                                   Flexible(
@@ -168,11 +165,8 @@ class _MenuScreenState extends State<MenuScreen> {
                                               children: [
                                                 Text(
                                                   product.name,
-                                                  style: context
-                                                      .typo.body1.medium
-                                                      .mergeStyle(
-                                                    fontSize: 13,
-                                                  ),
+                                                  style:
+                                                      context.typo.body1.medium,
                                                   maxLines: 2,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -180,10 +174,8 @@ class _MenuScreenState extends State<MenuScreen> {
                                                 4.0.vertical,
                                                 Text(
                                                   "\$${product.price.toStringAsFixed(2)}",
-                                                  style: context.typo.body1.thin
-                                                      .mergeStyle(
-                                                    fontSize: 13,
-                                                  ),
+                                                  style:
+                                                      context.typo.body1.thin,
                                                 ),
                                               ],
                                             ),
@@ -226,7 +218,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
 extension ProductRatio on BuildContext {
   double get productRatio {
-    const height = 82;
+    const height = 88;
     final widthScreen = Get.width;
     final widthView = widthScreen * 8 / 14;
     final widthProduct = (widthView - 18 * 5) / 4;

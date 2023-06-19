@@ -16,8 +16,9 @@ export 'package:hive/hive.dart';
 export 'package:event_bus/event_bus.dart';
 export 'src/event_bus/events.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
+export 'package:core_data/src/models/enum.dart';
 
-// model ------------
+// MODEL ------------------------------------------------------------------------------
 // product
 export 'package:core_data/src/models/product/data/dto/product.dart';
 export 'package:core_data/src/models/product/data/dao/product.dart';

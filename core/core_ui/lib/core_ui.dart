@@ -1,7 +1,5 @@
 library core_ui;
 
-export 'package:core_ui/widgets/search_bar.dart';
-
 export '/ui_manager/ui_configuration.dart';
 export '/ui_manager/ui_manager.dart';
 
@@ -31,13 +29,17 @@ export 'package:easy_sidemenu/easy_sidemenu.dart';
 export 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 // widget common
-export 'package:core_ui/widgets/image_view.dart';
-export 'package:core_ui/widgets/app_bar/app_bar_deprecated.dart';
-export 'package:core_ui/widgets/app_bar/app_bar.dart';
-export 'package:core_ui/widgets/app_bar/sliver_app_bar.dart';
-export 'package:core_ui/widgets/app_bar/tab_button.dart';
-export 'package:core_ui/widgets/spacer.dart';
-export 'package:core_ui/widgets/text_field.dart';
-export 'package:core_ui/widgets/search_field.dart';
-export 'package:core_ui/widgets/popup_handler.dart' hide PopupHandlerImpl;
+export 'widgets/image_view.dart';
+export 'widgets/app_bar/app_bar_deprecated.dart';
+export 'widgets/app_bar/app_bar.dart';
+export 'widgets/app_bar/sliver_app_bar.dart';
+export 'widgets/app_bar/tab_button.dart';
+export 'widgets/spacer.dart';
+export 'widgets/text_field.dart';
+export 'widgets/search_field.dart';
+export 'widgets/popup_handler.dart' hide PopupHandlerImpl;
 export 'widgets/left_panel_view.dart';
+export 'widgets/drop_menu/dropdown_widget.dart';
+export 'widgets/drop_menu/dropdown_item_widget.dart';
+export 'widgets/search_bar.dart';
+export 'widgets/filter_button.dart';

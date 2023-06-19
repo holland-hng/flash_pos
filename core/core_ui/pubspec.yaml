@@ -31,6 +31,7 @@ dependencies:
   flutter_slidable: ^3.0.0
   easy_sidemenu: ^0.4.1+1
   flutter_animated_dialog: ^2.0.1
+  mirai_dropdown_menu: ^0.0.6+2
 
 dev_dependencies:
   flutter_test:

@@ -10,9 +10,6 @@ environment:
 
 dependencies:
 
-  mirai_dropdown_menu: ^0.0.6+2
-
-
   core_dependency:
     path: ../../core/core_dependency
   core_router:

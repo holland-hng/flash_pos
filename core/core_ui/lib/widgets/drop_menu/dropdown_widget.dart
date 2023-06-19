@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mirai_dropdown_menu/mirai_dropdown_menu.dart';
 
-class MiraiDropdownWidget<String> extends StatelessWidget {
-  const MiraiDropdownWidget({
+class DropdownWidget<T> extends StatelessWidget {
+  const DropdownWidget({
     Key? key,
     required this.itemWidgetBuilder,
     required this.children,
@@ -19,9 +19,9 @@ class MiraiDropdownWidget<String> extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  final MiraiDropdownBuilder<String> itemWidgetBuilder;
-  final List<String> children;
-  final ValueChanged<String> onChanged;
+  final MiraiDropdownBuilder<T> itemWidgetBuilder;
+  final List<T> children;
+  final ValueChanged<T> onChanged;
   final bool underline;
   final bool showSeparator;
   final MiraiExit exit;
@@ -35,7 +35,7 @@ class MiraiDropdownWidget<String> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MiraiPopupMenu<String>(
+    return MiraiPopupMenu<T>(
       key: UniqueKey(),
       enable: true,
       space: 4,

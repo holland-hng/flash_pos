@@ -16,7 +16,7 @@ class FlashAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.actions,
     this.elevation,
-    this.height = 36,
+    this.height = 38,
     this.automaticallyImplyLeading = true,
     this.centerTitle,
     this.backgroundColor,

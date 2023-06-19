@@ -1,7 +1,5 @@
-import 'mirai_dropdown_widget.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'mirai_dropdown_item_widget.dart';
 import 'package:ticket_service/ticket_service.dart';
 import 'package:core_dependency/core_dependency.dart';
 import 'package:ticket_service/src/ticket/domain/ticket_mode.dart';
@@ -85,7 +83,7 @@ class _TicketViewState extends State<TicketView> {
                                   ),
                                 )),
                           )
-                        : MiraiDropdownWidget<CustomerAction>(
+                        : DropdownWidget<CustomerAction>(
                             onChanged: (value) {
                               switch (value) {
                                 case CustomerAction.edit:
@@ -107,7 +105,7 @@ class _TicketViewState extends State<TicketView> {
                               CustomerAction.close,
                             ],
                             itemWidgetBuilder: (index, item) {
-                              return MiraiDropDownItemWidget(
+                              return DropDownItemWidget(
                                 item: (
                                   item.iconData,
                                   item.title(context),
@@ -126,8 +124,7 @@ class _TicketViewState extends State<TicketView> {
                                     child: Text(
                                       ticketService.rxCustomer.value?.name ??
                                           "",
-                                      style: context.typo.body1.semiBold
-                                          .mergeStyle(fontSize: 13),
+                                      style: context.typo.body1.semiBold,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -229,18 +226,13 @@ class _TicketViewState extends State<TicketView> {
                                                     child: Text(
                                                       "${ticketItem.quantity}x ${product.name}",
                                                       style: context
-                                                          .typo.body1.medium
-                                                          .mergeStyle(
-                                                        fontSize: 13,
-                                                      ),
+                                                          .typo.body1.medium,
                                                     ),
                                                   ),
+                                                  8.0.horizontal,
                                                   Text(
                                                     "\$${ticketItem.price.toStringAsFixed(2)}",
-                                                    style: context.typo.body1
-                                                        .mergeStyle(
-                                                      fontSize: 13,
-                                                    ),
+                                                    style: context.typo.body1,
                                                   ),
                                                 ],
                                               ),
@@ -342,11 +334,11 @@ class _TicketViewState extends State<TicketView> {
                     children: [
                       Text(
                         "Sub total",
-                        style: context.typo.body2,
+                        style: context.typo.body1,
                       ),
                       Text(
                         "\$${ticketPrice.subTotal.toStringAsFixed(2)}",
-                        style: context.typo.body2,
+                        style: context.typo.body1,
                       ),
                     ],
                   ),
@@ -356,11 +348,11 @@ class _TicketViewState extends State<TicketView> {
                     children: [
                       Text(
                         "Tax:",
-                        style: context.typo.body2,
+                        style: context.typo.body1,
                       ),
                       Text(
                         "\$${ticketPrice.tax.toStringAsFixed(2)}",
-                        style: context.typo.body2,
+                        style: context.typo.body1,
                       ),
                     ],
                   ),
@@ -397,7 +389,7 @@ class _TicketViewState extends State<TicketView> {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Save draft",
+                                  "Save",
                                   style: context.typo.body1.bold
                                       .mergeColor(Colors.black54),
                                 ),
