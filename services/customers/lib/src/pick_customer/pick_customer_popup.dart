@@ -75,18 +75,67 @@ class _PickCustomerPopupState extends State<PickCustomerPopup> {
                       ),
                     ),
                     18.0.vertical,
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: SearchField(
-                        triggerInternalListener: true,
-                        autofocus: true,
-                        dismissOnTapOutside: false,
-                        textEditingController: textEditingController,
-                        keyboardType: TextInputType.none,
-                        hintText: 'Phone number...',
-                        onChanged: (text) {
-                          customersController.searchPhone(text);
-                        },
+                    SizedBox(
+                      height: 38,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: SearchField(
+                                triggerInternalListener: true,
+                                autofocus: true,
+                                dismissOnTapOutside: false,
+                                textEditingController: textEditingController,
+                                keyboardType: TextInputType.none,
+                                hintText: 'Phone number...',
+                                onChanged: (text) {
+                                  customersController.searchPhone(text);
+                                },
+                              ),
+                            ),
+                            12.0.horizontal,
+                            Material(
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(8),
+                                onTap: () async {
+                                  hide();
+                                  final result =
+                                      await popupHandler.showPopup<Customer>(
+                                    builder: (popupContext) {
+                                      return const CustomerInfoPopup(
+                                        customer: CreateCustomerModel(),
+                                        state: CustomerInfoState.create,
+                                      );
+                                    },
+                                    context: context,
+                                  );
+                                  show();
+                                  if (result != null) {
+                                    customersController
+                                        .createdNewCustomer(result);
+                                  }
+                                },
+                                child: Ink(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12),
+                                  decoration: BoxDecoration(
+                                    color: context.color.primary,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "New",
+                                      style: context.typo.body1.bold.mergeColor(
+                                        context.color.surface,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     12.0.vertical,

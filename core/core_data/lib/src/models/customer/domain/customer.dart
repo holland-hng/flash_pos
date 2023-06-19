@@ -1,6 +1,10 @@
 import 'package:core_dependency/core_dependency.dart';
 import '../data/dto/customer_dto.dart';
 
+class CreateCustomerModel extends Customer {
+  const CreateCustomerModel();
+}
+
 class Customer extends Equatable {
   final String name;
   final String email;
@@ -8,13 +12,13 @@ class Customer extends Equatable {
   final String address;
   final int loyaltyPoint;
 
-  const Customer(
-    this.name,
-    this.email,
-    this.phoneNumber,
-    this.address,
-    this.loyaltyPoint,
-  );
+  const Customer({
+    this.name = '',
+    this.email = '',
+    this.phoneNumber = '',
+    this.address = '',
+    this.loyaltyPoint = 0,
+  });
 
   Customer copyWith({
     String? name,
@@ -23,11 +27,11 @@ class Customer extends Equatable {
     String? address,
   }) {
     return Customer(
-      name ?? this.name,
-      email ?? this.email,
-      phoneNumber ?? this.phoneNumber,
-      address ?? this.address,
-      loyaltyPoint,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      address: address ?? this.address,
+      loyaltyPoint: loyaltyPoint,
     );
   }
 
@@ -36,11 +40,11 @@ class Customer extends Equatable {
     cells.removeAt(0);
     final phone = '0${cells.join()}';
     return Customer(
-      dto.name,
-      dto.email,
-      phone,
-      dto.address,
-      dto.loyaltyPoint.toInt(),
+      name: dto.name,
+      email: dto.email,
+      phoneNumber: phone,
+      address: dto.address,
+      loyaltyPoint: dto.loyaltyPoint.toInt(),
     );
   }
 

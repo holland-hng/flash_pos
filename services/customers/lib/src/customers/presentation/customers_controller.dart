@@ -49,6 +49,11 @@ class CustomersController {
     }
   }
 
+  void createdNewCustomer(Customer customer) {
+    rxCustomers.value = [customer] + rxCustomers;
+    rxCustomerSelected.value = customer;
+  }
+
   Future<void> fetchCustomers() async {
     rxState.value = BaseState.fetching;
     try {

@@ -1,12 +1,11 @@
-import 'package:core_dependency/core_dependency.dart';
-import 'package:core_ui/core_ui.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:ticket_service/src/ticket/domain/customer_action.dart';
-import 'package:ticket_service/ticket_service.dart';
-
-import 'mirai_dropdown_item_widget.dart';
 import 'mirai_dropdown_widget.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
+import 'mirai_dropdown_item_widget.dart';
+import 'package:ticket_service/ticket_service.dart';
+import 'package:core_dependency/core_dependency.dart';
+import 'package:ticket_service/src/ticket/domain/ticket_mode.dart';
+import 'package:ticket_service/src/ticket/domain/customer_action.dart';
 
 class TicketView extends StatefulWidget {
   final TicketService ticketService;
@@ -52,8 +51,6 @@ class _TicketViewState extends State<TicketView> {
       ),
       body: Obx(
         () {
-          final mode = ticketService.rxMode.value;
-          debugPrint(mode.toString());
           return ListView(
             shrinkWrap: false,
             children: [
@@ -333,7 +330,10 @@ class _TicketViewState extends State<TicketView> {
             padding: const EdgeInsets.all(18.0),
             child: Obx(() {
               final ticketPrice = ticketService.ticketPrice;
-              debugPrint(ticketService.rxSections.toString());
+              final mode = ticketService.rxMode.value;
+              if (mode != TicketMode.draft) {
+                return const SizedBox();
+              }
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

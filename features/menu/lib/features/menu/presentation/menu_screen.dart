@@ -6,7 +6,6 @@ import 'package:menu/di/di.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:ticket_service/ticket_service.dart';
 import 'menu_controller.dart';
-import 'search_bar.dart';
 
 @RoutePage()
 class MenuScreen extends StatefulWidget {
@@ -36,8 +35,6 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("DEBUGGG oh my god menu screen");
-
     return Scaffold(
       backgroundColor: context.color.background,
       resizeToAvoidBottomInset: false,
@@ -53,44 +50,17 @@ class _MenuScreenState extends State<MenuScreen> {
               children: [
                 Expanded(
                   flex: 3,
-                  child: Scaffold(
-                    resizeToAvoidBottomInset: false,
-                    backgroundColor: context.color.surface,
-                    appBar: const FlashAppBar(title: 'Menu'),
-                    body: ListView.separated(
-                      padding: const EdgeInsets.only(
-                        bottom: 36,
-                      ),
-                      itemCount: menuController.rxCategories.length,
-                      itemBuilder: (context, index) {
-                        final category = menuController.rxCategories[index];
-                        return InkWell(
-                          onTap: () {
-                            itemScrollController.scrollTo(
-                                index: index,
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.linearToEaseOut);
-                          },
-                          child: Ink(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
-                            height: 60,
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 4),
-                                child: Text(
-                                  category.name,
-                                  style: context.typo.body1.medium,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) => const HorDivider(
-                        horizontal: 18,
-                      ),
-                    ),
+                  child: LeftPanelView(
+                    items: menuController.rxCategories
+                        .map((category) => LeftPanelAction(category.name))
+                        .toList(),
+                    onTap: (int index, LeftPanelAction item) {
+                      itemScrollController.scrollTo(
+                          index: index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.linearToEaseOut);
+                    },
+                    title: 'Menu',
                   ),
                 ),
                 Expanded(
@@ -99,6 +69,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     resizeToAvoidBottomInset: false,
                     backgroundColor: context.color.background,
                     appBar: FlashSearchBar(
+                      hint: 'Food\'s name...',
                       onChanged: (value) {
                         debugPrint("Menu search: $value");
                       },

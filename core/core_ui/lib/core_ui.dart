@@ -1,5 +1,7 @@
 library core_ui;
 
+export 'package:core_ui/widgets/search_bar.dart';
+
 export '/ui_manager/ui_configuration.dart';
 export '/ui_manager/ui_manager.dart';
 
@@ -38,3 +40,4 @@ export 'package:core_ui/widgets/spacer.dart';
 export 'package:core_ui/widgets/text_field.dart';
 export 'package:core_ui/widgets/search_field.dart';
 export 'package:core_ui/widgets/popup_handler.dart' hide PopupHandlerImpl;
+export 'widgets/left_panel_view.dart';

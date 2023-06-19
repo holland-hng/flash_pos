@@ -72,8 +72,8 @@ class MenuFlashController {
   Future<Category> getProducts(Category category) async {
     final categoryController = getIt<CategoryController>(param1: category);
     await categoryController.fetchData();
-    final count = categoryController.rxProducts.length > 8
-        ? 8
+    final count = categoryController.rxProducts.length > 12
+        ? 12
         : categoryController.rxProducts.length;
     category.products =
         categoryController.rxProducts.getRange(0, count).toList();

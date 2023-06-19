@@ -65,10 +65,11 @@ class _CustomerInfoPopupState extends State<CustomerInfoPopup> {
                           widget.state.title,
                           style: context.typo.subtitle2.bold,
                         ),
-                        Text(
-                          "Loyalty point: ${widget.customer.loyaltyPoint}",
-                          style: context.typo.body1.medium,
-                        ),
+                        if (widget.state != CustomerInfoState.create)
+                          Text(
+                            "Loyalty point: ${widget.customer.loyaltyPoint}",
+                            style: context.typo.body1.medium,
+                          ),
                       ],
                     ),
                     14.0.vertical,
@@ -123,9 +124,31 @@ class _CustomerInfoPopupState extends State<CustomerInfoPopup> {
                           return Row(
                             children: [
                               PopupActionButton(
+                                backgroundColor: Colors.red,
+                                textColor: context.color.surface,
+                                title: 'Discard',
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              18.0.horizontal,
+                              PopupActionButton(
                                 backgroundColor: context.color.primary,
                                 textColor: context.color.surface,
-                                title: 'Create new customer',
+                                isLoading:
+                                    customerInfoController.rxIsLoading.value,
+                                title: 'Create',
+                                onTap: () {
+                                  if (formKey.currentState?.validate() ??
+                                      false) {
+                                    customerInfoController.createCustomer(
+                                      Customer(
+                                        name: nameController.text,
+                                        phoneNumber: phoneController.text,
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
                             ],
                           );
@@ -176,7 +199,7 @@ class _CustomerInfoPopupState extends State<CustomerInfoPopup> {
                                 textColor: context.color.surface,
                                 title: 'Save',
                                 isLoading:
-                                    customerInfoController.rxIsUpdating.value,
+                                    customerInfoController.rxIsLoading.value,
                               ),
                             ],
                           );
@@ -193,7 +216,7 @@ class _CustomerInfoPopupState extends State<CustomerInfoPopup> {
         ),
         // Hacking code: disable user interaction when updating
         Obx(() {
-          final isUpdating = customerInfoController.rxIsUpdating.value;
+          final isUpdating = customerInfoController.rxIsLoading.value;
           if (isUpdating) {
             return Container(
               color: Colors.transparent,

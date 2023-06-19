@@ -17,7 +17,7 @@ class CustomerInfoController {
     rxState = Rx<CustomerInfoState>(state);
   }
   late final Rx<CustomerInfoState> rxState;
-  final RxBool rxIsUpdating = false.obs;
+  final RxBool rxIsLoading = false.obs;
 
   String? fieldValidator(String? text) {
     if (text == null || text.isEmpty) {
@@ -35,12 +35,22 @@ class CustomerInfoController {
     if (this.customer == customer) {
       Navigator.of(context!).pop<Customer>(customer);
     } else {
-      rxIsUpdating.value = true;
+      rxIsLoading.value = true;
       await Future.delayed(const Duration(seconds: 2));
-      rxIsUpdating.value = false;
+      rxIsLoading.value = false;
       // if success
       Navigator.of(context!).pop<Customer>(customer);
       // if fail
     }
+  }
+
+  Future<void> createCustomer(Customer customer) async {
+    final context = appRouter.router.navigatorKey.currentContext;
+    rxIsLoading.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    rxIsLoading.value = false;
+    // if success
+    Navigator.of(context!).pop<Customer>(customer);
+    // if fail
   }
 }
