@@ -84,7 +84,7 @@ class _FilterButtonState extends State<FilterButton> {
                 padding: const EdgeInsets.only(bottom: 2),
                 child: Text(
                   "Filter : ${type.title(context)}",
-                  style: context.typo.body1.semiBold.mergeColor(
+                  style: context.typo.body1.bold.mergeColor(
                     context.color.surface,
                   ),
                 ),

@@ -147,7 +147,11 @@ class _MenuScreenState extends State<MenuScreen> {
                                             }
                                           },
                                           child: Ink(
-                                            padding: const EdgeInsets.all(12),
+                                            padding: const EdgeInsets.only(
+                                                left: 12,
+                                                right: 12,
+                                                top: 10,
+                                                bottom: 10),
                                             decoration: BoxDecoration(
                                               color: context.color.surface,
                                               borderRadius:
@@ -171,11 +175,10 @@ class _MenuScreenState extends State<MenuScreen> {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                 ),
-                                                4.0.vertical,
                                                 Text(
                                                   "\$${product.price.toStringAsFixed(2)}",
-                                                  style:
-                                                      context.typo.body1.thin,
+                                                  style: context.typo.body1.thin
+                                                      .mergeStyle(fontSize: 13),
                                                 ),
                                               ],
                                             ),
@@ -218,8 +221,8 @@ class _MenuScreenState extends State<MenuScreen> {
 
 extension ProductRatio on BuildContext {
   double get productRatio {
-    const height = 88;
-    final widthScreen = Get.width;
+    const height = 82;
+    final widthScreen = Get.width > Get.height ? Get.width : Get.height;
     final widthView = widthScreen * 8 / 14;
     final widthProduct = (widthView - 18 * 5) / 4;
     final ratio = widthProduct / height;

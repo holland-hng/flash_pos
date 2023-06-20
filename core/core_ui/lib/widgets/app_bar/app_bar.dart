@@ -38,7 +38,7 @@ class FlashAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.only(bottom: 1),
             child: Text(
               title,
-              style: context.typo.subtitle2.semiBold
+              style: context.typo.subtitle2.bold
                   .mergeStyle(color: context.color.text),
             ),
           ),

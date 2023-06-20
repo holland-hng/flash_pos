@@ -49,7 +49,7 @@ class LeftPanelView<T extends LeftPanelAction> extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Text(
                     item.title,
-                    style: context.typo.body1.medium,
+                    style: context.typo.subtitle2.medium,
                   ),
                 ),
               ),

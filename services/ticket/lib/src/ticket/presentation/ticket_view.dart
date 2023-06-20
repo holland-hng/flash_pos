@@ -26,7 +26,7 @@ class _TicketViewState extends State<TicketView> {
         title: 'Ticket',
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 2),
+            padding: const EdgeInsets.only(right: 2, top: 2),
             child: Obx(() {
               bool isHasData = ticketService.rxHasData.value ?? false;
               return TextButton(
@@ -134,12 +134,15 @@ class _TicketViewState extends State<TicketView> {
                                     ticketService
                                             .rxCustomer.value?.phoneNumber ??
                                         "",
-                                    style: context.typo.body2,
+                                    style: context.typo.body1,
                                   ),
                                   4.0.horizontal,
-                                  const Icon(
-                                    Icons.keyboard_arrow_down_outlined,
-                                    size: 20,
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 1),
+                                    child: Icon(
+                                      Icons.keyboard_arrow_down_outlined,
+                                      size: 22,
+                                    ),
                                   )
                                 ],
                               ),
@@ -265,8 +268,12 @@ class _TicketViewState extends State<TicketView> {
                                                                 style: context
                                                                     .typo
                                                                     .body2
-                                                                    .thin),
+                                                                    .thin
+                                                                    .mergeStyle(
+                                                                        fontSize:
+                                                                            13)),
                                                           ),
+                                                          8.0.horizontal,
                                                           Text(
                                                             "\$${optionDetail.price.toStringAsFixed(2)}",
                                                             style: context.typo
@@ -286,7 +293,7 @@ class _TicketViewState extends State<TicketView> {
                                                   child: Text(
                                                     "Note: ${ticketItem.note}",
                                                     style: context
-                                                        .typo.body2.thin
+                                                        .typo.body1.thin
                                                         .mergeColor(
                                                       context.color.primary,
                                                     ),
@@ -372,7 +379,7 @@ class _TicketViewState extends State<TicketView> {
                   ),
                   18.0.vertical,
                   SizedBox(
-                    height: 34,
+                    height: 38,
                     child: Row(
                       children: [
                         Expanded(
